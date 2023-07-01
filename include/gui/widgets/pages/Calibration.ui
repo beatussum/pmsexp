@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Calibration</class>
+ <widget class="QWidget" name="Calibration">
+  <layout class="QVBoxLayout" name="m_main_layout">
+   <item>
+    <widget class="QLabel" name="m_help_label">
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="m_scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="gui::widgets::CalibrationWidget" name="m_calibration_widget"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="m_group_box">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Mesure réelle</string>
+     </property>
+     <layout class="QVBoxLayout" name="m_group_box_layout">
+      <item>
+       <widget class="QLineEdit" name="m_line_edit">
+        <property name="placeholderText">
+         <string>Entrez la mesure réelle correspondante (en cm).</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>gui::widgets::CalibrationWidget</class>
+   <extends>QLabel</extends>
+   <header>gui/widgets/CalibrationWidget.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

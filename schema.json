@@ -1,0 +1,78 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/beatussum/pms/blob/develop/pmsexp/schema.json",
+    "title": "Computed full positions",
+    "description": "A list of computed full position created by PMSCore",
+    "type": "object",
+    "properties": { "data": { "$ref": "#/$defs/data" } },
+    "required": ["data"],
+
+    "$defs": {
+        "position": {
+            "description": "The position of the robot",
+            "type": "object",
+
+            "properties": {
+                "x": {
+                    "description": "The x component",
+                    "type": "number"
+                },
+
+                "y": {
+                    "description": "The y component",
+                    "type": "number"
+                }
+            },
+
+            "required": ["x", "y"]
+        },
+
+        "full_position": {
+            "description": "The full position of the robot",
+            "type": "object",
+
+            "properties": {
+                "angle": {
+                    "description": "The angle taken by the robot",
+                    "type": "number"
+                },
+
+                "position": { "$ref": "#/$defs/position" }
+            },
+
+            "required": ["angle", "position"]
+        },
+
+        "datum": {
+            "description": "One item of the array of data",
+            "type": "object",
+
+            "properties": {
+                "computed": {
+                    "description": "The computed position of the robot",
+                    "$ref": "#/$defs/full_position"
+                },
+
+                "target": {
+                    "description": "The target position of the robot",
+                    "$ref": "#/$defs/full_position"
+                },
+
+                "timestamp": {
+                    "description":
+                        "The timestamp associated with the position",
+
+                    "type": "number"
+                }
+            },
+
+            "required": ["computed", "target", "timestamp"]
+        },
+
+        "data": {
+            "description": "An array of data",
+            "type": "array",
+            "items": { "$ref": "#/$defs/datum" }
+        }
+    }
+}

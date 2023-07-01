@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContourSelection</class>
+ <widget class="QWidget" name="ContourSelection">
+  <layout class="QVBoxLayout" name="m_main_layout">
+   <item>
+    <widget class="QLabel" name="m_contour_area_label"/>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="m_scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QLabel" name="m_contour_selection_widget"/>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="m_button_layout">
+     <item>
+      <widget class="QPushButton" name="m_previous_button">
+       <property name="text">
+        <string>Précédent</string>
+       </property>
+       <property name="icon">
+        <iconset theme="go-previous"/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_next_button">
+       <property name="text">
+        <string>Suivant</string>
+       </property>
+       <property name="icon">
+        <iconset theme="go-next"/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
