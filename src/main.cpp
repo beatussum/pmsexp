@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     QTranslator translator;
 
     translator.load(
-        QLocale("en"),
+        QLocale::system(),
         QString("%1/pmsexp").arg(PMSEXP_I18N_FILE_PATH),
         QString('_')
     );
