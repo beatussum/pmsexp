@@ -120,7 +120,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_gcc_cxx_flags(-O0)
 
     add_definitions(
-        -DPMSEXP_SCHEMA_FILE_PATH="${CMAKE_SOURCE_DIR}/schema.json"
+        -DPMSEXP_I18N_FILE_PATH="${CMAKE_CURRENT_BINARY_DIR}"
     )
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_gcc_cxx_flags(-O2)
@@ -178,12 +178,28 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include/gui")
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
-find_package(Qt5 COMPONENTS Core Concurrent Gui Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 
 find_package(OpenCV REQUIRED)
 include_directories("${OpenCV_INCLUDE_DIRS}")
 
-add_executable(pmsexp "${PMSEXP_HPP}" "${PMSEXP_IPP}" "${PMSEXP_CPP}")
+file(GLOB PMSEXP_TS i18n/*.ts)
+
+qt5_create_translation(
+    PMSEXP_QM
+    "${CMAKE_SOURCE_DIR}"
+    "${PMSEXP_TS}"
+    i18n/pmsexp.ts
+)
+
+add_executable(
+    pmsexp
+    "${PMSEXP_HPP}"
+    "${PMSEXP_IPP}"
+    "${PMSEXP_CPP}"
+    "${PMSEXP_QM}"
+)
+
 target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
 target_link_libraries(

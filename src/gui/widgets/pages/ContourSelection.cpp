@@ -86,7 +86,7 @@ namespace gui::widgets::pages
             painter.end();
 
             m_ui->m_contour_area_label->setText(
-                tr("Aire du contour : %1 px.").arg(get_current_area())
+                tr("Contour area: %1 px.").arg(get_current_area())
             );
 
             m_ui->m_contour_selection_widget->setPixmap(pixmap);

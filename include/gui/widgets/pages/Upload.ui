@@ -14,7 +14,7 @@
    <item>
     <widget class="QGroupBox" name="m_uploader_box">
      <property name="title">
-      <string>Chargement des données</string>
+      <string>Data loading</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -23,7 +23,7 @@
       <item>
        <widget class="gui::widgets::UploadWidget" name="m_uploader" native="true">
         <property name="info" stdset="0">
-         <string>Charger les données expérimentales</string>
+         <string>Load data</string>
         </property>
        </widget>
       </item>
@@ -40,13 +40,13 @@
    <item>
     <widget class="QGroupBox" name="m_status_box">
      <property name="title">
-      <string>Statut en cours</string>
+      <string>Current status</string>
      </property>
      <layout class="QVBoxLayout" name="m_status_layout">
       <item>
        <widget class="gui::widgets::CheckWidget" name="m_item" native="true">
         <property name="info" stdset="0">
-         <string>État de chargement des données expérimentales</string>
+         <string>Loading status of data</string>
         </property>
        </widget>
       </item>

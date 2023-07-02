@@ -19,7 +19,7 @@
      <item>
       <widget class="QPushButton" name="m_previous_button">
        <property name="text">
-        <string>Précédent</string>
+        <string>Previous</string>
        </property>
        <property name="icon">
         <iconset theme="go-previous">

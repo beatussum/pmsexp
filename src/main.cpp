@@ -18,9 +18,21 @@
 
 #include "gui/MainWindow.hpp"
 
+#include <QtCore/QTranslator>
+
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+
+    QTranslator translator;
+
+    translator.load(
+        QLocale("en"),
+        QString("%1/pmsexp").arg(PMSEXP_I18N_FILE_PATH),
+        QString('_')
+    );
+
+    app.installTranslator(&translator);
 
     gui::MainWindow main_window;
     main_window.show();

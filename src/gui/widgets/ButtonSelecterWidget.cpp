@@ -91,7 +91,7 @@ namespace gui::widgets
             __current_index != (m_ui->m_stacked_widget->count() - 1)
         );
 
-        next_button->setText(is_ended ? tr("Lancer") : tr("Suivant"));
+        next_button->setText(is_ended ? tr("Run") : tr("Next"));
         next_button->setShortcut(next_shortcut);
     }
 

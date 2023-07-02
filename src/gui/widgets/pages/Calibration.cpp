@@ -30,9 +30,9 @@ namespace gui::widgets::pages
 
         m_ui->m_help_label->setText(
             tr(
-                "Utilisez la souris pour sélectionner la zone à échelonner. "
-                "Appuyez sur « %1 » pour valider la sélection et « %2 » pour "
-                "effacer la précédente."
+                "Use the mouse to select the area to be scaled. "
+                "Press \"%1\" to validate the selection and \"%2\" to delete "
+                "the previous one."
             )
                 .arg(QKeySequence(Qt::Key_Enter).toString())
                 .arg(QKeySequence(Qt::Key_Escape).toString())

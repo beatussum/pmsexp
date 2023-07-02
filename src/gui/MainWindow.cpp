@@ -73,11 +73,7 @@ namespace gui
                 m_ui->m_central_widget->setEnabled(true);
 
                 m_ui->m_status_bar->showMessage(
-                    tr(
-                        "Le chargement des données expérimentales est terminé."
-                    ),
-
-                    2'000
+                    tr("Data loading is complete."), 2'000
                 );
             }
         );
@@ -199,7 +195,7 @@ namespace gui
                 m_ui->m_central_widget->set_progress(1);
 
                 m_ui->m_status_bar->showMessage(
-                    tr("Aucun contour trouvé."), 2'000
+                    tr("No contours found."), 2'000
                 );
             } else {
                 m_calibration_page->get_calibration_widget()->setPixmap(
@@ -214,7 +210,7 @@ namespace gui
                 m_ui->m_central_widget->set_progress(3);
 
                 m_ui->m_status_bar->showMessage(
-                    tr("%n contour(s) trouvé(s).", nullptr, size), 2'000
+                    tr("%n contour(s) found.", nullptr, size), 2'000
                 );
             }
         }
@@ -238,15 +234,12 @@ namespace gui
                     m_ui->m_central_widget->set_progress(1);
                 } else {
                     m_ui->m_status_bar->showMessage(
-                        tr("Aucun « frame » n'a pu ếtre récupéré."), 2'000
+                        tr("No frame can be retrieved."), 2'000
                     );
                 }
             } else {
                 m_ui->m_status_bar->showMessage(
-                    tr("Erreur lors de l'ouverture du fichier « %1 ».")
-                        .arg(file_path),
-
-                    2'000
+                    tr("Error opening the file \"%1\".").arg(file_path), 2'000
                 );
             }
         } else {
@@ -297,7 +290,7 @@ namespace gui
             );
         } else {
             m_ui->m_status_bar->showMessage(
-                tr("Résultats déjà chargés !"), 2'000
+                tr("Results already loaded!"), 2'000
             );
         }
     }
@@ -309,10 +302,6 @@ namespace gui
         if (result.empty()) {
             m_ui->m_central_widget->previous();
         } else {
-            m_ui->m_status_bar->showMessage(
-                tr("Le chargement des données calculées est terminé."), 2'000
-            );
-
             m_statistics_page->set_data(
                 result,
                 m_calibration_page->get_ratio(),

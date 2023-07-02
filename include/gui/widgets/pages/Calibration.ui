@@ -24,13 +24,13 @@
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Mesure réelle</string>
+      <string>Real measure</string>
      </property>
      <layout class="QVBoxLayout" name="m_group_box_layout">
       <item>
        <widget class="QLineEdit" name="m_line_edit">
         <property name="placeholderText">
-         <string>Entrez la mesure réelle correspondante (en cm).</string>
+         <string>Enter the corresponding actual measurement (in cm).</string>
         </property>
        </widget>
       </item>

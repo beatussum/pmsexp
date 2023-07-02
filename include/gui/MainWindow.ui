@@ -11,14 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PMSExp</string>
+   <string notr="true">PMSExp</string>
   </property>
   <widget class="gui::widgets::ButtonSelecterWidget" name="m_central_widget"/>
   <widget class="QStatusBar" name="m_status_bar"/>
   <widget class="QToolBar" name="m_tool_bar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
    <property name="movable">
     <bool>false</bool>
    </property>
@@ -44,10 +41,10 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Quitter</string>
+    <string>Quit</string>
    </property>
    <property name="toolTip">
-    <string>Quitte l'application</string>
+    <string>Quit the application.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -59,10 +56,10 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Réinitialiser</string>
+    <string>Reset</string>
    </property>
    <property name="toolTip">
-    <string>Réinitialiser les fichiers chargés.</string>
+    <string>Reset loaded files.</string>
    </property>
   </action>
  </widget>
