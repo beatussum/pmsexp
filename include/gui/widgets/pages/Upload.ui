@@ -21,7 +21,7 @@
      </property>
      <layout class="QVBoxLayout" name="m_uploader_layout">
       <item>
-       <widget class="gui::widgets::UploadWidget" name="m_ex_uploader" native="true">
+       <widget class="gui::widgets::UploadWidget" name="m_uploader" native="true">
         <property name="info" stdset="0">
          <string>Charger les données expérimentales</string>
         </property>
@@ -31,13 +31,6 @@
        <widget class="Line" name="m_line">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="gui::widgets::UploadWidget" name="m_comp_uploader" native="true">
-        <property name="info" stdset="0">
-         <string>Charger les données calculées</string>
         </property>
        </widget>
       </item>
@@ -51,16 +44,9 @@
      </property>
      <layout class="QVBoxLayout" name="m_status_layout">
       <item>
-       <widget class="gui::widgets::CheckWidget" name="m_ex_item" native="true">
+       <widget class="gui::widgets::CheckWidget" name="m_item" native="true">
         <property name="info" stdset="0">
          <string>État de chargement des données expérimentales</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="gui::widgets::CheckWidget" name="m_comp_item" native="true">
-        <property name="info" stdset="0">
-         <string>État de chargement des données calculées</string>
         </property>
        </widget>
       </item>

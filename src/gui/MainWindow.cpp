@@ -31,12 +31,6 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QtWidgets/QProgressBar>
 
-#include <valijson/adapters/qtjson_adapter.hpp>
-#include <valijson/utils/qtjson_utils.hpp>
-#include <valijson/schema.hpp>
-#include <valijson/schema_parser.hpp>
-#include <valijson/validator.hpp>
-
 namespace gui
 {
     MainWindow::MainWindow(QWidget* __parent, Qt::WindowFlags __f)
@@ -44,8 +38,7 @@ namespace gui
 
         , m_capture()
         , m_first_frame()
-        , m_future_watcher_comp(this)
-        , m_future_watcher_ex(this)
+        , m_future_watcher(this)
         , m_tracker()
         , m_progress_bar(new QProgressBar())
         , m_ui(new Ui::MainWindow())
@@ -69,30 +62,15 @@ namespace gui
         m_ui->m_status_bar->addWidget(m_progress_bar);
 
         QObject::connect(
-            &m_future_watcher_comp,
-            &future_watcher_comp_type::finished,
-            this,
-            &MainWindow::show_results
-        );
-
-        QObject::connect(
-            &m_future_watcher_comp,
-            &future_watcher_comp_type::progressTextChanged,
-            this,
-
-            [&] (const QString& __progress_text) {
-                m_ui->m_status_bar->showMessage(__progress_text, 2'000);
-            }
-        );
-
-        QObject::connect(
-            &m_future_watcher_ex,
-            &future_watcher_ex_type::finished,
+            &m_future_watcher,
+            &future_watcher_type::finished,
             this,
 
             [&] {
-                m_progress_bar->reset();
-                m_progress_bar->setRange(0, 0);
+                m_progress_bar->hide();
+
+                m_ui->m_action_reset->setEnabled(true);
+                m_ui->m_central_widget->setEnabled(true);
 
                 m_ui->m_status_bar->showMessage(
                     tr(
@@ -101,16 +79,12 @@ namespace gui
 
                     2'000
                 );
-
-                m_future_watcher_comp.setFuture(
-                    QtConcurrent::run(this, &MainWindow::process_comp)
-                );
             }
         );
 
         QObject::connect(
-            &m_future_watcher_ex,
-            &future_watcher_ex_type::progressValueChanged,
+            &m_future_watcher,
+            &future_watcher_type::progressValueChanged,
             m_progress_bar,
             &QProgressBar::setValue
         );
@@ -167,93 +141,9 @@ namespace gui
         );
     }
 
-    full_positions_comp_data MainWindow::process_comp()
+    full_positions_data MainWindow::process()
     {
-        full_positions_comp_data ret;
-        QString file_path = m_upload_page->get_comp_file_path();
-
-        QJsonValue schema_value;
-
-        if (
-            valijson::utils::loadDocument(
-                PMSEXP_SCHEMA_FILE_PATH,
-                schema_value
-            )
-        )
-        {
-            valijson::adapters::QtJsonAdapter schema_adaptater(schema_value);
-            valijson::Schema schema;
-            valijson::SchemaParser schema_parser;
-
-            schema_parser.populateSchema(schema_adaptater, schema);
-
-            QJsonValue data;
-
-            if (
-                valijson::utils::loadDocument(file_path.toStdString(), data)
-            )
-            {
-                valijson::adapters::QtJsonAdapter data_adaptater(data);
-                valijson::Validator validator;
-
-                if (validator.validate(schema, data_adaptater, nullptr)) {
-                    QJsonArray data_arr = data["data"].toArray();
-
-                    double first_timestamp =
-                        data_arr.first()["timestamp"].toDouble();
-
-                    full_position first_position =
-                        full_position_from_qjsonvalue(data_arr.first());
-
-                    ret[0.].first  = full_position();
-                    ret[0.].second = full_position();
-
-                    for (
-                        auto i = (data_arr.begin() + 1);
-                        i < data_arr.end();
-                        ++i
-                    )
-                    {
-                        QJsonObject datum = i->toObject();
-                        double timestamp  = datum["timestamp"].toDouble();
-
-                        ret[timestamp - first_timestamp].first =
-                            full_position_from_qjsonvalue(
-                                datum["computed"],
-                                first_position
-                            );
-
-                        ret[timestamp - first_timestamp].second =
-                            full_position_from_qjsonvalue(
-                                datum["target"],
-                                first_position
-                            );
-                    }
-                } else {
-                    emit m_future_watcher_comp.progressTextChanged(
-                        tr("Le fichier « %1 » n'a pas le bon format.")
-                            .arg(file_path)
-                    );
-                }
-            } else {
-                emit m_future_watcher_comp.progressTextChanged(
-                    tr("La lecture du fichier « %1 » est impossible.")
-                        .arg(file_path)
-                );
-            }
-        } else {
-            emit m_future_watcher_comp.progressTextChanged(
-                tr("La lecture du fichier schéma « %1 » est impossible.")
-                    .arg(PMSEXP_SCHEMA_FILE_PATH)
-            );
-        }
-
-        return ret;
-    }
-
-    full_positions_ex_data MainWindow::process_ex()
-    {
-        full_positions_ex_data ret;
+        full_positions_data ret;
 
         full_position first_position =
             full_position_from_contour(
@@ -264,7 +154,7 @@ namespace gui
         int progress           = 1;
         ret[0.]                = full_position();
 
-        emit m_future_watcher_ex.progressValueChanged(progress);
+        emit m_future_watcher.progressValueChanged(progress);
 
         double current_area = m_contour_selection_page->get_current_area();
         cv::Mat frame;
@@ -289,7 +179,7 @@ namespace gui
                 m_capture.get(cv::CAP_PROP_POS_MSEC) - first_timestamp
             ] = std::move(fp);
 
-            emit m_future_watcher_ex.progressValueChanged(++progress);
+            emit m_future_watcher.progressValueChanged(++progress);
         }
 
         return ret;
@@ -335,7 +225,7 @@ namespace gui
     void MainWindow::load_selection(bool __new_status)
     {
         if (__new_status) {
-            QString file_path = m_upload_page->get_ex_file_path();
+            QString file_path = m_upload_page->get_file_path();
 
             if (m_capture.open(file_path.toStdString())) {
                 m_capture.set(cv::CAP_PROP_POS_FRAMES, 0.);
@@ -402,8 +292,8 @@ namespace gui
 
             m_progress_bar->show();
 
-            m_future_watcher_ex.setFuture(
-                QtConcurrent::run(this, &MainWindow::process_ex)
+            m_future_watcher.setFuture(
+                QtConcurrent::run(this, &MainWindow::process)
             );
         } else {
             m_ui->m_status_bar->showMessage(
@@ -414,10 +304,9 @@ namespace gui
 
     void MainWindow::show_results()
     {
-        full_positions_comp_data result_comp = m_future_watcher_comp.result();
-        full_positions_ex_data result_ex     = m_future_watcher_ex.result();
+        full_positions_data result = m_future_watcher.result();
 
-        if (result_comp.empty() || result_ex.empty()) {
+        if (result.empty()) {
             m_ui->m_central_widget->previous();
         } else {
             m_ui->m_status_bar->showMessage(
@@ -425,8 +314,7 @@ namespace gui
             );
 
             m_statistics_page->set_data(
-                result_comp,
-                result_ex,
+                result,
                 m_calibration_page->get_ratio(),
                 m_first_frame.size()
             );

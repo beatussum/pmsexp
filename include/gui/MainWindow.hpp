@@ -50,16 +50,12 @@ namespace gui
         Q_OBJECT
 
     private:
-        using future_watcher_comp_type =
-            QFutureWatcher<full_positions_comp_data>;
-
-        using future_watcher_ex_type = QFutureWatcher<full_positions_ex_data>;
+        using future_watcher_type = QFutureWatcher<full_positions_data>;
     public:
         explicit MainWindow(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~MainWindow() { delete m_ui; }
     private:
-        full_positions_comp_data process_comp();
-        full_positions_ex_data process_ex();
+        full_positions_data process();
     private slots:
         void find_contours(const QRect& __new_selection);
         void load_selection(bool __new_status);
@@ -67,14 +63,13 @@ namespace gui
         void run();
         void show_results();
     private:
-        cv::VideoCapture         m_capture;
-        cv::Mat                  m_first_frame;
-        future_watcher_comp_type m_future_watcher_comp;
-        future_watcher_ex_type   m_future_watcher_ex;
-        cv::Ptr<cv::Tracker>     m_tracker;
-        QProgressBar*            m_progress_bar;
-        Ui::MainWindow*          m_ui;
-        bool                     m_update_needed;
+        cv::VideoCapture     m_capture;
+        cv::Mat              m_first_frame;
+        future_watcher_type  m_future_watcher;
+        cv::Ptr<cv::Tracker> m_tracker;
+        QProgressBar*        m_progress_bar;
+        Ui::MainWindow*      m_ui;
+        bool                 m_update_needed;
 
         gui::widgets::pages::Calibration*      m_calibration_page;
         gui::widgets::pages::ContourSelection* m_contour_selection_page;

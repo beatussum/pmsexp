@@ -32,12 +32,11 @@ namespace gui::widgets::pages
 
     public:
         inline static const QColor computed_data_color = Qt::green;
-        inline static const QColor ex_data_color       = Qt::black;
+        inline static const QColor data_color          = Qt::black;
         inline static const QColor target_data_color   = Qt::red;
     public:
         explicit Statistics(
-            const full_positions_comp_data& __comp_data,
-            const full_positions_ex_data& __ex_data,
+            const full_positions_data& __data,
             double __ratio,
             const cv::Size& __size,
             QWidget* __parent = nullptr,
@@ -49,8 +48,7 @@ namespace gui::widgets::pages
             Qt::WindowFlags __f = {}
         )
             : Statistics(
-                full_positions_comp_data(),
-                full_positions_ex_data(),
+                full_positions_data(),
                 1.,
                 cv::Size(),
                 __parent,
@@ -59,17 +57,13 @@ namespace gui::widgets::pages
         {}
     public slots:
         void set_data(
-            const full_positions_comp_data& __comp_data,
-            const full_positions_ex_data& __ex_data,
+            const full_positions_data& _data,
             double __ratio,
             const cv::Size& __size
         ) const;
 
         void reset_data() const;
     private:
-        QCustomPlot* m_trajectory;
-        QCustomPlot* m_angular_difference;
-        QCustomPlot* m_spatial_difference;
     };
 }
 

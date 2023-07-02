@@ -48,13 +48,7 @@ private:
     double m_standard;
 };
 
-using full_positions_comp_data =
-    std::map<
-        double,
-        std::pair<full_position, full_position>
-    >;
-
-using full_positions_ex_data = std::map<double, full_position>;
+using full_positions_data  = std::map<double, full_position>;
 using sorted_contours_type = std::multiset<contour_type, contour_compare>;
 
 #endif // PMSEXP_CORE_TYPES_HPP
