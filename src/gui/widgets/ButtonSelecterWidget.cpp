@@ -30,7 +30,7 @@ namespace gui::widgets
         , m_progress(0)
     {
         m_ui->setupUi(this);
-        set_stacked_widget(m_ui->m_stacked_widget);
+        m_ui->m_main_layout->insertWidget(0, m_stacked_widget);
 
         QObject::connect(
             m_ui->m_next_button,
@@ -73,7 +73,7 @@ namespace gui::widgets
         QPushButton* next_button = m_ui->m_next_button;
 
         bool is_ended =
-            (__current_index == (m_ui->m_stacked_widget->count() - 2));
+            (__current_index == (m_stacked_widget->count() - 2));
 
         m_ui->m_previous_button->setVisible(__current_index != 0);
 
@@ -88,7 +88,7 @@ namespace gui::widgets
         next_button->setEnabled(m_progress > __current_index);
 
         next_button->setVisible(
-            __current_index != (m_ui->m_stacked_widget->count() - 1)
+            __current_index != (m_stacked_widget->count() - 1)
         );
 
         next_button->setText(is_ended ? tr("Run") : tr("Next"));
@@ -100,7 +100,7 @@ namespace gui::widgets
         if (m_progress >= __i) {
             SelecterWidget::set_page_index(__i);
 
-            if (__i == (m_ui->m_stacked_widget->count() - 1)) {
+            if (__i == (m_stacked_widget->count() - 1)) {
                 emit run();
             }
         }

@@ -38,17 +38,9 @@ namespace gui::widgets
 
     public:
         explicit SelecterWidget(
-            QStackedWidget* __stacked_widget,
             QWidget* __parent = nullptr,
             Qt::WindowFlags   = {}
         );
-
-        explicit SelecterWidget(
-            QWidget* __parent   = nullptr,
-            Qt::WindowFlags __f = {}
-        )
-            : SelecterWidget(nullptr, __parent, __f)
-        {}
     public:
         int get_index_of(QWidget* __w) const
             { return m_stacked_widget->indexOf(__w); }
@@ -73,17 +65,12 @@ namespace gui::widgets
         void page_added(int __index);
         void page_index_changed(int __current_index);
         void page_removed(int __index);
-    private:
-        void __set_stacked_widget(QStackedWidget*) const;
-    public:
-        void set_stacked_widget(QStackedWidget* __s)
-            { __set_stacked_widget(m_stacked_widget = __s); }
     public slots:
         void next();
         void previous();
     protected slots:
         virtual void update_buttons(int __current_index) const = 0;
-    private:
+    protected:
         QStackedWidget* m_stacked_widget;
     };
 }

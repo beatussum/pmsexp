@@ -42,11 +42,12 @@ namespace gui::widgets::pages
         QString get_file_path() const
             { return m_ui->m_uploader->get_file_path(); }
 
-        bool is_upload_valid() const;
+        bool is_upload_valid() const { return !m_ui->m_uploader->is_empty(); }
     signals:
         void upload_status_changed(bool __new_status);
     public slots:
-        void reset_upload_status() const;
+        void reset_upload_status() const
+            { m_ui->m_uploader->reset_file_path(); }
     private:
         Ui::Upload* m_ui;
     };

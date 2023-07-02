@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>ListSelecterWidget</class>
  <widget class="QWidget" name="ListSelecterWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>503</width>
-    <height>365</height>
-   </rect>
-  </property>
   <layout class="QHBoxLayout" name="m_main_layout">
    <item>
     <layout class="QVBoxLayout" name="m_selecter_layout">
@@ -92,9 +84,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QStackedWidget" name="m_stacked_widget"/>
    </item>
   </layout>
  </widget>

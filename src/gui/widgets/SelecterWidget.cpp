@@ -20,15 +20,23 @@
 
 namespace gui::widgets
 {
-    SelecterWidget::SelecterWidget(
-        QStackedWidget* __stacked_widget,
-        QWidget* __parent,
-        Qt::WindowFlags __f
-    )
+    SelecterWidget::SelecterWidget(QWidget* __parent, Qt::WindowFlags __f)
         : QWidget(__parent, __f)
-        , m_stacked_widget(__stacked_widget)
+        , m_stacked_widget(new QStackedWidget(__parent))
     {
-        __set_stacked_widget(m_stacked_widget);
+        QObject::connect(
+            m_stacked_widget,
+            &QStackedWidget::currentChanged,
+            this,
+            &SelecterWidget::page_index_changed
+        );
+
+        QObject::connect(
+            m_stacked_widget,
+            &QStackedWidget::widgetRemoved,
+            this,
+            &SelecterWidget::page_removed
+        );
 
         QObject::connect(
             this,
@@ -50,25 +58,6 @@ namespace gui::widgets
             this,
             [&] (int __i) { update_buttons(get_page_index()); }
         );
-    }
-
-    void SelecterWidget::__set_stacked_widget(QStackedWidget* __s) const
-    {
-        if (__s != nullptr) {
-            QObject::connect(
-                __s,
-                &QStackedWidget::currentChanged,
-                this,
-                &SelecterWidget::page_index_changed
-            );
-
-            QObject::connect(
-                __s,
-                &QStackedWidget::widgetRemoved,
-                this,
-                &SelecterWidget::page_removed
-            );
-        }
     }
 
     void SelecterWidget::next()

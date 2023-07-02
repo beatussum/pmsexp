@@ -46,14 +46,4 @@ namespace gui::widgets::pages
             }
         );
     }
-
-    bool Upload::is_upload_valid() const
-    {
-        return !m_ui->m_uploader->is_empty();
-    }
-
-    void Upload::reset_upload_status() const
-    {
-        m_ui->m_uploader->reset_file_path();
-    }
 }

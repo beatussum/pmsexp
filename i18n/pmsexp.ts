@@ -4,20 +4,20 @@
 <context>
     <name>ButtonSelecterWidget</name>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="22"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="75"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="11"/>
+        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="61"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="29"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="77"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="17"/>
+        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="63"/>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="36"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="80"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="24"/>
+        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="66"/>
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
@@ -55,32 +55,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="44"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="81"/>
+        <location filename="../include/gui/MainWindow.ui" line="36"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="74"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="47"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="83"/>
+        <location filename="../include/gui/MainWindow.ui" line="39"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="76"/>
         <source>Quit the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="50"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="86"/>
+        <location filename="../include/gui/MainWindow.ui" line="42"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="79"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="59"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="88"/>
+        <location filename="../include/gui/MainWindow.ui" line="50"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="81"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="62"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="90"/>
+        <location filename="../include/gui/MainWindow.ui" line="53"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="83"/>
         <source>Reset loaded files.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -88,26 +88,26 @@
 <context>
     <name>Upload</name>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="17"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="82"/>
+        <location filename="../include/gui/widgets/pages/Upload.ui" line="9"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="81"/>
         <source>Data loading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="26"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="83"/>
+        <location filename="../include/gui/widgets/pages/Upload.ui" line="18"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="82"/>
         <source>Load data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="43"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="84"/>
+        <location filename="../include/gui/widgets/pages/Upload.ui" line="35"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="83"/>
         <source>Current status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="49"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="85"/>
+        <location filename="../include/gui/widgets/pages/Upload.ui" line="41"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="84"/>
         <source>Loading status of data</source>
         <translation type="unfinished"></translation>
     </message>

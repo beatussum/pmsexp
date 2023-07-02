@@ -2,18 +2,7 @@
 <ui version="4.0">
  <class>ButtonSelecterWidget</class>
  <widget class="QWidget" name="ButtonSelecterWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
-   </rect>
-  </property>
   <layout class="QVBoxLayout" name="m_main_layout">
-   <item>
-    <widget class="QStackedWidget" name="m_stacked_widget"/>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="m_button_layout">
      <item>
@@ -22,8 +11,7 @@
         <string>Previous</string>
        </property>
        <property name="icon">
-        <iconset theme="go-previous">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="go-previous"/>
        </property>
        <property name="shortcut">
         <string>Ctrl+Left</string>
