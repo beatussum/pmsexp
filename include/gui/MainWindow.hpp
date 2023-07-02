@@ -25,7 +25,6 @@
 
 #include <opencv2/videoio.hpp>
 #include <QtCore/QFutureWatcher>
-#include <unordered_map>
 
 namespace cv
 {

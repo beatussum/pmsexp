@@ -118,10 +118,7 @@ add_gcc_cxx_flags(
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_gcc_cxx_flags(-O0)
-
-    add_definitions(
-        -DPMSEXP_I18N_FILE_PATH="${CMAKE_CURRENT_BINARY_DIR}"
-    )
+    add_definitions(-DPMSEXP_I18N_FILE_PATH="${CMAKE_CURRENT_BINARY_DIR}")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_gcc_cxx_flags(-O2)
     add_gcc_cxx_flags(-Werror -Wfatal-errors)
