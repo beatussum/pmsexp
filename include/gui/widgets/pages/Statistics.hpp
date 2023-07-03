@@ -31,39 +31,18 @@ namespace gui::widgets::pages
         Q_OBJECT
 
     public:
-        inline static const QColor computed_data_color = Qt::green;
-        inline static const QColor data_color          = Qt::black;
-        inline static const QColor target_data_color   = Qt::red;
-    public:
         explicit Statistics(
-            const full_positions_data& __data,
-            double __ratio,
-            const cv::Size& __size,
-            QWidget* __parent = nullptr,
-            Qt::WindowFlags = {}
+            const full_positions_data& __data = {},
+            QWidget* __parent                 = nullptr,
+            Qt::WindowFlags                   = {}
         );
-
-        explicit Statistics(
-            QWidget* __parent = nullptr,
-            Qt::WindowFlags __f = {}
-        )
-            : Statistics(
-                full_positions_data(),
-                1.,
-                cv::Size(),
-                __parent,
-                __f
-            )
-        {}
     public slots:
-        void set_data(
-            const full_positions_data& _data,
-            double __ratio,
-            const cv::Size& __size
-        ) const;
-
+        void set_data(const full_positions_data& _data) const;
         void reset_data() const;
     private:
+        QCustomPlot* m_heading;
+        QCustomPlot* m_position;
+        QCustomPlot* m_trajectory;
     };
 }
 

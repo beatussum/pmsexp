@@ -65,17 +65,7 @@ namespace gui
             &m_future_watcher,
             &future_watcher_type::finished,
             this,
-
-            [&] {
-                m_progress_bar->hide();
-
-                m_ui->m_action_reset->setEnabled(true);
-                m_ui->m_central_widget->setEnabled(true);
-
-                m_ui->m_status_bar->showMessage(
-                    tr("Data loading is complete."), 2'000
-                );
-            }
+            &MainWindow::show_results
         );
 
         QObject::connect(
@@ -147,8 +137,16 @@ namespace gui
             );
 
         double first_timestamp = m_capture.get(cv::CAP_PROP_POS_MSEC);
-        int progress           = 1;
-        ret[0.]                = full_position();
+
+        int height =
+            m_selection_page
+                ->get_selection_widget()
+                ->get_pixmap_rect()
+                .height();
+
+        int progress = 1;
+        double ratio = m_calibration_page->get_ratio();
+        ret[0.]      = full_position();
 
         emit m_future_watcher.progressValueChanged(progress);
 
@@ -170,6 +168,9 @@ namespace gui
 
             fp.angle     -= first_position.angle;
             fp.position  -= first_position.position;
+
+            fp.position.y  = (height - fp.position.y);
+            fp.position   *= ratio;
 
             ret[
                 m_capture.get(cv::CAP_PROP_POS_MSEC) - first_timestamp
@@ -299,14 +300,19 @@ namespace gui
     {
         full_positions_data result = m_future_watcher.result();
 
+        m_progress_bar->hide();
+
+        m_ui->m_action_reset->setEnabled(true);
+        m_ui->m_central_widget->setEnabled(true);
+
+        m_ui->m_status_bar->showMessage(
+            tr("Data loading is complete."), 2'000
+        );
+
         if (result.empty()) {
             m_ui->m_central_widget->previous();
         } else {
-            m_statistics_page->set_data(
-                result,
-                m_calibration_page->get_ratio(),
-                m_first_frame.size()
-            );
+            m_statistics_page->set_data(result);
 
             m_update_needed = false;
         }

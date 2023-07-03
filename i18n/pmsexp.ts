@@ -115,34 +115,34 @@
 <context>
     <name>gui::MainWindow</name>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="76"/>
+        <location filename="../src/gui/MainWindow.cpp" line="309"/>
         <source>Data loading is complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="198"/>
+        <location filename="../src/gui/MainWindow.cpp" line="199"/>
         <source>No contours found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/MainWindow.cpp" line="213"/>
+        <location filename="../src/gui/MainWindow.cpp" line="214"/>
         <source>%n contour(s) found.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="237"/>
+        <location filename="../src/gui/MainWindow.cpp" line="238"/>
         <source>No frame can be retrieved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="242"/>
+        <location filename="../src/gui/MainWindow.cpp" line="243"/>
         <source>Error opening the file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="293"/>
+        <location filename="../src/gui/MainWindow.cpp" line="294"/>
         <source>Results already loaded!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -181,6 +181,68 @@
     <message>
         <location filename="../src/gui/widgets/pages/Selection.cpp" line="30"/>
         <source>Use the mouse to select the area to be monitored. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>gui::widgets::pages::Statistics</name>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="38"/>
+        <source>Heading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="44"/>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="50"/>
+        <source>Trajectory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="57"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="73"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="84"/>
+        <source>Time (in ms)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="58"/>
+        <source>Heading (in rad)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="59"/>
+        <source>Time evolution of the heading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="74"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="123"/>
+        <source>Abscissa (in cm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="85"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="124"/>
+        <source>Ordinate (in cm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="99"/>
+        <source>Time evolution of the abscissa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="112"/>
+        <source>Time evolution of the ordinate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="125"/>
+        <source>Evolution of the position</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
