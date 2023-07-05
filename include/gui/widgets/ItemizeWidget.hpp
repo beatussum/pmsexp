@@ -29,19 +29,8 @@ namespace gui::widgets
     {
         Q_OBJECT
 
-        Q_PROPERTY(
-            QString info
-            READ get_info
-            WRITE set_info
-            STORED false
-        )
-
-        Q_PROPERTY(
-            QPixmap pixmap
-            READ get_pixmap
-            WRITE set_pixmap
-            STORED false
-        )
+        Q_PROPERTY(QString info READ get_info WRITE set_info)
+        Q_PROPERTY(QPixmap pixmap READ get_pixmap WRITE set_pixmap)
 
     public:
         explicit ItemizeWidget(

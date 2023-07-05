@@ -59,15 +59,12 @@ namespace gui::widgets::pages
         m_heading->graph(0)->setName(tr("Time evolution of the heading"));
         m_heading->graph(0)->setLineStyle(QCPGraph::lsNone);
         m_heading->graph(0)->setPen(QPen(Qt::red));
-
-        m_heading->graph(0)->setScatterStyle(
-            QCPScatterStyle(QCPScatterStyle::ssCross, 4)
-        );
+        m_heading->graph(0)->setScatterStyle(QCPScatterStyle::ssCross);
 
         m_position->plotLayout()->clear();
         m_position->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
-        auto legend = new QCPLegend;
+        auto legend = new QCPLegend();
 
         auto top_axis = new QCPAxisRect(m_position);
         top_axis->axis(QCPAxis::atBottom)->setLabel(tr("Time (in ms)"));
@@ -96,39 +93,30 @@ namespace gui::widgets::pages
             top_axis->axis(QCPAxis::atLeft)
         );
 
-        top_graph->setName(tr("Time evolution of the abscissa"));
         top_graph->setLineStyle(QCPGraph::lsNone);
+        top_graph->setName(tr("Time evolution of the abscissa"));
         top_graph->setPen(QPen(Qt::black));
-
-        top_graph->setScatterStyle(
-            QCPScatterStyle(QCPScatterStyle::ssCross, 4)
-        );
+        top_graph->setScatterStyle(QCPScatterStyle::ssCross);
 
         auto bottom_graph = m_position->addGraph(
             bottom_axis->axis(QCPAxis::atBottom),
             bottom_axis->axis(QCPAxis::atLeft)
         );
 
-        bottom_graph->setName(tr("Time evolution of the ordinate"));
         bottom_graph->setLineStyle(QCPGraph::lsNone);
+        bottom_graph->setName(tr("Time evolution of the ordinate"));
         bottom_graph->setPen(QPen(Qt::red));
-
-        bottom_graph->setScatterStyle(
-            QCPScatterStyle(QCPScatterStyle::ssCross, 4)
-        );
+        bottom_graph->setScatterStyle(QCPScatterStyle::ssCross);
 
         m_trajectory->addGraph();
         m_trajectory->legend->setVisible(true);
         m_trajectory->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
         m_trajectory->xAxis->setLabel(tr("Abscissa (in cm)"));
         m_trajectory->yAxis->setLabel(tr("Ordinate (in cm)"));
-        m_trajectory->graph(0)->setName(tr("Evolution of the position"));
         m_trajectory->graph(0)->setLineStyle(QCPGraph::lsNone);
+        m_trajectory->graph(0)->setName(tr("Evolution of the position"));
         m_trajectory->graph(0)->setPen(QPen(Qt::red));
-
-        m_trajectory->graph(0)->setScatterStyle(
-            QCPScatterStyle(QCPScatterStyle::ssCross, 4)
-        );
+        m_trajectory->graph(0)->setScatterStyle(QCPScatterStyle::ssCross);
 
         set_data(__data);
     }
@@ -188,8 +176,13 @@ namespace gui::widgets::pages
     void Statistics::reset_data() const
     {
         m_heading->graph(0)->data()->clear();
+        m_heading->replot();
+
         m_position->graph(0)->data()->clear();
         m_position->graph(1)->data()->clear();
+        m_position->replot();
+
         m_trajectory->graph(0)->data()->clear();
+        m_trajectory->replot();
     }
 }

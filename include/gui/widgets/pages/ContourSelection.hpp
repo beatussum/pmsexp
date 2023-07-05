@@ -29,12 +29,7 @@ namespace gui::widgets::pages
     {
         Q_OBJECT
 
-        Q_PROPERTY(
-            sorted_contours_type contours
-            READ get_contours
-            RESET reset_contours
-        )
-
+        Q_PROPERTY(sorted_contours_type contours READ get_contours)
         Q_PROPERTY(QPixmap pixmap READ get_pixmap)
 
         Q_PROPERTY(
@@ -96,9 +91,7 @@ namespace gui::widgets::pages
     private slots:
         void update_shown_contour();
     public slots:
-        void reset_contours()
-            { set_values(sorted_contours_type(), QPixmap()); }
-
+        void reset_values() { set_values(sorted_contours_type(), QPixmap()); }
         void set_values(sorted_contours_type, QPixmap);
 
         void set_values(sorted_contours_type __c, const cv::Mat& __m)

@@ -17,11 +17,16 @@
 cmake_minimum_required(VERSION 3.25)
 cmake_policy(SET CMP0048 NEW)
 
-project(pmsexp
-        VERSION 0.9.0
-        DESCRIPTION ""
-        HOMEPAGE_URL "https://github.com/beatussum/pms/"
-        LANGUAGES CXX)
+project(
+    pmsexp
+    VERSION 0.9.0
+
+    DESCRIPTION
+        "A software for recovering the position of an object in a video"
+
+    HOMEPAGE_URL "https://github.com/beatussum/pmsexp/"
+    LANGUAGES CXX
+)
 
 option(WITH_DOC "Build the documentation" OFF)
 
@@ -169,6 +174,13 @@ set(
     src/gui/widgets/pages/Upload.cpp
 )
 
+set(
+    PMSEXP_TS
+    i18n/pmsexp_en.ts
+    i18n/pmsexp_fr_FR.ts
+    i18n/pmsexp.ts
+)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include/gui")
@@ -179,8 +191,6 @@ find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 
 find_package(OpenCV REQUIRED)
 include_directories("${OpenCV_INCLUDE_DIRS}")
-
-file(GLOB PMSEXP_TS i18n/*.ts)
 
 qt5_create_translation(
     PMSEXP_QM

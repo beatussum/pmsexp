@@ -62,7 +62,7 @@ sorted_contours_type contours_from_mat(
 
 full_position full_position_from_contour(contour_type __c)
 {
-    cv::Mat data(static_cast<int>(__c.size()), 2, CV_64F);
+    cv::Mat data(__c.size(), 2, CV_64F);
 
     for (int i = 0; i != data.rows; ++i) {
         data.at<double>(i, 0) = __c[i].x;
@@ -70,11 +70,7 @@ full_position full_position_from_contour(contour_type __c)
     }
 
     cv::PCA pca(data, cv::Mat(), cv::PCA::DATA_AS_ROW);
-
-    cv::Point position(
-        static_cast<int>(pca.mean.at<double>(0, 0)),
-        static_cast<int>(pca.mean.at<double>(0, 1))
-    );
+    cv::Point position(pca.mean.at<double>(0, 0), pca.mean.at<double>(0, 1));
 
     double angle = std::atan2(
         pca.eigenvectors.at<double>(0, 1),
@@ -88,7 +84,7 @@ QPixmap qpixmap_from_mat(const cv::Mat& __m)
 {
     return QPixmap::fromImage(
         QImage(
-            static_cast<const uchar*>(__m.data),
+            __m.data,
             __m.cols,
             __m.rows,
             QImage::Format_BGR888

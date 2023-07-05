@@ -28,6 +28,14 @@ namespace gui::widgets::pages
         Q_OBJECT
 
         Q_PROPERTY(
+            CalibrationWidget* calibration_widget
+            READ get_calibration_widget
+        )
+
+        Q_PROPERTY(double ratio READ get_ratio STORED false)
+        Q_PROPERTY(double real_measure READ get_real_measure STORED false)
+
+        Q_PROPERTY(
             bool status
             READ get_status
             RESET reset_status
@@ -43,13 +51,16 @@ namespace gui::widgets::pages
 
         virtual ~Calibration() { delete m_ui; }
     public:
-        CalibrationWidget* get_calibration_widget() const noexcept
+        const CalibrationWidget* get_calibration_widget() const noexcept
             { return m_ui->m_calibration_widget; }
+
+        CalibrationWidget* get_calibration_widget() noexcept
+            { return m_ui->m_calibration_widget; }
+
+        double get_ratio() const;
 
         double get_real_measure() const
             { return m_ui->m_line_edit->text().toDouble(); }
-
-        double get_ratio() const;
 
         bool get_status() const
             { return !m_ui->m_line_edit->text().isEmpty(); }

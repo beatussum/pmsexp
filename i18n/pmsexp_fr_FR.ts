@@ -204,8 +204,8 @@
     </message>
     <message>
         <location filename="../src/gui/widgets/pages/Statistics.cpp" line="57"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="73"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="84"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="70"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="81"/>
         <source>Time (in ms)</source>
         <translation>Temps (en ms)</translation>
     </message>
@@ -220,29 +220,29 @@
         <translation>Évolution temporelle du cap</translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="74"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="123"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="71"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="114"/>
         <source>Abscissa (in cm)</source>
         <translation>Abscisse (en cm)</translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="85"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="124"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="82"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="115"/>
         <source>Ordinate (in cm)</source>
         <translation>Ordonnée (en cm)</translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="99"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="97"/>
         <source>Time evolution of the abscissa</source>
         <translation>Évolution temporelle des abscisses</translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="112"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="107"/>
         <source>Time evolution of the ordinate</source>
         <translation>Évolution temporelle des ordonnées</translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="125"/>
+        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="117"/>
         <source>Evolution of the position</source>
         <translation>Évolution de la position</translation>
     </message>

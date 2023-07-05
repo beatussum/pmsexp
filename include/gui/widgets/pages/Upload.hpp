@@ -32,7 +32,6 @@ namespace gui::widgets::pages
             READ is_upload_valid
             RESET reset_upload_status
             NOTIFY upload_status_changed
-            STORED false
         )
 
     public:

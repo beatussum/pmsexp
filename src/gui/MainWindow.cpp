@@ -166,8 +166,8 @@ namespace gui
                 *contours_from_mat(frame, roi, current_area).begin()
             );
 
-            fp.angle     -= first_position.angle;
-            fp.position  -= first_position.position;
+            fp.angle    -= first_position.angle;
+            fp.position -= first_position.position;
 
             fp.position.y  = (height - fp.position.y);
             fp.position   *= ratio;
@@ -254,7 +254,7 @@ namespace gui
     {
         m_statistics_page->reset_data();
         m_calibration_page->reset_status();
-        m_contour_selection_page->reset_contours();
+        m_contour_selection_page->reset_values();
         m_selection_page->get_selection_widget()->reset_selection();
         m_upload_page->reset_upload_status();
 

@@ -32,7 +32,10 @@ namespace gui::widgets::pages
         explicit Selection(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Selection() { delete m_ui; }
     public:
-        SelectionWidget* get_selection_widget() const noexcept
+        const SelectionWidget* get_selection_widget() const noexcept
+            { return m_ui->m_selection_widget; }
+
+        SelectionWidget* get_selection_widget() noexcept
             { return m_ui->m_selection_widget; }
     private:
         Ui::Selection* m_ui;

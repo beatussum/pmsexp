@@ -35,6 +35,12 @@ namespace gui::widgets
             NOTIFY file_path_updated
         )
 
+        Q_PROPERTY(
+            mime_checker_type mime_checker
+            READ get_mime_checker
+            WRITE set_mime_checker
+        )
+
     public:
         using mime_checker_type = std::function<bool(const QString&)>;
     public:
