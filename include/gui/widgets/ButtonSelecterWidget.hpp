@@ -58,8 +58,9 @@ namespace gui::widgets
         void reset_progress() { emit progress_changed(m_progress = 0); }
         void set_progress(int __p) { emit progress_changed(m_progress = __p); }
     private:
-        int                       m_progress;
         Ui::ButtonSelecterWidget* m_ui;
+
+        int m_progress;
     };
 }
 

@@ -35,5 +35,12 @@ namespace gui::widgets::pages
                 .arg(QKeySequence(Qt::Key_Enter).toString())
                 .arg(QKeySequence(Qt::Key_Escape).toString())
         );
+
+        QObject::connect(
+            m_ui->m_selection_widget,
+            &gui::widgets::SelectionWidget::selection_changed,
+            this,
+            &Selection::selection_changed
+        );
     }
 }

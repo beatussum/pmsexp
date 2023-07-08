@@ -25,6 +25,8 @@ namespace gui::widgets
 {
     class ScrollArea : public QScrollArea
     {
+        Q_OBJECT
+
     public:
         using QScrollArea::QScrollArea;
     public:

@@ -36,11 +36,12 @@ namespace gui::widgets::pages
             contour_type current
             READ get_current
             NOTIFY current_changed
-            STORED false
         )
 
         Q_PROPERTY(double current_area READ get_current_area STORED false)
 
+    public:
+        using current_type = sorted_contours_type::const_iterator;
     public:
         explicit ContourSelection(
             sorted_contours_type,
@@ -85,9 +86,7 @@ namespace gui::widgets::pages
 
         double get_current_area() const;
     signals:
-        void current_changed(
-            sorted_contours_type::const_iterator __new_current
-        );
+        void current_changed(current_type __new_current);
     private slots:
         void update_shown_contour();
     public slots:
@@ -103,8 +102,8 @@ namespace gui::widgets::pages
         sorted_contours_type m_contours;
         QPixmap              m_pixmap;
 
-        sorted_contours_type::const_iterator m_current;
-        Ui::ContourSelection*                m_ui;
+        current_type          m_current;
+        Ui::ContourSelection* m_ui;
     };
 }
 

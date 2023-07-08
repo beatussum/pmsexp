@@ -43,20 +43,8 @@ namespace gui::widgets::pages
         QObject::connect(
             m_ui->m_calibration_widget,
             &gui::widgets::CalibrationWidget::measure_changed,
-            m_ui->m_group_box,
-            &QGroupBox::setEnabled
-        );
-
-        QObject::connect(
-            m_ui->m_calibration_widget,
-            &gui::widgets::CalibrationWidget::measure_changed,
             this,
-
-            [&] (bool __status) {
-                emit status_changed(
-                    __status && !m_ui->m_line_edit->text().isEmpty()
-                );
-            }
+            &Calibration::measure_changed
         );
 
         QObject::connect(
@@ -66,6 +54,25 @@ namespace gui::widgets::pages
 
             [&] (const QString& __text) {
                 emit status_changed(!__text.isEmpty());
+            }
+        );
+
+        QObject::connect(
+            this,
+            &Calibration::measure_changed,
+            m_ui->m_group_box,
+            &QGroupBox::setEnabled
+        );
+
+        QObject::connect(
+            this,
+            &Calibration::measure_changed,
+            this,
+
+            [&] (bool __status) {
+                emit status_changed(
+                    __status && !m_ui->m_line_edit->text().isEmpty()
+                );
             }
         );
     }
@@ -99,7 +106,7 @@ namespace gui::widgets::pages
         );
     }
 
-    void Calibration::reset_status() const
+    void Calibration::reset() const
     {
         m_ui->m_calibration_widget->reset();
         m_ui->m_line_edit->clear();

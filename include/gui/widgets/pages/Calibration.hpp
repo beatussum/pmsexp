@@ -41,17 +41,13 @@ namespace gui::widgets::pages
         Q_PROPERTY(
             bool status
             READ get_status
-            RESET reset_status
+            RESET reset
             NOTIFY status_changed
             STORED false
         )
 
     public:
-        explicit Calibration(
-            QWidget* __parent = nullptr,
-            Qt::WindowFlags   = {}
-        );
-
+        explicit Calibration(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Calibration() { delete m_ui; }
     public:
         QPixmap get_pixmap() const
@@ -70,9 +66,10 @@ namespace gui::widgets::pages
 
         bool get_status() const;
     signals:
+        void measure_changed(bool __status);
         void status_changed(bool __new_status);
     public slots:
-        void reset_status() const;
+        void reset() const;
     private:
         Ui::Calibration* m_ui;
     };

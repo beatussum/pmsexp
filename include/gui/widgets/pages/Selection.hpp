@@ -26,17 +26,40 @@ namespace gui::widgets::pages
     class Selection : public QWidget
     {
         Q_OBJECT
-        Q_PROPERTY(SelectionWidget* selection_widget READ get_selection_widget)
+
+        Q_PROPERTY(
+            QRect selection
+            READ get_selection
+            WRITE set_selection
+            RESET reset_selection
+            NOTIFY selection_changed
+        )
 
     public:
         explicit Selection(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Selection() { delete m_ui; }
     public:
-        const SelectionWidget* get_selection_widget() const noexcept
-            { return m_ui->m_selection_widget; }
+        QRect get_selection() const noexcept
+            { return m_ui->m_selection_widget->get_selection(); }
 
-        SelectionWidget* get_selection_widget() noexcept
-            { return m_ui->m_selection_widget; }
+        bool has_selection() const noexcept { return has_selection(); }
+
+        QRect get_pixmap_rect() const
+            { return m_ui->m_selection_widget->get_pixmap_rect(); }
+    signals:
+        void selection_changed(const QRect& __new_selection);
+    public slots:
+        void setPixmap(const QPixmap& __p)
+            { m_ui->m_selection_widget->setPixmap(__p); }
+
+        void setPixmap(const cv::Mat& __m)
+            { m_ui->m_selection_widget->setPixmap(__m); }
+
+        void set_selection(QRect __r) noexcept
+            { m_ui->m_selection_widget->set_selection(std::move(__r)); }
+
+        void reset_selection() noexcept
+            { m_ui->m_selection_widget->reset_selection(); }
     private:
         Ui::Selection* m_ui;
     };

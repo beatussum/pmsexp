@@ -120,8 +120,8 @@ namespace gui
         );
 
         QObject::connect(
-            m_selection_page->get_selection_widget(),
-            &widgets::SelectionWidget::selection_changed,
+            m_selection_page,
+            &widgets::pages::Selection::selection_changed,
             this,
             &MainWindow::find_contours
         );
@@ -140,6 +140,8 @@ namespace gui
     {
         full_positions_data ret;
 
+        double current_area = m_contour_selection_page->get_current_area();
+
         full_position first_position =
             full_position_from_contour(
                 m_contour_selection_page->get_current()
@@ -147,24 +149,15 @@ namespace gui
 
         double first_timestamp = m_capture.get(cv::CAP_PROP_POS_MSEC);
 
-        int height =
-            m_selection_page
-                ->get_selection_widget()
-                ->get_pixmap_rect()
-                .height();
-
-        int progress = 1;
-        double ratio = m_calibration_page->get_ratio();
-        ret[0.]      = full_position();
-
-        emit m_future_watcher.progressValueChanged(progress);
-
-        double current_area = m_contour_selection_page->get_current_area();
         cv::Mat frame;
 
-        cv::Rect roi = rect_from_qrect(
-            m_selection_page->get_selection_widget()->get_selection()
-        );
+        int height   = m_selection_page->get_pixmap_rect().height();
+        int progress = 1;
+        double ratio = m_calibration_page->get_ratio();
+        cv::Rect roi = rect_from_qrect(m_selection_page->get_selection());
+
+        ret[0.] = full_position();
+        emit m_future_watcher.progressValueChanged(progress);
 
         m_capture.set(cv::CAP_PROP_POS_FRAMES, 1.);
 
@@ -264,10 +257,7 @@ namespace gui
                 m_capture.set(cv::CAP_PROP_POS_FRAMES, 0.);
 
                 if (m_capture.read(m_first_frame)) {
-                    m_selection_page->get_selection_widget()->setPixmap(
-                        m_first_frame
-                    );
-
+                    m_selection_page->setPixmap(m_first_frame);
                     m_ui->m_central_widget->set_progress(1);
                 } else {
                     m_ui->m_status_bar->showMessage(
@@ -289,9 +279,9 @@ namespace gui
     void MainWindow::reset()
     {
         m_statistics_page->reset_data();
-        m_calibration_page->reset_status();
+        m_calibration_page->reset();
         m_contour_selection_page->reset_values();
-        m_selection_page->get_selection_widget()->reset_selection();
+        m_selection_page->reset_selection();
         m_upload_page->reset_upload_status();
 
         m_update_needed = true;
@@ -304,10 +294,7 @@ namespace gui
 
             m_tracker->init(
                 m_first_frame,
-
-                rect_from_qrect(
-                    m_selection_page->get_selection_widget()->get_selection()
-                )
+                rect_from_qrect(m_selection_page->get_selection())
             );
 
             m_ui->m_action_reset->setEnabled(false);

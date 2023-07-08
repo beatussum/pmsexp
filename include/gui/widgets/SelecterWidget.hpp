@@ -41,13 +41,19 @@ namespace gui::widgets
             Qt::WindowFlags   = {}
         );
     public:
-        QWidget* get_current_page() const
+        const QWidget* get_current_page() const
+            { return m_stacked_layout->currentWidget(); }
+
+        QWidget* get_current_page()
             { return m_stacked_layout->currentWidget(); }
 
         int get_index_of(QWidget* __w) const
             { return m_stacked_layout->indexOf(__w); }
 
-        QWidget* get_page(int __index) const
+        const QWidget* get_page(int __index) const
+            { return m_stacked_layout->widget(__index); }
+
+        QWidget* get_page(int __index)
             { return m_stacked_layout->widget(__index); }
 
         int get_page_index() const { return m_stacked_layout->currentIndex(); }

@@ -34,7 +34,7 @@ namespace gui::widgets::pages
 
         QObject::connect(
             m_ui->m_uploader,
-            &widgets::UploadWidget::file_path_updated,
+            &gui::widgets::UploadWidget::file_path_updated,
             this,
 
             [&] (const QString& __new_file_path) {
