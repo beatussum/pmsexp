@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/gui/MainWindow.cpp" line="241"/>
         <source>No contours found.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/MainWindow.cpp" line="254"/>
@@ -137,22 +137,22 @@
     <message>
         <location filename="../src/gui/MainWindow.cpp" line="275"/>
         <source>No frame can be retrieved.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/MainWindow.cpp" line="280"/>
         <source>Error opening the file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/MainWindow.cpp" line="330"/>
         <source>Results already loaded!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/MainWindow.cpp" line="345"/>
         <source>Data loading is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
