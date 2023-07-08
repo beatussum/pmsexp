@@ -199,9 +199,20 @@ namespace gui
                 m_ui->m_status_bar->setSizeGripEnabled(false);
 
                 break;
-            default:
+
+            case 1:
                 setFixedSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
                 m_ui->m_status_bar->setSizeGripEnabled(true);
+
+                break;
+
+            case 3:
+                setMinimumSize(0, 0);
+
+                break;
+
+            case 4:
+                setMinimumSize(800, 400);
 
                 break;
         }
@@ -278,6 +289,8 @@ namespace gui
 
     void MainWindow::reset()
     {
+        m_ui->m_central_widget->set_page_index(0);
+
         m_statistics_page->reset_data();
         m_calibration_page->reset();
         m_contour_selection_page->reset_values();

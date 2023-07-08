@@ -122,12 +122,12 @@
 <context>
     <name>gui::MainWindow</name>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="230"/>
+        <location filename="../src/gui/MainWindow.cpp" line="241"/>
         <source>No contours found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/MainWindow.cpp" line="243"/>
+        <location filename="../src/gui/MainWindow.cpp" line="254"/>
         <source>%n contour(s) found.</source>
         <translation>
             <numerusform>%n contour found.</numerusform>
@@ -135,22 +135,22 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="264"/>
+        <location filename="../src/gui/MainWindow.cpp" line="275"/>
         <source>No frame can be retrieved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="269"/>
+        <location filename="../src/gui/MainWindow.cpp" line="280"/>
         <source>Error opening the file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="317"/>
+        <location filename="../src/gui/MainWindow.cpp" line="330"/>
         <source>Results already loaded!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="332"/>
+        <location filename="../src/gui/MainWindow.cpp" line="345"/>
         <source>Data loading is complete.</source>
         <translation type="unfinished"></translation>
     </message>
