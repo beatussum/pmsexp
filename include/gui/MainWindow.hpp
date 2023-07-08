@@ -56,6 +56,8 @@ namespace gui
     private:
         full_positions_data process();
     private slots:
+        void update_size(int __current_index);
+    private slots:
         void find_contours(const QRect& __new_selection);
         void load_selection(bool __new_status);
         void reset();

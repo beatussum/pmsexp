@@ -66,7 +66,9 @@ namespace gui::widgets
     signals:
         void measure_changed(bool __status);
     public slots:
+        void reset();
         void reset_measure();
+
         void setPixmap(const QPixmap&);
 
         void setPixmap(const cv::Mat& __m)

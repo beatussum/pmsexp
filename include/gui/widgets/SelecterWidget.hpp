@@ -19,8 +19,7 @@
 #ifndef PMSEXP_GUI_WIDGETS_SELECTER_WIDGET_HPP
 #define PMSEXP_GUI_WIDGETS_SELECTER_WIDGET_HPP
 
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QWidget>
+#include "gui/widgets/StackedWidget.hpp"
 
 namespace gui::widgets
 {
@@ -42,25 +41,28 @@ namespace gui::widgets
             Qt::WindowFlags   = {}
         );
     public:
+        QWidget* get_current_page() const
+            { return m_stacked_layout->currentWidget(); }
+
         int get_index_of(QWidget* __w) const
-            { return m_stacked_widget->indexOf(__w); }
+            { return m_stacked_layout->indexOf(__w); }
 
         QWidget* get_page(int __index) const
-            { return m_stacked_widget->widget(__index); }
+            { return m_stacked_layout->widget(__index); }
 
-        int get_page_index() const { return m_stacked_widget->currentIndex(); }
+        int get_page_index() const { return m_stacked_layout->currentIndex(); }
 
         virtual void set_page_index(int __i)
-            { m_stacked_widget->setCurrentIndex(__i); }
+            { m_stacked_layout->setCurrentIndex(__i); }
     public:
         virtual void add_page(QWidget* __w)
-            { emit page_added(m_stacked_widget->addWidget(__w)); }
+            { emit page_added(m_stacked_layout->addWidget(__w)); }
 
         virtual void insert_page(int __index, QWidget* __w)
-            { emit page_added(m_stacked_widget->insertWidget(__index, __w)); }
+            { emit page_added(m_stacked_layout->insertWidget(__index, __w)); }
 
         virtual void remove_page(QWidget* __w)
-            { m_stacked_widget->removeWidget(__w); }
+            { m_stacked_layout->removeWidget(__w); }
     signals:
         void page_added(int __index);
         void page_index_changed(int __current_index);
@@ -71,7 +73,7 @@ namespace gui::widgets
     protected slots:
         virtual void update_buttons(int __current_index) const = 0;
     protected:
-        QStackedWidget* m_stacked_widget;
+        StackedWidget* m_stacked_layout;
     };
 }
 

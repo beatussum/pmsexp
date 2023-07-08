@@ -102,6 +102,13 @@ namespace gui::widgets
         }
     }
 
+    void CalibrationWidget::reset()
+    {
+        m_pixmap = QPixmap();
+
+        reset_measure();
+    }
+
     void CalibrationWidget::reset_measure()
     {
         m_end    = QPoint(-1., -1.);

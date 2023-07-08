@@ -22,18 +22,18 @@ namespace gui::widgets
 {
     SelecterWidget::SelecterWidget(QWidget* __parent, Qt::WindowFlags __f)
         : QWidget(__parent, __f)
-        , m_stacked_widget(new QStackedWidget(__parent))
+        , m_stacked_layout(new StackedWidget())
     {
         QObject::connect(
-            m_stacked_widget,
-            &QStackedWidget::currentChanged,
+            m_stacked_layout,
+            &StackedWidget::currentChanged,
             this,
             &SelecterWidget::page_index_changed
         );
 
         QObject::connect(
-            m_stacked_widget,
-            &QStackedWidget::widgetRemoved,
+            m_stacked_layout,
+            &StackedWidget::widgetRemoved,
             this,
             &SelecterWidget::page_removed
         );
@@ -64,15 +64,15 @@ namespace gui::widgets
     {
         set_page_index(
             std::min(
-                m_stacked_widget->count() - 1,
-                m_stacked_widget->currentIndex() + 1
+                m_stacked_layout->count() - 1,
+                m_stacked_layout->currentIndex() + 1
             )
         );
     }
 
     void SelecterWidget::previous()
     {
-        set_page_index(std::max(0, m_stacked_widget->currentIndex() - 1));
+        set_page_index(std::max(0, m_stacked_layout->currentIndex() - 1));
     }
 }
 

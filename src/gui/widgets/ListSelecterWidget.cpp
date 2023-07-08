@@ -28,7 +28,7 @@ namespace gui::widgets
         , m_ui(new Ui::ListSelecterWidget())
     {
         m_ui->setupUi(this);
-        m_ui->m_main_layout->addWidget(m_stacked_widget);
+        m_ui->m_main_layout->addWidget(m_stacked_layout);
 
         QObject::connect(
             m_ui->m_scroll_down_button,

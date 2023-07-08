@@ -70,20 +70,38 @@ namespace gui::widgets::pages
         );
     }
 
+    void Calibration::set_pixmap(const QPixmap& __p)
+    {
+        m_ui->m_calibration_widget->setPixmap(__p);
+        m_ui->m_scroll_area->updateGeometry();
+    }
+
+    void Calibration::set_pixmap(const cv::Mat& __m)
+    {
+        m_ui->m_calibration_widget->setPixmap(__m);
+        m_ui->m_scroll_area->updateGeometry();
+    }
+
     double Calibration::get_ratio() const
     {
         if (get_status()) {
-            return (
-                get_real_measure() / get_calibration_widget()->get_measure()
-            );
+            return (get_real_measure() / get_pixmap_measure());
         } else {
             return 1.;
         }
     }
 
+    bool Calibration::get_status() const
+    {
+        return (
+            m_ui->m_calibration_widget->get_status() &&
+            !m_ui->m_line_edit->text().isEmpty()
+        );
+    }
+
     void Calibration::reset_status() const
     {
-        m_ui->m_calibration_widget->reset_measure();
+        m_ui->m_calibration_widget->reset();
         m_ui->m_line_edit->clear();
     }
 }

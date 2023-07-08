@@ -140,8 +140,10 @@ set(
     include/gui/widgets/ItemizeWidget.hpp
     include/gui/widgets/LabelWidget.hpp
     include/gui/widgets/ListSelecterWidget.hpp
+    include/gui/widgets/ScrollArea.hpp
     include/gui/widgets/SelecterWidget.hpp
     include/gui/widgets/SelectionWidget.hpp
+    include/gui/widgets/StackedWidget.hpp
     include/gui/widgets/UploadWidget.hpp
     include/gui/widgets/pages/Calibration.hpp
     include/gui/widgets/pages/ContourSelection.hpp
@@ -164,6 +166,7 @@ set(
     src/gui/widgets/ItemizeWidget.cpp
     src/gui/widgets/LabelWidget.cpp
     src/gui/widgets/ListSelecterWidget.cpp
+    src/gui/widgets/ScrollArea.cpp
     src/gui/widgets/SelecterWidget.cpp
     src/gui/widgets/SelectionWidget.cpp
     src/gui/widgets/UploadWidget.cpp

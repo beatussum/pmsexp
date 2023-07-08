@@ -25,14 +25,14 @@
 <context>
     <name>Calibration</name>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="27"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="77"/>
+        <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="82"/>
         <source>Real measure</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="78"/>
+        <location filename="../include/gui/widgets/pages/Calibration.ui" line="39"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="83"/>
         <source>Enter the corresponding actual measurement (in cm).</source>
         <translation></translation>
     </message>
@@ -84,6 +84,13 @@
         <source>Reset loaded files.</source>
         <translation></translation>
     </message>
+    <message numerus="yes">
+        <source>%n contour(s) found.</source>
+        <translation type="obsolete">
+            <numerusform>%n contour found.</numerusform>
+            <numerusform>%n contours found.</numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>Upload</name>
@@ -115,17 +122,12 @@
 <context>
     <name>gui::MainWindow</name>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="309"/>
-        <source>Data loading is complete.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/MainWindow.cpp" line="199"/>
+        <location filename="../src/gui/MainWindow.cpp" line="237"/>
         <source>No contours found.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/MainWindow.cpp" line="214"/>
+        <location filename="../src/gui/MainWindow.cpp" line="250"/>
         <source>%n contour(s) found.</source>
         <translation>
             <numerusform>%n contour found.</numerusform>
@@ -133,19 +135,24 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="238"/>
+        <location filename="../src/gui/MainWindow.cpp" line="274"/>
         <source>No frame can be retrieved.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="243"/>
+        <location filename="../src/gui/MainWindow.cpp" line="279"/>
         <source>Error opening the file &quot;%1&quot;.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="294"/>
+        <location filename="../src/gui/MainWindow.cpp" line="330"/>
         <source>Results already loaded!</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/MainWindow.cpp" line="345"/>
+        <source>Data loading is complete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

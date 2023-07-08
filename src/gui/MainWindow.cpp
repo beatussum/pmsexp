@@ -84,6 +84,13 @@ namespace gui
 
         QObject::connect(
             m_ui->m_central_widget,
+            &gui::widgets::ButtonSelecterWidget::page_index_changed,
+            this,
+            &MainWindow::update_size
+        );
+
+        QObject::connect(
+            m_ui->m_central_widget,
             &widgets::ButtonSelecterWidget::run,
             this,
             &MainWindow::run
@@ -125,6 +132,8 @@ namespace gui
             this,
             &MainWindow::load_selection
         );
+
+        update_size(0);
     }
 
     full_positions_data MainWindow::process()
@@ -182,6 +191,35 @@ namespace gui
         return ret;
     }
 
+    void MainWindow::update_size(int __current_index)
+    {
+        QSize s  = size();
+        QSize sh = sizeHint();
+
+        switch (__current_index) {
+            case 0:
+                if (isMaximized()) {
+                    showNormal();
+                }
+
+                setFixedSize(sh);
+                m_ui->m_status_bar->setSizeGripEnabled(false);
+
+                break;
+            default:
+                setFixedSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+                m_ui->m_status_bar->setSizeGripEnabled(true);
+
+                break;
+        }
+
+        m_ui->m_central_widget->updateGeometry();
+
+        if ((s.height() < sh.height()) || (s.width() < sh.width())) {
+            adjustSize();
+        }
+    }
+
     void MainWindow::find_contours(const QRect& __new_selection)
     {
         if (__new_selection.isEmpty()) {
@@ -199,9 +237,7 @@ namespace gui
                     tr("No contours found."), 2'000
                 );
             } else {
-                m_calibration_page->get_calibration_widget()->setPixmap(
-                    m_first_frame
-                );
+                m_calibration_page->set_pixmap(m_first_frame);
 
                 m_contour_selection_page->set_values(
                     std::move(contours),

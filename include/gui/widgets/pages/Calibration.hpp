@@ -28,10 +28,13 @@ namespace gui::widgets::pages
         Q_OBJECT
 
         Q_PROPERTY(
-            CalibrationWidget* calibration_widget
-            READ get_calibration_widget
+            QPixmap pixmap
+            READ get_pixmap
+            WRITE set_pixmap
+            STORED false
         )
 
+        Q_PROPERTY(double pixmap_measure READ get_pixmap_measure STORED false)
         Q_PROPERTY(double ratio READ get_ratio STORED false)
         Q_PROPERTY(double real_measure READ get_real_measure STORED false)
 
@@ -51,19 +54,21 @@ namespace gui::widgets::pages
 
         virtual ~Calibration() { delete m_ui; }
     public:
-        const CalibrationWidget* get_calibration_widget() const noexcept
-            { return m_ui->m_calibration_widget; }
+        QPixmap get_pixmap() const
+            { return m_ui->m_calibration_widget->pixmap(Qt::ReturnByValue); }
 
-        CalibrationWidget* get_calibration_widget() noexcept
-            { return m_ui->m_calibration_widget; }
+        void set_pixmap(const QPixmap&);
+        void set_pixmap(const cv::Mat&);
+
+        double get_pixmap_measure() const
+            { return m_ui->m_calibration_widget->get_measure(); }
 
         double get_ratio() const;
 
         double get_real_measure() const
             { return m_ui->m_line_edit->text().toDouble(); }
 
-        bool get_status() const
-            { return !m_ui->m_line_edit->text().isEmpty(); }
+        bool get_status() const;
     signals:
         void status_changed(bool __new_status);
     public slots:

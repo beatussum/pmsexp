@@ -25,14 +25,14 @@
 <context>
     <name>Calibration</name>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="27"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="77"/>
+        <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="82"/>
         <source>Real measure</source>
         <translation>Mesure réelle</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="78"/>
+        <location filename="../include/gui/widgets/pages/Calibration.ui" line="39"/>
+        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="83"/>
         <source>Enter the corresponding actual measurement (in cm).</source>
         <translation>Entrer la mesure réelle correspondante (en cm).</translation>
     </message>
@@ -84,6 +84,33 @@
         <source>Reset loaded files.</source>
         <translation>Réinitialiser les fichiers chargés.</translation>
     </message>
+    <message>
+        <source>No contours found.</source>
+        <translation type="obsolete">Aucun contour trouvé.</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n contour(s) found.</source>
+        <translation type="obsolete">
+            <numerusform>%n contour trouvé.</numerusform>
+            <numerusform>%n contours trouvés.</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>No frame can be retrieved.</source>
+        <translation type="obsolete">Aucun «&#xa0;frame&#xa0;» n&apos;a pu être récupéré.</translation>
+    </message>
+    <message>
+        <source>Error opening the file &quot;%1&quot;.</source>
+        <translation type="obsolete">Erreur lors de l&apos;ouverture du fichier «&#xa0;%1&#xa0;».</translation>
+    </message>
+    <message>
+        <source>Results already loaded!</source>
+        <translation type="obsolete">Les résultats sont déjà chargés&#xa0;!</translation>
+    </message>
+    <message>
+        <source>Data loading is complete.</source>
+        <translation type="obsolete">Le chargement des données est terminé.</translation>
+    </message>
 </context>
 <context>
     <name>Upload</name>
@@ -115,17 +142,17 @@
 <context>
     <name>gui::MainWindow</name>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="309"/>
+        <location filename="../src/gui/MainWindow.cpp" line="345"/>
         <source>Data loading is complete.</source>
         <translation>Le chargement des données est terminé.</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="199"/>
+        <location filename="../src/gui/MainWindow.cpp" line="237"/>
         <source>No contours found.</source>
         <translation>Aucun contour trouvé.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/MainWindow.cpp" line="214"/>
+        <location filename="../src/gui/MainWindow.cpp" line="250"/>
         <source>%n contour(s) found.</source>
         <translation>
             <numerusform>%n contour trouvé.</numerusform>
@@ -133,17 +160,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="238"/>
+        <location filename="../src/gui/MainWindow.cpp" line="274"/>
         <source>No frame can be retrieved.</source>
         <translation>Aucun «&#xa0;frame&#xa0;» n&apos;a pu être récupéré.</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="243"/>
+        <location filename="../src/gui/MainWindow.cpp" line="279"/>
         <source>Error opening the file &quot;%1&quot;.</source>
         <translation>Erreur lors de l&apos;ouverture du fichier «&#xa0;%1&#xa0;».</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="294"/>
+        <location filename="../src/gui/MainWindow.cpp" line="330"/>
         <source>Results already loaded!</source>
         <translation>Les résultats sont déjà chargés&#xa0;!</translation>
     </message>
