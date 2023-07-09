@@ -6,6 +6,7 @@
 #  QCUSTOMPLOT_LIBRARIES - Link these to use QCustomPlot
 #
 # Copyright (C) 2019, Scott Furry, <scott.wl.furry@gmail.com>
+# Copyright (C) 2023, Mattéo Rossillol‑‑Laruelle, <beatussum@protonmail.com>
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
