@@ -32,28 +32,23 @@
 
 
 find_library(QCustomPlot_LIBRARY NAMES qcustomplot qcustomplot-qt5)
-set(QCustomPlot_LIBRARIES "${QCustomPlot_LIBRARY}")
-
 find_path(QCustomPlot_INCLUDE_DIR qcustomplot.h)
-set(QCustomPlot_INCLUDE_DIRS "${QCustomPlot_INCLUDE_DIR}")
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(
     QCustomPlot
     DEFAULT_MSG
-    QCustomPlot_LIBRARIES
-    QCustomPlot_INCLUDE_DIRS
+    QCustomPlot_LIBRARY
+    QCustomPlot_INCLUDE_DIR
 )
-
-mark_as_advanced(QCustomPlot_INCLUDE_DIRS QCustomPlot_LIBRARIES)
 
 if (QCustomPlot_FOUND AND NOT TARGET QCustomPlot::QCustomPlot)
     add_library(QCustomPlot::QCustomPlot UNKNOWN IMPORTED)
 
     set_target_properties(
         QCustomPlot::QCustomPlot PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIRS}"
-        IMPORTED_LOCATION "${QCustomPlot_LIBRARIES}"
+        INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIR}"
+        IMPORTED_LOCATION "${QCustomPlot_LIBRARY}"
     )
 endif()

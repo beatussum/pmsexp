@@ -18,7 +18,7 @@ cmake_minimum_required(VERSION 3.25)
 cmake_policy(SET CMP0048 NEW)
 
 project(
-    pmsexp
+    PMSExp
     VERSION 0.9.0
 
     DESCRIPTION
@@ -34,9 +34,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 unset(CMAKE_CXX_FLAGS_RELEASE CACHE)
 
-macro(add_gcc_cxx_flags _flags)
+macro(add_gcc_cxx_flags __flags)
     if(CMAKE_CXX_COMPILER_ID EQUAL "GNU")
-         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${_flags}")
+         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${__flags}")
     endif()
 endmacro()
 
@@ -57,7 +57,7 @@ set(
 
 if (WITH_DOC)
     set(
-        DOC_DIR
+        PMSEXP_DOC_DIR
         "${CMAKE_BINARY_DIR}/doc"
         CACHE PATH
         "The path where the documentation is built"
@@ -65,20 +65,20 @@ if (WITH_DOC)
 
     find_package(Doxygen REQUIRED)
 
-    set(DOXYGEN_OUTPUT_DIRECTORY "${DOC_DIR}")
+    set(DOXYGEN_OUTPUT_DIRECTORY "${PMSEXP_DOC_DIR}")
     set(DOXYGEN_INLINE_INHERITED_MEMB YES)
     set(DOXYGEN_ALIASES "pexample=@par Example")
     set(DOXYGEN_HIDE_UNDOC_CLASSES YES)
     set(DOXYGEN_HIDE_IN_BODY_DOCS YES)
     set(DOXYGEN_WARN_NO_PARAMDOC YES)
-    set(DOXYGEN_WARN_LOGFILE "${DOC_DIR}/log")
+    set(DOXYGEN_WARN_LOGFILE "${PMSEXP_DOC_DIR}/log")
 endif()
 
-macro(add_to_doc _headers)
+macro(add_to_doc __headers)
     if (WITH_DOC)
         doxygen_add_docs(
             doc
-            "${_headers}"
+            "${__headers}"
             COMMENT "Generating documentation…"
         )
     endif()
@@ -120,14 +120,6 @@ add_gcc_cxx_flags(
     -Wundef
     -Wuninitialized
 )
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_gcc_cxx_flags(-O0)
-    add_definitions(-DPMSEXP_I18N_FILE_PATH="${CMAKE_CURRENT_BINARY_DIR}")
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_gcc_cxx_flags(-O2)
-    add_gcc_cxx_flags(-Werror -Wfatal-errors)
-endif()
 
 set(
     PMSEXP_HPP
@@ -177,12 +169,12 @@ set(
     src/gui/widgets/pages/Upload.cpp
 )
 
-set(
-    PMSEXP_TS
-    i18n/pmsexp_en.ts
-    i18n/pmsexp_fr_FR.ts
-    i18n/pmsexp.ts
-)
+set(PMSEXP_LANGUAGES en fr_FR)
+set(PMSEXP_TS i18n/pmsexp.ts)
+
+foreach (LANGUAGE IN LISTS PMSEXP_LANGUAGES)
+    list(APPEND PMSEXP_TS "i18n/pmsexp_${LANGUAGE}.ts")
+endforeach()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -223,3 +215,155 @@ target_link_libraries(
 )
 
 add_to_doc("${PMSEXP_HPP}")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_gcc_cxx_flags(-O0)
+    set(PMSEXP_I18N_FILE_PATH "${CMAKE_CURRENT_BINARY_DIR}")
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_gcc_cxx_flags(-O2)
+    add_gcc_cxx_flags(-Werror -Wfatal-errors)
+
+    if (UNIX AND NOT APPLE)
+        include(GNUInstallDirs)
+
+        set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
+        set(PMSEXP_DATA_INSTALL_DIR "${CMAKE_INSTALL_FULL_DATADIR}")
+        string(TOLOWER "${CMAKE_PROJECT_NAME}" PMSEXP_EXECUTABLE_NAME)
+        set(PMSEXP_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
+    elseif (WIN32)
+        set(PMSEXP_BIN_DIR ".")
+        set(PMSEXP_DATA_INSTALL_DIR ".")
+        set(PMSEXP_EXECUTABLE_NAME "${CMAKE_PROJECT_NAME}")
+        set(PMSEXP_LIB_DIR ".")
+
+        find_program(
+            WINDEPLOYQT_EXE
+            windeployqt
+            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin "
+            ENV PATH
+            DOC "A tool to automate deployment of the Qt-related dependencies."
+            REQUIRED
+        )
+
+        if(Qt5Core_VERSION VERSION_LESS "5.14.1")
+            set(WINDEPLOYQT_MODE "--release")
+        endif()
+    endif()
+
+    set(
+        PMSEXP_I18N_FILE_PATH
+        "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations/"
+    )
+
+    install(
+        TARGETS pmsexp
+        RUNTIME
+        DESTINATION "${PMSEXP_BIN_DIR}"
+        COMPONENT Runtime
+    )
+
+    install(
+        FILES ${PMSEXP_QM}
+        DESTINATION "${PMSEXP_I18N_FILE_PATH}"
+        COMPONENT Translations
+    )
+
+    set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
+    set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
+    #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
+    #set(CPACK_PACKAGE_ICON "")
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+    #set(CPACK_RESOURCE_FILE_README "")
+    #set(CPACK_RESOURCE_FILE_WELCOME "")
+    set(CPACK_GENERATOR "DEB;WIX")
+
+    if (UNIX AND NOT APPLE)
+        set(
+            CPACK_PACKAGE_EXECUTABLES
+            "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}"
+        )
+
+        set(
+            PMSEXP_DEBIAN_PACKAGE_DEPENDS
+            "libqscintilla2-qt5-15"
+            "libqt5core5a"
+            "libqt5concurrent5"
+            "libqt5gui5"
+            "libqt5widgets5"
+            "qttranslations5-l10n"
+        )
+
+        string(
+            JOIN ", "
+            CPACK_DEBIAN_PACKAGE_DEPENDS
+            ${PMSEXP_DEBIAN_PACKAGE_DEPENDS}
+        )
+
+        set(
+            CPACK_DEBIAN_PACKAGE_MAINTAINER
+            "Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>"
+        )
+
+        set(CPACK_DEBIAN_PACKAGE_SECTION "science")
+        set(CPACK_DEBIAN_PACKAGE_CONTROL_STRICT_PERMISSION TRUE)
+    elseif (WIN32)
+        foreach (LANGUAGE IN LISTS PMSEXP_LANGUAGES)
+            list(
+                APPEND Qt5_QM
+                "${Qt5_PREFIX}/share/qt5/translations/qtbase_${LANGUAGE}.qm"
+            )
+        endforeach()
+
+        install(
+            FILES "${Qt5_QM}"
+            DESTINATION "${PMSEXP_I18N_FILE_PATH}"
+            COMPONENT Translations
+        )
+
+        install(
+            TARGETS QCustomPlot::QCustomPlot
+            LIBRARY
+            DESTINATION "${PMSEXP_LIB_DIR}"
+            COMPONENT Runtime
+        )
+
+        install(
+            SCRIPT "
+                execute_process(
+
+                    COMMAND
+                        ${WINDEPLOYQT_EXE}
+                        ${PMSEXP_EXECUTABLE_NAME}.exe
+                        ${WINDEPLOYQT_MODE}
+
+                    WORKING_DIRECTORY \${CMAKE_INSTALL_PREFIX}
+                    OUTPUT_QUIET
+                )
+            "
+
+            COMPONENT Runtime
+        )
+
+        set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
+        set(CPACK_WIX_PRODUCT_GUID 2362eeda-4124-401c-a6b2-70b35d177bf7)
+        #set(CPACK_WIX_LICENSE_RTF "")
+        #set(CPACK_WIX_PRODUCT_ICON "")
+        #set(CPACK_WIX_UI_BANNER "")
+        #set(CPACK_WIX_UI_DIALOG "")
+        #set(CPACK_WIX_CULTURES "")
+    endif()
+
+    include(CPack)
+endif()
+
+set_target_properties(
+    pmsexp
+    PROPERTIES
+    OUTPUT_NAME "${PMSEXP_EXECUTABLE_NAME}"
+)
+
+target_compile_definitions(
+    pmsexp
+    PRIVATE
+    PMSEXP_I18N_FILE_PATH="${PMSEXP_I18N_FILE_PATH}"
+)
