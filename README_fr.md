@@ -7,15 +7,13 @@
 [**PMSExp**](https://github.com/beatussum/pmsexp/) est un outil libre (sous licence GPL-3 ou ultérieure) permettant d'automatiser le pointage vidéo d'un objet.
 
 En particulier, il permet de récupérer les informations suivantes :
-    - le cap de l'objet au cours du temps ;
-    - son ordonnée et son abscisse au cours du temps.
+- le cap de l'objet (l'avant de l'objet étant déterminé à partir de sa forme) au cours du temps ;
+- son ordonnée et son abscisse au cours du temps.
 
 Pour fonctionner, il s'appuie sur différentes bibliothèques :
-    - [Qt](https://www.qt.io/) pour l'interface graphique ;
-    - [OpenCV](https://opencv.org/) pour le traitement de fichiers vidéos ;
-    - [QCustomPlot](https://www.qcustomplot.com/) pour l'affichage des données dans des graphes.
-
-*[le cap de l'objet]: l'avant de l'objet étant déterminé à partir de sa forme
+- [Qt](https://www.qt.io/) pour l'interface graphique ;
+- [OpenCV](https://opencv.org/) pour le traitement de fichiers vidéos ;
+- [QCustomPlot](https://www.qcustomplot.com/) pour l'affichage des données dans des graphes.
 
 ## Pourquoi **PMSExp** (**P**arking **M**onitoring **S**ystem **Exp**eriment) ?
 

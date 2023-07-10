@@ -7,15 +7,13 @@
 [**PMSExp**](https://github.com/beatussum/pmsexp/) is free software (licensed under GPL-3 or any later version) allowing to automate video pointing of an object.
 
 In particular, it allows to recover the follwing informations:
-    - the heading of the object over time;
-    - its coordinates over time.
+- the heading of the object (the front of the object being determined by its shape) over time;
+- its coordinates over time.
 
 To work, it depends on the following libraries:
-    - [Qt](https://www.qt.io/) for the user interface;
-    - [OpenCV](https://opencv.org/) for the video processing;
-    - [QCustomPlot](https://www.qcustomplot.com/) for displaying data in graphs.
-
-*[the heading of the object]: the front of the object being determined by its shape
+- [Qt](https://www.qt.io/) for the user interface;
+- [OpenCV](https://opencv.org/) for the video processing;
+- [QCustomPlot](https://www.qcustomplot.com/) for displaying data in graphs.
 
 ## Why **PMSExp** (**P**arking **M**onitoring **S**ystem **Exp**eriment)?
 
