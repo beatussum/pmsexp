@@ -20,15 +20,12 @@ cmake_policy(SET CMP0048 NEW)
 project(
     PMSExp
     VERSION 0.9.0
-
-    DESCRIPTION
-        "A software for recovering the position of an object in a video"
-
+    DESCRIPTION "A software for recovering the position of an object in a video"
     HOMEPAGE_URL "https://github.com/beatussum/pmsexp/"
     LANGUAGES CXX
 )
 
-option(WITH_DOC "Build the documentation" OFF)
+option(COMPRESS_DOC "Compress the documentation files if necessary" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
@@ -47,42 +44,6 @@ find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
 endif()
-
-set(
-    EXPORT_DIR
-    "${CMAKE_BINARY_DIR}/exports"
-    CACHE PATH
-    "The path where the export header is generated"
-)
-
-if (WITH_DOC)
-    set(
-        PMSEXP_DOC_DIR
-        "${CMAKE_BINARY_DIR}/doc"
-        CACHE PATH
-        "The path where the documentation is built"
-    )
-
-    find_package(Doxygen REQUIRED)
-
-    set(DOXYGEN_OUTPUT_DIRECTORY "${PMSEXP_DOC_DIR}")
-    set(DOXYGEN_INLINE_INHERITED_MEMB YES)
-    set(DOXYGEN_ALIASES "pexample=@par Example")
-    set(DOXYGEN_HIDE_UNDOC_CLASSES YES)
-    set(DOXYGEN_HIDE_IN_BODY_DOCS YES)
-    set(DOXYGEN_WARN_NO_PARAMDOC YES)
-    set(DOXYGEN_WARN_LOGFILE "${PMSEXP_DOC_DIR}/log")
-endif()
-
-macro(add_to_doc __headers)
-    if (WITH_DOC)
-        doxygen_add_docs(
-            doc
-            "${__headers}"
-            COMMENT "Generating documentation…"
-        )
-    endif()
-endmacro()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -169,6 +130,16 @@ set(
     src/gui/widgets/pages/Upload.cpp
 )
 
+set(
+    PMSEXP_COMPRESSABLE_DOC_FILES
+    ChangeLog
+    COPYING
+    README_fr.md
+    README.md
+)
+
+set(PMSEXP_UNCOMPRESSABLE_DOC_FILES)
+
 set(PMSEXP_LANGUAGES en fr_FR)
 set(PMSEXP_TS i18n/pmsexp.ts)
 
@@ -214,8 +185,6 @@ target_link_libraries(
     Qt5::Widgets
 )
 
-add_to_doc("${PMSEXP_HPP}")
-
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_gcc_cxx_flags(-O0)
 
@@ -232,29 +201,17 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
         set(PMSEXP_DATA_INSTALL_DIR "${CMAKE_INSTALL_FULL_DATADIR}")
         string(TOLOWER "${CMAKE_PROJECT_NAME}" PMSEXP_EXECUTABLE_NAME)
-
-        set(
-            PMSEXP_ICON_DIR
-            "${PMSEXP_DATA_INSTALL_DIR}/icons/hicolor/256x256/apps"
-        )
-
+        set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons/hicolor/256x256/apps")
         set(PMSEXP_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
+        set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc/${PMSEXP_EXECUTABLE_NAME}-${CMAKE_PROJECT_VERSION}")
     elseif (WIN32)
         set(PMSEXP_BIN_DIR ".")
         set(PMSEXP_DATA_INSTALL_DIR ".")
         set(PMSEXP_EXECUTABLE_NAME "${CMAKE_PROJECT_NAME}")
-
-        set(
-            PMSEXP_ICON_DIR
-            "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons"
-        )
-
+        set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons")
         set(PMSEXP_LIB_DIR ".")
-
-        set(
-            PMSEXP_THEME_DIR
-            "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons"
-        )
+        set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons")
+        set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc")
 
         find_program(
             WINDEPLOYQT_EXE
@@ -270,10 +227,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         endif()
     endif()
 
-    set(
-        PMSEXP_I18N_DIR
-        "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations"
-    )
+    set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
 
     install(
         TARGETS pmsexp
@@ -281,6 +235,24 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         DESTINATION "${PMSEXP_BIN_DIR}"
         COMPONENT Runtime
     )
+
+    if (COMPRESS_DOC)
+        include(CompressIfNecessary)
+
+        compress_if_necessary(
+            FILES "${PMSEXP_COMPRESSABLE_DOC_FILES}"
+            OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/doc"
+            COMMENT "Compressing the documentation files…"
+            TARGET compress_doc
+            OUTPUT_VAR PMSEXP_PROCESSED_DOC_FILES
+        )
+
+        install(
+            FILES ${PMSEXP_PROCESSED_DOC_FILES} ${PMSEXP_UNCOMPRESSABLE_DOC_FILES}
+            DESTINATION "${PMSEXP_DOC_DIR}"
+            COMPONENT Documentation
+        )
+    endif()
 
     if (DEFINED PMSEXP_THEME_DIR)
         install(
@@ -310,11 +282,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
     #set(CPACK_RESOURCE_FILE_WELCOME "")
     set(CPACK_GENERATOR "DEB;WIX")
-
-    set(
-        CPACK_PACKAGE_EXECUTABLES
-        "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}"
-    )
+    set(CPACK_PACKAGE_EXECUTABLES "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}")
 
     if (UNIX AND NOT APPLE)
         install(
@@ -345,11 +313,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             ${PMSEXP_DEBIAN_PACKAGE_DEPENDS}
         )
 
-        set(
-            CPACK_DEBIAN_PACKAGE_MAINTAINER
-            "Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>"
-        )
-
+        set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>")
         set(CPACK_DEBIAN_PACKAGE_SECTION "science")
         set(CPACK_DEBIAN_PACKAGE_CONTROL_STRICT_PERMISSION TRUE)
     elseif (WIN32)
@@ -376,12 +340,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         install(
             SCRIPT "
                 execute_process(
-
-                    COMMAND
-                        ${WINDEPLOYQT_EXE}
-                        ${PMSEXP_EXECUTABLE_NAME}.exe
-                        ${WINDEPLOYQT_MODE}
-
+                    COMMAND \"${WINDEPLOYQT_EXE} ${PMSEXP_EXECUTABLE_NAME}.exe ${WINDEPLOYQT_MODE}\"
                     WORKING_DIRECTORY \${CMAKE_INSTALL_PREFIX}
                     OUTPUT_QUIET
                 )
