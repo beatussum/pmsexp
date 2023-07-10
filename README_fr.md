@@ -39,7 +39,7 @@ Je suis en train de me rendre compte que cela m'a pris beaucoup de lignes pour e
 
 ## Licences
 
-Comme expliqué ci-dessus, le code de ce logiciel est sous licence GPL-3 ou toute version ultérieure. Les détails concernant les droits s'appliquant sur les différents fichiers tiers sont décrits dans le fichier [COPYING](COPYING) au [format des fichiers `debian/copyright` de Debian](https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/).
+Comme expliqué ci-dessus, le code de ce logiciel est sous licence GPL-3 ou toute version ultérieure. Les détails concernant les droits s'appliquant sur les différents fichiers tiers sont décrits dans le fichier [copyright](copyright) au [format des fichiers `debian/copyright` de Debian](https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/).
 
 ## Installation
 

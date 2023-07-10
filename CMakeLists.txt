@@ -33,7 +33,7 @@ unset(CMAKE_CXX_FLAGS_RELEASE CACHE)
 
 macro(add_gcc_cxx_flags __flags)
     if(CMAKE_CXX_COMPILER_ID EQUAL "GNU")
-         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${__flags}")
+        string(APPEND CMAKE_CXX_FLAGS " ${__flags}")
     endif()
 endmacro()
 
@@ -130,28 +130,21 @@ set(
     src/gui/widgets/pages/Upload.cpp
 )
 
-set(
-    PMSEXP_COMPRESSABLE_DOC_FILES
-    ChangeLog
-    COPYING
-    README_fr.md
-    README.md
-)
-
-set(PMSEXP_UNCOMPRESSABLE_DOC_FILES)
+set(PMSEXP_COMPRESSABLE_DOC_FILES ChangeLog README_fr.md README.md)
+set(PMSEXP_UNCOMPRESSABLE_DOC_FILES copyright)
 
 set(PMSEXP_LANGUAGES en fr_FR)
 set(PMSEXP_TS i18n/pmsexp.ts)
 
-foreach (LANGUAGE IN LISTS PMSEXP_LANGUAGES)
-    list(APPEND PMSEXP_TS "i18n/pmsexp_${LANGUAGE}.ts")
+foreach (language IN LISTS PMSEXP_LANGUAGES)
+    list(APPEND PMSEXP_TS "i18n/pmsexp_${language}.ts")
 endforeach()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include/gui")
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 
@@ -247,8 +240,12 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             OUTPUT_VAR PMSEXP_PROCESSED_DOC_FILES
         )
 
+        foreach (doc IN LISTS PMSEXP_UNCOMPRESSABLE_DOC_FILES)
+            list(APPEND PMSEXP_PROCESSED_DOC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/${doc}")
+        endforeach()
+
         install(
-            FILES ${PMSEXP_PROCESSED_DOC_FILES} ${PMSEXP_UNCOMPRESSABLE_DOC_FILES}
+            FILES ${PMSEXP_PROCESSED_DOC_FILES}
             DESTINATION "${PMSEXP_DOC_DIR}"
             COMPONENT Documentation
         )
@@ -317,10 +314,10 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         set(CPACK_DEBIAN_PACKAGE_SECTION "science")
         set(CPACK_DEBIAN_PACKAGE_CONTROL_STRICT_PERMISSION TRUE)
     elseif (WIN32)
-        foreach (LANGUAGE IN LISTS PMSEXP_LANGUAGES)
+        foreach (language IN LISTS PMSEXP_LANGUAGES)
             list(
                 APPEND Qt5_QM
-                "${Qt5_PREFIX}/share/qt5/translations/qtbase_${LANGUAGE}.qm"
+                "${Qt5_PREFIX}/share/qt5/translations/qtbase_${language}.qm"
             )
         endforeach()
 
