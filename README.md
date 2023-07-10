@@ -2,7 +2,15 @@
 
 [Français](README_fr.md)
 
-## What is **PMSExp**?
+## Table of contents
+
+- [What is PMSExp?](#what-is-pmsexp)
+- [Why PMSExp (Parking Monitoring System Experiment)?](#why-pmsexp-parking-monitoring-system-experiment)
+- [Licenses](#licenses)
+- [Installing](#installing)
+    - [Build from sources](#build-from-sources)
+
+## What is PMSExp?
 
 [**PMSExp**](https://github.com/beatussum/pmsexp/) is free software (licensed under GPL-3 or any later version) allowing to automate video pointing of an object.
 
@@ -15,7 +23,7 @@ To work, it depends on the following libraries:
 - [OpenCV](https://opencv.org/) for the video processing;
 - [QCustomPlot](https://www.qcustomplot.com/) for displaying data in graphs.
 
-## Why **PMSExp** (**P**arking **M**onitoring **S**ystem **Exp**eriment)?
+## Why PMSExp (Parking Monitoring System Experiment)?
 
 Initially, the development of this software was started as part of the development of another project. In fact, as a [C.P.G.E.](https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496) student, I had to do a [T.I.P.E.](https://www.scei-concours.fr/tipe.php) like all the other French student in this field. Given the P.T. pathway I was in, my T.I.P.E. had to consist of a technical system.
 

@@ -2,7 +2,15 @@
 
 [English](README.md)
 
-## Qu'est-ce que **PMSExp** ?
+## Table des matières
+
+- [Qu'est-ce que PMSExp ?](#quest-ce-que-pmsexp)
+- [Pourquoi PMSExp (Parking Monitoring System Experiment) ?](#pourquoi-pmsexp-parking-monitoring-system-experiment)
+- [Licences](#licences)
+- [Installation](#installation)
+    - [Construction depuis les sources](#construction-depuis-les-sources)
+
+## Qu'est-ce que PMSExp ?
 
 [**PMSExp**](https://github.com/beatussum/pmsexp/) est un outil libre (sous licence GPL-3 ou ultérieure) permettant d'automatiser le pointage vidéo d'un objet.
 
@@ -15,7 +23,7 @@ Pour fonctionner, il s'appuie sur différentes bibliothèques :
 - [OpenCV](https://opencv.org/) pour le traitement de fichiers vidéos ;
 - [QCustomPlot](https://www.qcustomplot.com/) pour l'affichage des données dans des graphes.
 
-## Pourquoi **PMSExp** (**P**arking **M**onitoring **S**ystem **Exp**eriment) ?
+## Pourquoi PMSExp (Parking Monitoring System Experiment) ?
 
 Initialement, le développement de ce logiciel a commencé pour la mise au point d'un autre logiciel. En effet, en tant qu'élève de [C.P.G.E.](https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496), j'ai dû comme l'ensemble des _taupins_ de France réaliser un [T.I.P.E.](https://www.scei-concours.fr/tipe.php). Étant donné la filière P.T. dans laquelle je me trouvais, mon T.I.P.E. devait consister en système technique.
 
