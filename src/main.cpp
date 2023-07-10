@@ -22,17 +22,22 @@
 
 int main(int argc, char* argv[])
 {
+#ifdef PMSEXP_THEME_DIR
+    QIcon::setFallbackSearchPaths(QStringList(PMSEXP_THEME_DIR));
+#endif
+
     QApplication app(argc, argv);
 
     QTranslator translator;
 
     translator.load(
         QLocale::system(),
-        QString("%1/pmsexp").arg(PMSEXP_I18N_FILE_PATH),
-        QString('_')
+        "pmsexp",
+        QString('_'),
+        PMSEXP_I18N_DIR
     );
 
-    app.installTranslator(&translator);
+    QApplication::installTranslator(&translator);
 
     gui::MainWindow main_window;
     main_window.show();

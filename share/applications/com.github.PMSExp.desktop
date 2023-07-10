@@ -10,6 +10,7 @@ Icon=com.github.PMSExp
 TryExec=pmsexp
 Exec=pmsexp
 Terminal=false
+MimeType=video/mp4;video/x-matroska
 Categories=DataVisualization;Physics;Qt;Science;Utility;Video
 StartupNotify=true
 StartupWMClass=pmsexp

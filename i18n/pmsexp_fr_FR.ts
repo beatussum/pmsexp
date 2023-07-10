@@ -55,32 +55,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="36"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="74"/>
+        <location filename="../include/gui/MainWindow.ui" line="38"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="71"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="39"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="76"/>
+        <location filename="../include/gui/MainWindow.ui" line="41"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="73"/>
         <source>Quit the application.</source>
         <translation>Quitter l&apos;application.</translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="42"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="79"/>
+        <location filename="../include/gui/MainWindow.ui" line="44"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="76"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="50"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="81"/>
+        <location filename="../include/gui/MainWindow.ui" line="52"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="78"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../include/gui/MainWindow.ui" line="53"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="83"/>
+        <location filename="../include/gui/MainWindow.ui" line="55"/>
+        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="80"/>
         <source>Reset loaded files.</source>
         <translation>Réinitialiser les fichiers chargés.</translation>
     </message>

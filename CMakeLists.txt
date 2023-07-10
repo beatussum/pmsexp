@@ -218,7 +218,10 @@ add_to_doc("${PMSEXP_HPP}")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_gcc_cxx_flags(-O0)
-    set(PMSEXP_I18N_FILE_PATH "${CMAKE_CURRENT_BINARY_DIR}")
+
+    set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+    set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
+    set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     add_gcc_cxx_flags(-O2)
     add_gcc_cxx_flags(-Werror -Wfatal-errors)
@@ -229,17 +232,34 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
         set(PMSEXP_DATA_INSTALL_DIR "${CMAKE_INSTALL_FULL_DATADIR}")
         string(TOLOWER "${CMAKE_PROJECT_NAME}" PMSEXP_EXECUTABLE_NAME)
+
+        set(
+            PMSEXP_ICON_DIR
+            "${PMSEXP_DATA_INSTALL_DIR}/icons/hicolor/256x256/apps"
+        )
+
         set(PMSEXP_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
     elseif (WIN32)
         set(PMSEXP_BIN_DIR ".")
         set(PMSEXP_DATA_INSTALL_DIR ".")
         set(PMSEXP_EXECUTABLE_NAME "${CMAKE_PROJECT_NAME}")
+
+        set(
+            PMSEXP_ICON_DIR
+            "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons"
+        )
+
         set(PMSEXP_LIB_DIR ".")
+
+        set(
+            PMSEXP_THEME_DIR
+            "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons"
+        )
 
         find_program(
             WINDEPLOYQT_EXE
             windeployqt
-            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin "
+            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
             ENV PATH
             DOC "A tool to automate deployment of the Qt-related dependencies."
             REQUIRED
@@ -251,8 +271,8 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     endif()
 
     set(
-        PMSEXP_I18N_FILE_PATH
-        "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations/"
+        PMSEXP_I18N_DIR
+        "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations"
     )
 
     install(
@@ -262,9 +282,23 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         COMPONENT Runtime
     )
 
+    if (DEFINED PMSEXP_THEME_DIR)
+        install(
+            DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/share/icons"
+            DESTINATION "${PMSEXP_THEME_DIR}"
+            COMPONENT Theme
+        )
+    else()
+        install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.PMSExp.png"
+            DESTINATION "${PMSEXP_ICON_DIR}"
+            COMPONENT Theme
+        )
+    endif()
+
     install(
         FILES ${PMSEXP_QM}
-        DESTINATION "${PMSEXP_I18N_FILE_PATH}"
+        DESTINATION "${PMSEXP_I18N_DIR}"
         COMPONENT Translations
     )
 
@@ -273,14 +307,26 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
     #set(CPACK_PACKAGE_ICON "")
     set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-    #set(CPACK_RESOURCE_FILE_README "")
+    set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
     #set(CPACK_RESOURCE_FILE_WELCOME "")
     set(CPACK_GENERATOR "DEB;WIX")
 
+    set(
+        CPACK_PACKAGE_EXECUTABLES
+        "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}"
+    )
+
     if (UNIX AND NOT APPLE)
-        set(
-            CPACK_PACKAGE_EXECUTABLES
-            "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}"
+        install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/applications/com.github.PMSExp.desktop"
+            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/applications/"
+            COMPONENT Share
+        )
+
+        install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/metainfo/com.github.PMSExp.metainfo.xml"
+            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/metainfo/"
+            COMPONENT Share
         )
 
         set(
@@ -316,7 +362,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
 
         install(
             FILES "${Qt5_QM}"
-            DESTINATION "${PMSEXP_I18N_FILE_PATH}"
+            DESTINATION "${PMSEXP_I18N_DIR}"
             COMPONENT Translations
         )
 
@@ -365,5 +411,13 @@ set_target_properties(
 target_compile_definitions(
     pmsexp
     PRIVATE
-    PMSEXP_I18N_FILE_PATH="${PMSEXP_I18N_FILE_PATH}"
+    PMSEXP_I18N_DIR="${PMSEXP_I18N_DIR}"
 )
+
+if (DEFINED PMSEXP_THEME_DIR)
+    target_compile_definitions(
+        pmsexp
+        PRIVATE
+        PMSEXP_THEME_DIR="${PMSEXP_THEME_DIR}"
+    )
+endif()

@@ -1,0 +1,43 @@
+Format-Specification: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: PMSExp
+Upstream-Contact: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Source: https://github.com/beatussum/pmsexp/
+License: GPL-3+
+Copyright: 2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+
+Files: cmake/FindQCustomPlot.cmake
+Copyright:
+    2019, Scott Furry <scott.wl.furry@gmail.com>
+    2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+License: BSD-3-clause
+Comment: Taken from https://github.com/sqlitebrowser/sqlitebrowser/.
+
+Files:
+    share/icons/application-exit.svg
+    share/icons/go-next.svg
+    share/icons/go-previous.svg
+    share/icons/system-run.svg
+    share/icons/view-refresh.svg
+Copyright: 2014, Uri Herrera <uri_herrera@nitrux.in>
+License: LGPL-3
+Comment: Taken from https://github.com/KDE/breeze-icons/tree/v5.108.0/.
+
+Files: share/icons/com.github.PMSExp.svg
+Copyright:
+    2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+    2023, Yona Rossillol‑‑Laruelle <y_rossillollaruelle@stu-lisaa.com>
+License: CC-BY-SA
+
+License: GPL-3+
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the Free
+    Software Foundation, either version 3 of the License, or (at your option)
+    any later version.
+    .
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+    more details.
+    .
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <https://www.gnu.org/licenses/>.
