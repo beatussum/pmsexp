@@ -1,4 +1,4 @@
-# <img src="share/icons/com.github.PMSExp.png" width="64" height="64"/> **PMSExp**
+# <img src="share/icons/com.github.PMSExp.png" width="64" height="64"/> PMSExp
 
 [English](README.md)
 
