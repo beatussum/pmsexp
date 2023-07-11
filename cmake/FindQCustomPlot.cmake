@@ -2,8 +2,8 @@
 # Once done this will define:
 #
 #  QCUSTOMPLOT_FOUND - system has QCustomPlot
-#  QCUSTOMPLOT_INCLUDE_DIRS - the include directories for QCustomPlot
-#  QCUSTOMPLOT_LIBRARIES - Link these to use QCustomPlot
+#  QCustomPlot_INCLUDE_DIR - the include directory for QCustomPlot
+#  QCustomPlot_LIBRARY - Link this to use QCustomPlot
 #
 # Copyright (C) 2019, Scott Furry, <scott.wl.furry@gmail.com>
 # Copyright (C) 2023, Mattéo Rossillol‑‑Laruelle, <beatussum@protonmail.com>
