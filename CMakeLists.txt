@@ -84,52 +84,56 @@ add_gcc_cxx_flags(
 
 set(
     PMSEXP_HPP
-    include/core/core.hpp
-    include/core/types.hpp
-    include/gui/MainWindow.hpp
-    include/gui/widgets/ButtonSelecterWidget.hpp
-    include/gui/widgets/CalibrationWidget.hpp
-    include/gui/widgets/CheckWidget.hpp
-    include/gui/widgets/ItemizeWidget.hpp
-    include/gui/widgets/LabelWidget.hpp
-    include/gui/widgets/ListSelecterWidget.hpp
-    include/gui/widgets/ScrollArea.hpp
-    include/gui/widgets/SelecterWidget.hpp
-    include/gui/widgets/SelectionWidget.hpp
-    include/gui/widgets/StackedWidget.hpp
-    include/gui/widgets/UploadWidget.hpp
-    include/gui/widgets/pages/Calibration.hpp
-    include/gui/widgets/pages/ContourSelection.hpp
-    include/gui/widgets/pages/Selection.hpp
-    include/gui/widgets/pages/Statistics.hpp
-    include/gui/widgets/pages/Upload.hpp
+    core/core.hpp
+    core/types.hpp
+    gui/MainWindow.hpp
+    gui/widgets/ButtonSelecterWidget.hpp
+    gui/widgets/CalibrationWidget.hpp
+    gui/widgets/CheckWidget.hpp
+    gui/widgets/ItemizeWidget.hpp
+    gui/widgets/LabelWidget.hpp
+    gui/widgets/ListSelecterWidget.hpp
+    gui/widgets/ScrollArea.hpp
+    gui/widgets/SelecterWidget.hpp
+    gui/widgets/SelectionWidget.hpp
+    gui/widgets/StackedWidget.hpp
+    gui/widgets/UploadWidget.hpp
+    gui/widgets/pages/Calibration.hpp
+    gui/widgets/pages/ContourSelection.hpp
+    gui/widgets/pages/Selection.hpp
+    gui/widgets/pages/Statistics.hpp
+    gui/widgets/pages/Upload.hpp
 )
+
+list(TRANSFORM PMSEXP_HPP PREPEND "include/")
 
 set(
     PMSEXP_CPP
-    src/main.cpp
-    src/core/core.cpp
-    src/core/types.cpp
-    src/gui/MainWindow.cpp
-    src/gui/widgets/ButtonSelecterWidget.cpp
-    src/gui/widgets/CalibrationWidget.cpp
-    src/gui/widgets/CheckWidget.cpp
-    src/gui/widgets/ItemizeWidget.cpp
-    src/gui/widgets/LabelWidget.cpp
-    src/gui/widgets/ListSelecterWidget.cpp
-    src/gui/widgets/ScrollArea.cpp
-    src/gui/widgets/SelecterWidget.cpp
-    src/gui/widgets/SelectionWidget.cpp
-    src/gui/widgets/UploadWidget.cpp
-    src/gui/widgets/pages/Calibration.cpp
-    src/gui/widgets/pages/ContourSelection.cpp
-    src/gui/widgets/pages/Selection.cpp
-    src/gui/widgets/pages/Statistics.cpp
-    src/gui/widgets/pages/Upload.cpp
+    main.cpp
+    core/core.cpp
+    core/types.cpp
+    gui/MainWindow.cpp
+    gui/widgets/ButtonSelecterWidget.cpp
+    gui/widgets/CalibrationWidget.cpp
+    gui/widgets/CheckWidget.cpp
+    gui/widgets/ItemizeWidget.cpp
+    gui/widgets/LabelWidget.cpp
+    gui/widgets/ListSelecterWidget.cpp
+    gui/widgets/ScrollArea.cpp
+    gui/widgets/SelecterWidget.cpp
+    gui/widgets/SelectionWidget.cpp
+    gui/widgets/UploadWidget.cpp
+    gui/widgets/pages/Calibration.cpp
+    gui/widgets/pages/ContourSelection.cpp
+    gui/widgets/pages/Selection.cpp
+    gui/widgets/pages/Statistics.cpp
+    gui/widgets/pages/Upload.cpp
 )
 
+list(TRANSFORM PMSEXP_CPP PREPEND "src/")
+
 set(PMSEXP_DOC ChangeLog copyright README_fr.md README.md)
-list(TRANSFORM PMSEXP_DOC PREPEND "${CMAKE_CURRENT_SOURCE_DIR}")
+list(TRANSFORM PMSEXP_DOC PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/")
 
 set(PMSEXP_LANGUAGES en fr_FR)
 set(PMSEXP_TS i18n/pmsexp.ts)
@@ -137,6 +141,20 @@ set(PMSEXP_TS i18n/pmsexp.ts)
 foreach (language IN LISTS PMSEXP_LANGUAGES)
     list(APPEND PMSEXP_TS "i18n/pmsexp_${language}.ts")
 endforeach()
+
+set(
+    PMSEXP_THEME_ICONS
+    applications-exit.svg
+    go-next.svg
+    go-previous.svg
+    system-run.svg
+    view-refresh.svg
+)
+
+list(
+    TRANSFORM PMSEXP_THEME_ICONS
+    PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/"
+)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -154,6 +172,7 @@ else()
 endif()
 
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
+get_filename_component(Qt5_PREFIX "${Qt5_DIR}/../../.." REALPATH)
 
 qt5_create_translation(PMSEXP_QM include src "${PMSEXP_TS}")
 
@@ -188,16 +207,16 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
         set(PMSEXP_DATA_INSTALL_DIR "${CMAKE_INSTALL_FULL_DATADIR}")
         string(TOLOWER "${CMAKE_PROJECT_NAME}" PMSEXP_EXECUTABLE_NAME)
+        set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
         set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons/hicolor/256x256/apps")
-        set(PMSEXP_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc/${PMSEXP_EXECUTABLE_NAME}-${CMAKE_PROJECT_VERSION}")
     elseif (WIN32)
         set(PMSEXP_BIN_DIR ".")
         set(PMSEXP_DATA_INSTALL_DIR ".")
         set(PMSEXP_EXECUTABLE_NAME "${CMAKE_PROJECT_NAME}")
-        set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons")
-        set(PMSEXP_LIB_DIR ".")
-        set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/icons")
+        set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/translations")
+        set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
+        set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc")
 
         find_program(
@@ -205,16 +224,14 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             windeployqt
             HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
             ENV PATH
-            DOC "A tool to automate deployment of the Qt-related dependencies."
+            DOC "A tool to automate deployment of the Qt-related dependencies"
             REQUIRED
         )
 
-        if(Qt5Core_VERSION VERSION_LESS "5.14.1")
+        if(Qt5Core_VERSION VERSION_LESS 5.14.1)
             set(WINDEPLOYQT_MODE "--release")
         endif()
     endif()
-
-    set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
 
     install(
         FILES ${PMSEXP_DOC}
@@ -237,16 +254,16 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
         COMPONENT Runtime
     )
 
+    install(
+        FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.PMSExp.png"
+        DESTINATION "${PMSEXP_ICON_DIR}"
+        COMPONENT Theme
+    )
+
     if (DEFINED PMSEXP_THEME_DIR)
         install(
-            DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/share/icons"
+            FILES ${PMSEXP_THEME_ICONS}
             DESTINATION "${PMSEXP_THEME_DIR}"
-            COMPONENT Theme
-        )
-    else()
-        install(
-            FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.PMSExp.png"
-            DESTINATION "${PMSEXP_ICON_DIR}"
             COMPONENT Theme
         )
     endif()
@@ -258,10 +275,8 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
-    set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
     #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
-    #set(CPACK_PACKAGE_ICON "")
-    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+    set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.pmsexp.png")
     set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
     #set(CPACK_RESOURCE_FILE_WELCOME "")
     set(CPACK_GENERATOR "WIX")
@@ -279,35 +294,33 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/metainfo"
             COMPONENT Share
         )
+
+        set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
+        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     elseif (WIN32)
-        foreach (language IN LISTS PMSEXP_LANGUAGES)
-            list(
-                APPEND Qt5_QM
-                "${Qt5_PREFIX}/share/qt5/translations/qtbase_${language}.qm"
-            )
-        endforeach()
-
         install(
-            FILES "${Qt5_QM}"
-            DESTINATION "${PMSEXP_I18N_DIR}"
-            COMPONENT Translations
-        )
-
-        install(
-            SCRIPT "
+            CODE "
                 execute_process(
-                    COMMAND \"${WINDEPLOYQT_EXE} ${PMSEXP_EXECUTABLE_NAME}.exe ${WINDEPLOYQT_MODE}\"
-                    WORKING_DIRECTORY \${CMAKE_INSTALL_PREFIX}
-                    OUTPUT_QUIET
+                    COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} ${PMSEXP_EXECUTABLE_NAME}.exe
+                    WORKING_DIRECTORY \"\${CMAKE_INSTALL_PREFIX}\"
                 )
             "
 
             COMPONENT Runtime
         )
 
+        configure_file(
+            "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+            "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt"
+            COPYONLY
+        )
+
+        set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_PROJECT_NAME}")
+        set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol--Laruelle")
+        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt")
+
         set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
         set(CPACK_WIX_PRODUCT_GUID 2362eeda-4124-401c-a6b2-70b35d177bf7)
-        #set(CPACK_WIX_LICENSE_RTF "")
         #set(CPACK_WIX_PRODUCT_ICON "")
         #set(CPACK_WIX_UI_BANNER "")
         #set(CPACK_WIX_UI_DIALOG "")
