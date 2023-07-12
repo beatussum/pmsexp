@@ -24,4 +24,9 @@ build/
 CMakeLists.txt.user
 
 # Visual Studio Code
+.vs/
+out/
+CMakeSettings.json
+
+# Visual Studio Code
 .vscode/
