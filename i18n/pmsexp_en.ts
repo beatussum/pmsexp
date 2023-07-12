@@ -72,13 +72,6 @@
         <source>Reset loaded files.</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <source>%n contour(s) found.</source>
-        <translation type="obsolete">
-            <numerusform>%n contour found.</numerusform>
-            <numerusform>%n contours found.</numerusform>
-        </translation>
-    </message>
 </context>
 <context>
     <name>Upload</name>

@@ -72,33 +72,6 @@
         <source>Reset loaded files.</source>
         <translation>Réinitialiser les fichiers chargés.</translation>
     </message>
-    <message>
-        <source>No contours found.</source>
-        <translation type="obsolete">Aucun contour trouvé.</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n contour(s) found.</source>
-        <translation type="obsolete">
-            <numerusform>%n contour trouvé.</numerusform>
-            <numerusform>%n contours trouvés.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <source>No frame can be retrieved.</source>
-        <translation type="obsolete">Aucun «&#xa0;frame&#xa0;» n&apos;a pu être récupéré.</translation>
-    </message>
-    <message>
-        <source>Error opening the file &quot;%1&quot;.</source>
-        <translation type="obsolete">Erreur lors de l&apos;ouverture du fichier «&#xa0;%1&#xa0;».</translation>
-    </message>
-    <message>
-        <source>Results already loaded!</source>
-        <translation type="obsolete">Les résultats sont déjà chargés&#xa0;!</translation>
-    </message>
-    <message>
-        <source>Data loading is complete.</source>
-        <translation type="obsolete">Le chargement des données est terminé.</translation>
-    </message>
 </context>
 <context>
     <name>Upload</name>
