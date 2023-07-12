@@ -25,16 +25,15 @@ project(
     LANGUAGES CXX
 )
 
-option(COMPRESS_DOC "Compress the documentation files if necessary" OFF)
 option(WITH_QCUSTOMPLOT "Use Built-in QCustomPlot" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-unset(CMAKE_CXX_FLAGS_RELEASE CACHE)
-
 macro(add_gcc_cxx_flags __flags)
-    if(CMAKE_CXX_COMPILER_ID EQUAL "GNU")
-        string(APPEND CMAKE_CXX_FLAGS " ${__flags}")
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        foreach (flag IN LISTS __flags)
+            string(APPEND CMAKE_CXX_FLAGS " ${__flags}")
+        endforeach()
     endif()
 endmacro()
 
@@ -106,8 +105,6 @@ set(
     include/gui/widgets/pages/Upload.hpp
 )
 
-set(PMSEXP_IPP)
-
 set(
     PMSEXP_CPP
     src/main.cpp
@@ -131,8 +128,8 @@ set(
     src/gui/widgets/pages/Upload.cpp
 )
 
-set(PMSEXP_COMPRESSABLE_DOC_FILES ChangeLog README_fr.md README.md)
-set(PMSEXP_UNCOMPRESSABLE_DOC_FILES copyright)
+set(PMSEXP_DOC ChangeLog copyright README_fr.md README.md)
+list(TRANSFORM PMSEXP_DOC PREPEND "${CMAKE_CURRENT_SOURCE_DIR}")
 
 set(PMSEXP_LANGUAGES en fr_FR)
 set(PMSEXP_TS i18n/pmsexp.ts)
@@ -143,9 +140,9 @@ endforeach()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include/gui")
+set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories(include)
 
 find_package(OpenCV REQUIRED)
 include_directories("${OpenCV_INCLUDE_DIRS}")
@@ -158,12 +155,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 
-qt5_create_translation(
-    PMSEXP_QM
-    "${CMAKE_SOURCE_DIR}"
-    "${PMSEXP_TS}"
-    i18n/pmsexp.ts
-)
+qt5_create_translation(PMSEXP_QM include src "${PMSEXP_TS}")
 
 add_executable(
     pmsexp
@@ -172,8 +164,6 @@ add_executable(
     "${PMSEXP_CPP}"
     "${PMSEXP_QM}"
 )
-
-target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
 target_link_libraries(
     pmsexp
@@ -186,15 +176,10 @@ target_link_libraries(
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_gcc_cxx_flags(-O0)
-
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_gcc_cxx_flags(-O2)
-    add_gcc_cxx_flags(-Werror -Wfatal-errors)
-
     if (UNIX AND NOT APPLE)
         include(GNUInstallDirs)
 
@@ -230,33 +215,25 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
 
     install(
+        FILES ${PMSEXP_DOC}
+        DESTINATION "${PMSEXP_DOC_DIR}"
+        COMPONENT Documentation
+    )
+
+    if (WITH_QCUSTOMPLOT)
+        install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/libs/changelog.txt"
+            DESTINATION "${PMSEXP_DOC_DIR}/QCustomPlot"
+            COMPONENT Documentation
+        )
+    endif()
+
+    install(
         TARGETS pmsexp
         RUNTIME
         DESTINATION "${PMSEXP_BIN_DIR}"
         COMPONENT Runtime
     )
-
-    if (COMPRESS_DOC)
-        include(CompressIfNecessary)
-
-        compress_if_necessary(
-            FILES "${PMSEXP_COMPRESSABLE_DOC_FILES}"
-            OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/doc"
-            COMMENT "Compressing the documentation files…"
-            TARGET compress_doc
-            OUTPUT_VAR PMSEXP_PROCESSED_DOC_FILES
-        )
-
-        foreach (doc IN LISTS PMSEXP_UNCOMPRESSABLE_DOC_FILES)
-            list(APPEND PMSEXP_PROCESSED_DOC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/${doc}")
-        endforeach()
-
-        install(
-            FILES ${PMSEXP_PROCESSED_DOC_FILES}
-            DESTINATION "${PMSEXP_DOC_DIR}"
-            COMPONENT Documentation
-        )
-    endif()
 
     if (DEFINED PMSEXP_THEME_DIR)
         install(
@@ -285,41 +262,21 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
     #set(CPACK_RESOURCE_FILE_WELCOME "")
-    set(CPACK_GENERATOR "DEB;WIX")
+    set(CPACK_GENERATOR "WIX")
     set(CPACK_PACKAGE_EXECUTABLES "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}")
 
     if (UNIX AND NOT APPLE)
         install(
             FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/applications/com.github.PMSExp.desktop"
-            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/applications/"
+            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/applications"
             COMPONENT Share
         )
 
         install(
             FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/metainfo/com.github.PMSExp.metainfo.xml"
-            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/metainfo/"
+            DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/metainfo"
             COMPONENT Share
         )
-
-        set(
-            PMSEXP_DEBIAN_PACKAGE_DEPENDS
-            "libqscintilla2-qt5-15"
-            "libqt5core5a"
-            "libqt5concurrent5"
-            "libqt5gui5"
-            "libqt5widgets5"
-            "qttranslations5-l10n"
-        )
-
-        string(
-            JOIN ", "
-            CPACK_DEBIAN_PACKAGE_DEPENDS
-            ${PMSEXP_DEBIAN_PACKAGE_DEPENDS}
-        )
-
-        set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>")
-        set(CPACK_DEBIAN_PACKAGE_SECTION "science")
-        set(CPACK_DEBIAN_PACKAGE_CONTROL_STRICT_PERMISSION TRUE)
     elseif (WIN32)
         foreach (language IN LISTS PMSEXP_LANGUAGES)
             list(

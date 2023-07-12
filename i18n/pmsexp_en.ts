@@ -5,19 +5,16 @@
     <name>ButtonSelecterWidget</name>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="11"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="61"/>
         <source>Previous</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="17"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="63"/>
         <source>Ctrl+Left</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="24"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ButtonSelecterWidget.h" line="66"/>
         <source>Ctrl+Right</source>
         <translation></translation>
     </message>
@@ -26,13 +23,11 @@
     <name>Calibration</name>
     <message>
         <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="82"/>
         <source>Real measure</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/pages/Calibration.ui" line="39"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Calibration.h" line="83"/>
         <source>Enter the corresponding actual measurement (in cm).</source>
         <translation></translation>
     </message>
@@ -41,13 +36,11 @@
     <name>ContourSelection</name>
     <message>
         <location filename="../include/gui/widgets/pages/ContourSelection.ui" line="22"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ContourSelection.h" line="82"/>
         <source>Previous</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/pages/ContourSelection.ui" line="32"/>
-        <location filename="../build/pmsexp_autogen/include/ui_ContourSelection.h" line="83"/>
         <source>Next</source>
         <translation></translation>
     </message>
@@ -56,31 +49,26 @@
     <name>MainWindow</name>
     <message>
         <location filename="../include/gui/MainWindow.ui" line="38"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="71"/>
         <source>Quit</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/MainWindow.ui" line="41"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="73"/>
         <source>Quit the application.</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/MainWindow.ui" line="44"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="76"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/MainWindow.ui" line="52"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="78"/>
         <source>Reset</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/MainWindow.ui" line="55"/>
-        <location filename="../build/pmsexp_autogen/include/ui_MainWindow.h" line="80"/>
         <source>Reset loaded files.</source>
         <translation></translation>
     </message>
@@ -96,25 +84,21 @@
     <name>Upload</name>
     <message>
         <location filename="../include/gui/widgets/pages/Upload.ui" line="9"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="81"/>
         <source>Data loading</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/pages/Upload.ui" line="18"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="82"/>
         <source>Load data</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/pages/Upload.ui" line="35"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="83"/>
         <source>Current status</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/pages/Upload.ui" line="41"/>
-        <location filename="../build/pmsexp_autogen/include/ui_Upload.h" line="84"/>
         <source>Loading status of data</source>
         <translation></translation>
     </message>
