@@ -26,6 +26,7 @@ project(
 )
 
 option(COMPRESS_DOC "Compress the documentation files if necessary" OFF)
+option(WITH_QCUSTOMPLOT "Use Built-in QCustomPlot" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
@@ -146,10 +147,16 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include/gui")
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
-
 find_package(OpenCV REQUIRED)
 include_directories("${OpenCV_INCLUDE_DIRS}")
+
+if (WITH_QCUSTOMPLOT)
+    add_subdirectory(libs/qcustomplot)
+else()
+    find_package(QCustomPlot REQUIRED)
+endif()
+
+find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 
 qt5_create_translation(
     PMSEXP_QM
@@ -171,7 +178,7 @@ target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(
     pmsexp
     "${OpenCV_LIBS}"
-    qcustomplot
+    QCustomPlot::QCustomPlot
     Qt5::Core
     Qt5::Concurrent
     Qt5::Gui
@@ -325,13 +332,6 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             FILES "${Qt5_QM}"
             DESTINATION "${PMSEXP_I18N_DIR}"
             COMPONENT Translations
-        )
-
-        install(
-            TARGETS QCustomPlot::QCustomPlot
-            LIBRARY
-            DESTINATION "${PMSEXP_LIB_DIR}"
-            COMPONENT Runtime
         )
 
         install(
