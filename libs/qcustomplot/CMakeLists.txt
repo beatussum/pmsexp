@@ -35,6 +35,7 @@ set(QCUSTOMPLOT_HPP qcustomplot.h)
 set(QCUSTOMPLOT_CPP qcustomplot.cpp)
 
 add_library(qcustomplot STATIC "${QCUSTOMPLOT_HPP}" "${QCUSTOMPLOT_CPP}")
+target_include_directories(qcustomplot PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 
 target_link_libraries(
     qcustomplot
