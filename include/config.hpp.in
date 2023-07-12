@@ -16,32 +16,10 @@
  */
 
 
-#include "config.hpp"
-#include "gui/MainWindow.hpp"
+#ifndef PMSEXP_CONFIG_HPP
+#define PMSEXP_CONFIG_HPP
 
-#include <QtCore/QTranslator>
+#define PMSEXP_I18N_DIR "@PMSEXP_I18N_DIR@"
+#cmakedefine PMSEXP_THEME_DIR "@PMSEXP_THEME_DIR@"
 
-int main(int argc, char* argv[])
-{
-#ifdef PMSEXP_THEME_DIR
-    QIcon::setFallbackSearchPaths(QStringList(PMSEXP_THEME_DIR));
-#endif
-
-    QApplication app(argc, argv);
-
-    QTranslator translator;
-
-    translator.load(
-        QLocale::system(),
-        "pmsexp",
-        QString('_'),
-        PMSEXP_I18N_DIR
-    );
-
-    QApplication::installTranslator(&translator);
-
-    gui::MainWindow main_window;
-    main_window.show();
-
-    return app.exec();
-}
+#endif // PMSEXP_CONFIG_HPP

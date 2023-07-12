@@ -165,6 +165,8 @@ add_executable(
     "${PMSEXP_QM}"
 )
 
+target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+
 target_link_libraries(
     pmsexp
     "${OpenCV_LIBS}"
@@ -321,16 +323,4 @@ set_target_properties(
     OUTPUT_NAME "${PMSEXP_EXECUTABLE_NAME}"
 )
 
-target_compile_definitions(
-    pmsexp
-    PRIVATE
-    PMSEXP_I18N_DIR="${PMSEXP_I18N_DIR}"
-)
-
-if (DEFINED PMSEXP_THEME_DIR)
-    target_compile_definitions(
-        pmsexp
-        PRIVATE
-        PMSEXP_THEME_DIR="${PMSEXP_THEME_DIR}"
-    )
-endif()
+configure_file(include/config.hpp.in "${CMAKE_CURRENT_BINARY_DIR}/config.hpp")
