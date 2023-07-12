@@ -1,4 +1,4 @@
-Format-Specification: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: PMSExp
 Upstream-Contact: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 Source: https://github.com/beatussum/pmsexp/
@@ -11,6 +11,14 @@ Copyright:
     2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 License: BSD-3-clause
 Comment: Taken from https://github.com/sqlitebrowser/sqlitebrowser/.
+
+Files:
+    libs/qcustomplot/changelog.txt
+    libs/qcustomplot/qcustomplot.cpp
+    libs/qcustomplot/qcustomplot.h
+Copyright: 2011-2018, Emanuel Eichhammer
+License: GPL-3+
+Comment: Downloaded from https://www.qcustomplot.com/release/2.0.1/QCustomPlot-source.tar.gz.
 
 Files:
     share/icons/application-exit.svg
