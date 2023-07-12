@@ -17,6 +17,8 @@
 cmake_minimum_required(VERSION 3.25)
 cmake_policy(SET CMP0048 NEW)
 
+set(LINUX (UNIX AND NOT APPLE))
+
 project(
     PMSExp
     VERSION 0.9.0
@@ -30,7 +32,7 @@ option(WITH_QCUSTOMPLOT "Use Built-in QCustomPlot" OFF)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 macro(add_gcc_cxx_flags __flags)
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         foreach (flag IN LISTS __flags)
             string(APPEND CMAKE_CXX_FLAGS " ${__flags}")
         endforeach()
@@ -41,7 +43,7 @@ endmacro()
 
 find_program(CCACHE_FOUND ccache)
 
-if(CCACHE_FOUND)
+if (CCACHE_FOUND)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
 endif()
 
@@ -184,6 +186,10 @@ add_executable(
     "${PMSEXP_QM}"
 )
 
+if (WIN32)
+    set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE)
+endif()
+
 target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 
 target_link_libraries(
@@ -196,12 +202,12 @@ target_link_libraries(
     Qt5::Widgets
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    if (UNIX AND NOT APPLE)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    if (LINUX)
         include(GNUInstallDirs)
 
         set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
@@ -228,7 +234,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
             REQUIRED
         )
 
-        if(Qt5Core_VERSION VERSION_LESS 5.14.1)
+        if (Qt5Core_VERSION VERSION_LESS 5.14.1)
             set(WINDEPLOYQT_MODE "--release")
         endif()
     endif()
@@ -282,7 +288,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CPACK_GENERATOR "WIX")
     set(CPACK_PACKAGE_EXECUTABLES "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}")
 
-    if (UNIX AND NOT APPLE)
+    if (LINUX)
         install(
             FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/applications/com.github.PMSExp.desktop"
             DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/applications"
