@@ -26,7 +26,7 @@
 #include "gui/widgets/pages/Statistics.hpp"
 #include "gui/widgets/pages/Upload.hpp"
 
-#include <opencv2/tracking.hpp>
+#include <opencv2/video/tracking.hpp>
 
 #include <QtConcurrent/QtConcurrent>
 #include <QtWidgets/QProgressBar>
@@ -303,7 +303,7 @@ namespace gui
     void MainWindow::run()
     {
         if (m_update_needed) {
-            m_tracker = cv::TrackerKCF::create();
+            m_tracker = cv::TrackerMIL::create();
 
             m_tracker->init(
                 m_first_frame,
