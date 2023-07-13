@@ -319,15 +319,9 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Runtime
         )
 
-        configure_file(
-            "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
-            "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt"
-            COPYONLY
-        )
-
         set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_PROJECT_NAME}")
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol--Laruelle")
-        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_BINARY_DIR}/LICENSE.txt")
+        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/distrib/windows/LICENSE.rtf")
 
         set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
         set(CPACK_WIX_PRODUCT_GUID 2362eeda-4124-401c-a6b2-70b35d177bf7)
