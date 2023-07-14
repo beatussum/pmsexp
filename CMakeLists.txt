@@ -49,7 +49,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_CXX_EXTENSIONS TRUE)
+set(CMAKE_CXX_EXTENSIONS FALSE)
 
 add_gcc_cxx_flags(
     -fmessage-length=75
@@ -146,7 +146,7 @@ endforeach()
 
 set(
     PMSEXP_THEME_ICONS
-    applications-exit.svg
+    application-exit.svg
     go-next.svg
     go-previous.svg
     system-run.svg
@@ -251,7 +251,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
     if (WITH_QCUSTOMPLOT)
         install(
-            FILES "${CMAKE_CURRENT_SOURCE_DIR}/libs/changelog.txt"
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/libs/qcustomplot/changelog.txt"
             DESTINATION "${PMSEXP_DOC_DIR}/QCustomPlot"
             COMPONENT Documentation
         )
@@ -319,7 +319,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Runtime
         )
 
-        set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_PROJECT_NAME}")
+        set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CMAKE_PROJECT_NAME}")
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol--Laruelle")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/distrib/windows/LICENSE.rtf")
 
