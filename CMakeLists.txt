@@ -309,6 +309,18 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     elseif (WIN32)
         install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+            DESTINATION "${PMSEXP_DOC_DIR}"
+            COMPONENT Documentation
+        )
+
+        install(
+            FILES "${CMAKE_CURRENT_SOURCE_DIR}/libs/qcustomplot/GPL.txt"
+            DESTINATION "${PMSEXP_DOC_DIR}/QCustomPlot"
+            COMPONENT Documentation
+        )
+
+        install(
             CODE "
                 execute_process(
                     COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} ${PMSEXP_EXECUTABLE_NAME}.exe
