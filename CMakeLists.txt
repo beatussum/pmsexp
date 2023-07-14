@@ -49,7 +49,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_CXX_EXTENSIONS FALSE)
+set(CMAKE_CXX_EXTENSIONS TRUE)
 
 add_gcc_cxx_flags(
     -fmessage-length=75
@@ -158,8 +158,8 @@ list(
     PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/"
 )
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC TRUE)
+set(CMAKE_AUTOUIC TRUE)
 set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 
 include_directories(include)
@@ -191,7 +191,7 @@ add_executable(
 )
 
 if (WIN32)
-    set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE)
+    set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
 target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
