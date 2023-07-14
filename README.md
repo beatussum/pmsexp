@@ -7,8 +7,7 @@
 - [What is PMSExp?](#what-is-pmsexp)
 - [Why PMSExp (Parking Monitoring System Experiment)?](#why-pmsexp-parking-monitoring-system-experiment)
 - [Licenses](#licenses)
-- [Installing](#installing)
-    - [Build from sources](#build-from-sources)
+- [Installing and building](#installing-and-building)
 
 ## What is PMSExp?
 
@@ -41,35 +40,6 @@ I'm now realizing that it took me a lot of lines to explain the simple and sad t
 
 As explained above, the code of this software is licensed under GPL-3 or any later version. Details of the rights applying to the various third-party files are described in the [copyright](copyright) file in [the Debian `debian/copyright` file format](https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/).
 
-## Installing
+## Installing and building
 
-### Build from sources
-
-1. First, you need to download the sources and create the working environment.
-
-```bash
-git clone "https://github.com/beatussum/pmsexp.git"
-cd pmsexp
-mkdir build
-cd build
-```
-
-2. The next step is to generate the construction files.
-
-```bash
-cmake -G Ninja -DCMAKE_BUILD_TYPE="Release" ..
-```
-
-3. One now starts the compilation.
-
-```bash
-ninja -j<n>
-```
-
-where `<n>` is the number of tasks performed in parallel.
-
-4. Finally, you can install the software (by default, it will be installed under `/usr/local`; to change this, specify `-DCMAKE_INSTALL_PREFIX=<where>` in step 2). Check that you have sufficient rights for this operation.
-
-```bash
-ninja install
-```
+Please, see [the corresponding wiki page](https://github.com/beatussum/pmsexp/wiki/Installing-PMSExp).
