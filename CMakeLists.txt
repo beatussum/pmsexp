@@ -244,7 +244,7 @@ include(ImageConverter)
 add_image_conversion(
     FILE share/icons/com.github.PMSExp.svg
     OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png"
-    ARGS -size 256x256 -background none
+    ARGS -background none -size 256
     OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
 )
 
@@ -340,7 +340,12 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         add_image_conversion(
             FILE share/icons/com.github.PMSExp.svg
             OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico"
-            ARGS -size 256x256 -background none
+
+            ARGS
+                -background none
+                -define icon:auto-resize="256,128,96,64,48,32,16"
+                -size 256
+
             OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
         )
 
