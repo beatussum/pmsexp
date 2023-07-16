@@ -33,7 +33,10 @@ Copyright: 2014, Uri Herrera <uri_herrera@nitrux.in>
 License: LGPL-3
 Comment: Taken from https://github.com/KDE/breeze-icons/tree/v5.108.0/.
 
-Files: share/icons/com.github.PMSExp.svg
+Files:
+    distrib/windows/banner.svg
+    distrib/windows/dialog.svg
+    share/icons/com.github.PMSExp.svg
 Copyright:
     2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
     2023, Yona Rossillol‑‑Laruelle <y_rossillollaruelle@stu-lisaa.com>
