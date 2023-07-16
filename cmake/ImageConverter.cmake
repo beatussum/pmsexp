@@ -22,7 +22,7 @@ find_program(
 
 function(add_image_conversion)
     set(options)
-    set(one_value_args FILE OUTPUT_FILE)
+    set(one_value_args FILE OUTPUT_FILE OUTPUT_VAR)
     set(multi_value_args ARGS)
 
     cmake_parse_arguments(
@@ -39,5 +39,10 @@ function(add_image_conversion)
         MAIN_DEPENDENCY "${ADD_IMAGE_CONVERSION_FILE}"
         COMMENT "Generating \"${ADD_IMAGE_CONVERSION_OUTPUT_FILE}\" from \"${ADD_IMAGE_CONVERSION_FILE}\"…"
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+
+    list(
+        APPEND ${ADD_IMAGE_CONVERSION_OUTPUT_VAR}
+        "${ADD_IMAGE_CONVERSION_OUTPUT_FILE}"
     )
 endfunction()

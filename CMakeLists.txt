@@ -233,12 +233,11 @@ endif()
 
 include(ImageConverter)
 
-set(PMSEXP_IMAGES_TO_CONVERT "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png")
-
 add_image_conversion(
     FILE share/icons/com.github.PMSExp.svg
     OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png"
     ARGS -size 256x256 -background none
+    OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
 )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -334,11 +333,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             FILE share/icons/com.github.PMSExp.svg
             OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico"
             ARGS -size 256x256 -background none
-        )
-
-        list(
-            APPEND PMSEXP_IMAGES_TO_CONVERT
-            "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico"
+            OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
         )
 
         install(
@@ -371,7 +366,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(CPACK_WIX_PRODUCT_GUID 2362eeda-4124-401c-a6b2-70b35d177bf7)
         set(CPACK_WIX_UI_REF "WixUI_InstallDir")
         set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
-        #set(CPACK_WIX_PRODUCT_ICON "")
+        set(CPACK_WIX_PRODUCT_ICON "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico")
         #set(CPACK_WIX_UI_BANNER "")
         #set(CPACK_WIX_UI_DIALOG "")
     endif()
