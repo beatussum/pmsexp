@@ -156,7 +156,7 @@ namespace gui
         double ratio = m_calibration_page->get_ratio();
         cv::Rect roi = rect_from_qrect(m_selection_page->get_selection());
 
-        ret[0.] = full_position();
+        ret[0.] = {0., cv::Point(0., height * ratio)};
         emit m_future_watcher.progressValueChanged(progress);
 
         m_capture.set(cv::CAP_PROP_POS_FRAMES, 1.);
