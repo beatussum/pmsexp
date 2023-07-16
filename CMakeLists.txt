@@ -333,6 +333,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         add_image_conversion(
             FILE share/icons/com.github.PMSExp.svg
             OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico"
+            ARGS -size 256x256 -background none
         )
 
         list(
