@@ -222,20 +222,18 @@ if (WIN32)
             set(WINDEPLOYQT_MODE "--release")
         endif()
     endif()
+
+    add_custom_target(
+        windeployqt ALL
+        COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>"
+        DEPENDS pmsexp
+    )
 endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
-
-    if (WIN32)
-        add_custom_target(
-            windeployqt ALL
-            COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>"
-            DEPENDS pmsexp
-        )
-    endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
         include(GNUInstallDirs)
