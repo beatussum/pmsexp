@@ -209,11 +209,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
-
-    if (WIN32)
-        include(windeployqt)
-        windeployqt("$<TARGET_FILE:pmsexp>")
-    endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
         include(GNUInstallDirs)
@@ -232,6 +227,19 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc")
+
+        find_program(
+            WINDEPLOYQT_EXE
+            windeployqt
+            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
+            ENV PATH
+            DOC "A tool to automate deployment of the Qt-related dependencies"
+            REQUIRED
+        )
+
+        if (Qt5Core_VERSION VERSION_LESS 5.14.1)
+            set(WINDEPLOYQT_MODE "--release")
+        endif()
     endif()
 
     install(
@@ -315,8 +323,10 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
         install(
             CODE "
-                include(windeployqt)
-                windeployqt(\"\${CMAKE_INSTALL_PREFIX}/${PMSEXP_EXECUTABLE_NAME}.exe\")
+                execute_process(
+                    COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} ${PMSEXP_EXECUTABLE_NAME}.exe
+                    WORKING_DIRECTORY \"\${CMAKE_INSTALL_PREFIX}\"
+                )
             "
 
             COMPONENT Runtime
