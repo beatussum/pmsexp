@@ -173,6 +173,7 @@ else()
 endif()
 
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
+get_filename_component(Qt5_PREFIX "${Qt5_DIR}/../../.." REALPATH)
 
 qt5_create_translation(
     PMSEXP_QM
