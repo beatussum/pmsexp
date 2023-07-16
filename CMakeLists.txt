@@ -168,7 +168,6 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 include_directories(include)
 
 find_package(OpenCV REQUIRED)
-include_directories("${OpenCV_INCLUDE_DIRS}")
 
 if (WITH_QCUSTOMPLOT)
     add_subdirectory(libs/qcustomplot)
@@ -197,7 +196,10 @@ if (WIN32)
     set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
-target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
+target_include_directories(
+    pmsexp
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}" "${OpenCV_INCLUDE_DIRS}"
+)
 
 target_link_libraries(
     pmsexp
@@ -214,7 +216,6 @@ if (WIN32)
         WINDEPLOYQT_EXE
         windeployqt
         HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
-        ENV PATH
         DOC "A tool to automate deployment of the Qt-related dependencies"
         REQUIRED
     )
@@ -252,7 +253,7 @@ add_image_conversion(
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-    set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
+    set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
@@ -296,7 +297,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 
     install(
-        FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.PMSExp.png"
+        FILES "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png"
         DESTINATION "${PMSEXP_ICON_DIR}"
         COMPONENT Theme
     )
@@ -316,10 +317,8 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
-    #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
     set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.pmsexp.png")
     set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-    #set(CPACK_RESOURCE_FILE_WELCOME "")
     set(CPACK_GENERATOR "WIX")
     set(CPACK_PACKAGE_EXECUTABLES "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}")
 
@@ -348,6 +347,20 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
                 -define icon:auto-resize="256,128,96,64,48,32,16"
                 -size 256
 
+            OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
+        )
+
+        add_image_conversion(
+            FILE distrib/windows/banner.svg
+            OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/banner.png"
+            ARGS -size 493x58
+            OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
+        )
+
+        add_image_conversion(
+            FILE distrib/windows/dialog.svg
+            OUTPUT_FILE "${CMAKE_CURRENT_BINARY_DIR}/dialog.png"
+            ARGS -size 493x312
             OUTPUT_VAR PMSEXP_IMAGES_TO_CONVERT
         )
 
@@ -382,12 +395,20 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(CPACK_WIX_UI_REF "WixUI_InstallDir")
         set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
         set(CPACK_WIX_PRODUCT_ICON "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.ico")
-        #set(CPACK_WIX_UI_BANNER "")
-        #set(CPACK_WIX_UI_DIALOG "")
+        set(CPACK_WIX_UI_BANNER "${CMAKE_CURRENT_BINARY_DIR}/banner.png")
+        set(CPACK_WIX_UI_DIALOG "${CMAKE_CURRENT_BINARY_DIR}/dialog.png")
     endif()
 
     include(CPack)
 endif()
+
+add_custom_target(
+    convert_images
+    DEPENDS "${PMSEXP_IMAGES_TO_CONVERT}"
+    COMMENT "Converting images…"
+)
+
+add_dependencies(pmsexp convert_images)
 
 set_target_properties(
     pmsexp
