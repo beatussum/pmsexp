@@ -295,7 +295,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         COMPONENT Translations
     )
 
-    set(CPACK_COMPONENT_RUNTIME_REQUIRED TRUE)
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
     #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
     set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.pmsexp.png")
@@ -317,7 +316,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Share
         )
 
-        set(CPACK_COMPONENT_SHARE_REQUIRED TRUE)
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     elseif (WIN32)
@@ -344,17 +342,16 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Runtime
         )
 
-        set(CPACK_COMPONENT_THEME_REQUIRED TRUE)
         set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CMAKE_PROJECT_NAME}")
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol--Laruelle")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/distrib/windows/LICENSE.rtf")
 
-        set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
         set(CPACK_WIX_PRODUCT_GUID 2362eeda-4124-401c-a6b2-70b35d177bf7)
+        set(CPACK_WIX_UI_REF "WixUI_InstallDir")
+        set(CPACK_WIX_UPGRADE_GUID 8b7c850a-8e82-41e2-b584-b888f13e91ea)
         #set(CPACK_WIX_PRODUCT_ICON "")
         #set(CPACK_WIX_UI_BANNER "")
         #set(CPACK_WIX_UI_DIALOG "")
-        #set(CPACK_WIX_CULTURES "")
     endif()
 
     include(CPack)
