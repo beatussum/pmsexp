@@ -301,6 +301,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         COMPONENT Translations
     )
 
+    set(CPACK_COMPONENT_RUNTIME_REQUIRED TRUE)
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
     #set(CPACK_PACKAGE_DESCRIPTION_FILE "")
     set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.pmsexp.png")
@@ -322,6 +323,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Share
         )
 
+        set(CPACK_COMPONENT_SHARE_REQUIRED TRUE)
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     elseif (WIN32)
@@ -342,6 +344,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             COMPONENT Runtime
         )
 
+        set(CPACK_COMPONENT_THEME_REQUIRED TRUE)
         set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CMAKE_PROJECT_NAME}")
         set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol--Laruelle")
         set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/distrib/windows/LICENSE.rtf")
