@@ -229,6 +229,13 @@ if (WIN32)
         COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>"
         DEPENDS pmsexp
     )
+
+    enable_language(RC)
+
+    target_sources(
+        pmsexp
+        PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/distrib/windows/PMSExp.rc"
+    )
 endif()
 
 include(ImageConverter)
