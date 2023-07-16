@@ -22,13 +22,14 @@ Comment: Downloaded from https://www.qcustomplot.com/release/2.0.1/QCustomPlot-s
 
 Files:
     share/icons/application-exit.svg
+    share/icons/applications-science.svg
     share/icons/go-next.svg
     share/icons/go-previous.svg
     share/icons/system-run.svg
     share/icons/view-refresh.svg
-Copyright: 2014, Uri Herrera <uri_herrera@nitrux.in>
-License: LGPL-3
-Comment: Taken from https://github.com/KDE/breeze-icons/tree/v5.108.0/.
+Copyright: Vince Liuice <vinceliuice@hotmail.com>
+License: GPL3+
+Comment: Taken from https://github.com/vinceliuice/Tela-icon-theme/tree/2023-02-03/.
 
 Files: share/icons/com.github.PMSExp.svg
 Copyright:

@@ -24,9 +24,14 @@
 int main(int argc, char* argv[])
 {
 #ifdef PMSEXP_THEME_DIR
-    QIcon::setFallbackSearchPaths(QStringList(PMSEXP_THEME_DIR));
+    QIcon::setFallbackSearchPaths(
+        QStringList({PMSEXP_ICON_DIR, PMSEXP_THEME_DIR})
+    );
 #endif
 
+    QApplication app(argc, argv);
+
+#ifdef PMSEXP_THEME_DIR
     /* If the `QIcon::themeName()` is not set (for example, in a Windows
      * system, it is always true), one set a dummy theme name in order to force
      * `QIcon::fromTheme()` to use the fallback icons.
@@ -35,8 +40,7 @@ int main(int argc, char* argv[])
     if (QIcon::themeName().isEmpty()) {
         QIcon::setThemeName(QString('d'));
     }
-
-    QApplication app(argc, argv);
+#endif
 
     QTranslator translator;
 
