@@ -174,7 +174,6 @@ else()
 endif()
 
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
-get_filename_component(Qt5_PREFIX "${Qt5_DIR}/../../.." REALPATH)
 
 qt5_create_translation(
     PMSEXP_QM
@@ -206,38 +205,13 @@ target_link_libraries(
     Qt5::Widgets
 )
 
-macro (windeployqt __file)
-    if (NOT DEFINED WINDEPLOYQT_EXE)
-        find_program(
-            WINDEPLOYQT_EXE
-            windeployqt
-            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
-            ENV PATH
-            DOC "A tool to automate deployment of the Qt-related dependencies"
-            REQUIRED
-        )
-    endif()
-
-    if (Qt5Core_VERSION VERSION_LESS 5.14.1)
-        if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-            set(WINDEPLOYQT_MODE "--debug")
-        elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(WINDEPLOYQT_MODE "--release")
-        endif()
-    endif()
-
-    execute_process(
-        COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "${__file}"
-        WORKING_DIRECTORY "${CMAKE_INSTALL_PREFIX}"
-    )
-endmacro()
-
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 
     if (WIN32)
+        include(windeployqt)
         windeployqt("$<TARGET_FILE:pmsexp>")
     endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -340,7 +314,11 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         )
 
         install(
-            CODE "windeployqt(\"\${CMAKE_INSTALL_PREFIX}/${PMSEXP_EXECUTABLE_NAME}.exe\")"
+            CODE "
+                include(windeployqt)
+                windeployqt(\"\${CMAKE_INSTALL_PREFIX}/${PMSEXP_EXECUTABLE_NAME}.exe\")
+            "
+
             COMPONENT Runtime
         )
 
