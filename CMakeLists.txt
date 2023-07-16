@@ -230,7 +230,11 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 
     if (WIN32)
-        execute_process(COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>")
+        add_custom_target(
+            windeployqt ALL
+            COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>"
+            DEPENDS pmsexp
+        )
     endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
