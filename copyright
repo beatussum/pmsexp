@@ -25,11 +25,13 @@ Files:
     share/icons/applications-science.svg
     share/icons/go-next.svg
     share/icons/go-previous.svg
+    share/icons/list-add.svg
+    share/icons/list-remove.svg
     share/icons/system-run.svg
     share/icons/view-refresh.svg
-Copyright: Vince Liuice <vinceliuice@hotmail.com>
-License: GPL3+
-Comment: Taken from https://github.com/vinceliuice/Tela-icon-theme/tree/2023-02-03/.
+Copyright: 2014, Uri Herrera <uri_herrera@nitrux.in>
+License: LGPL-3
+Comment: Taken from https://github.com/KDE/breeze-icons/tree/v5.108.0/.
 
 Files: share/icons/com.github.PMSExp.svg
 Copyright:

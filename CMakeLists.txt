@@ -147,8 +147,11 @@ endforeach()
 set(
     PMSEXP_THEME_ICONS
     application-exit.svg
+    applications-science.svg
     go-next.svg
     go-previous.svg
+    list-add.svg
+    list-remove.svg
     system-run.svg
     view-refresh.svg
 )
@@ -165,6 +168,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 include_directories(include)
 
 find_package(OpenCV REQUIRED)
+include_directories("${OpenCV_INCLUDE_DIRS}")
 
 if (WITH_QCUSTOMPLOT)
     add_subdirectory(libs/qcustomplot)
@@ -193,10 +197,7 @@ if (WIN32)
     set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
-target_include_directories(
-    pmsexp
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}" "${OpenCV_INCLUDE_DIRS}"
-)
+target_include_directories(pmsexp PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 
 target_link_libraries(
     pmsexp
@@ -213,6 +214,7 @@ if (WIN32)
         WINDEPLOYQT_EXE
         windeployqt
         HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
+        ENV PATH
         DOC "A tool to automate deployment of the Qt-related dependencies"
         REQUIRED
     )
@@ -250,7 +252,7 @@ add_image_conversion(
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-    set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+    set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
@@ -294,7 +296,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 
     install(
-        FILES "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png"
+        FILES "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.PMSExp.png"
         DESTINATION "${PMSEXP_ICON_DIR}"
         COMPONENT Theme
     )
@@ -386,14 +388,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
     include(CPack)
 endif()
-
-add_custom_target(
-    convert_images
-    DEPENDS "${PMSEXP_IMAGES_TO_CONVERT}"
-    COMMENT "Converting images…"
-)
-
-add_dependencies(pmsexp convert_images)
 
 set_target_properties(
     pmsexp
