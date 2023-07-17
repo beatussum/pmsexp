@@ -191,7 +191,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 
 include_directories(include)
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV COMPONENTS core video videoio REQUIRED)
 
 if (WITH_QCUSTOMPLOT)
     add_subdirectory(libs/qcustomplot)
@@ -220,20 +220,24 @@ if (WIN32)
     set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
 
-target_include_directories(
-    pmsexp
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}" "${OpenCV_INCLUDE_DIRS}"
-)
+target_include_directories(pmsexp PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 
 target_link_libraries(
     pmsexp
-    "${OpenCV_LIBS}"
-    QCustomPlot::QCustomPlot
-    Qt5::Core
-    Qt5::Concurrent
-    Qt5::Gui
-    Qt5::Widgets
+    PRIVATE opencv_video Qt5::Concurrent
+
+    PUBLIC
+        opencv_core
+        opencv_videoio
+        QCustomPlot::QCustomPlot
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
 )
+
+foreach (comp IN LISTS PMSEXP_OPENCV_COMPONENTS)
+    target_link_libraries(pmsexp)
+endforeach()
 
 if (WIN32)
     find_program(
@@ -404,6 +408,18 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             FILES "${CMAKE_CURRENT_SOURCE_DIR}/libs/qcustomplot/GPL.txt"
             DESTINATION "${PMSEXP_DOC_DIR}/QCustomPlot"
             COMPONENT Documentation
+        )
+
+        install(
+            IMPORTED_RUNTIME_ARTIFACTS opencv_core opencv_video opencv_videoio
+            DESTINATION "${PMSEXP_BIN_DIR}"
+            COMPONENT Runtime
+        )
+
+        install(
+            FILES "${OpenCV_INSTALL_PATH}/bin/opencv_videoio_ffmpeg${OpenCV_VERSION_MAJOR}${OpenCV_VERSION_MINOR}${OpenCV_VERSION_PATCH}_64.dll"
+            DESTINATION "${PMSEXP_BIN_DIR}"
+            COMPONENT Runtime
         )
 
         install(
