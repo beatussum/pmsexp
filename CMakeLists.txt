@@ -171,6 +171,7 @@ set(
     PMSEXP_THEME_ICONS
     application-exit.svg
     applications-science.svg
+    document-new.svg
     go-next.svg
     go-previous.svg
     list-add.svg
