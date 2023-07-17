@@ -1,5 +1,8 @@
 # <img src="share/icons/com.github.PMSExp.svg" width="64" height="64"/> PMSExp
 
+![License](https://img.shields.io/github/license/beatussum/pmsexp) ![Release](https://img.shields.io/github/v/release/beatussum/pmsexp)
+
+
 [Français](README_fr.md)
 
 ## Table of contents
@@ -12,7 +15,7 @@
 
 ## What is PMSExp?
 
-[**PMSExp**](https://github.com/beatussum/pmsexp/) is free software (licensed under GPL-3 or any later version) allowing to automate video pointing of an object.
+[**PMSExp**](https://github.com/beatussum/pmsexp/) is a free software (licensed under GPL-3 or any later version) allowing to automate video pointing of an object.
 
 In particular, it allows to recover the follwing informations:
 - the heading of the object (the front of the object being determined by its shape) over time;
