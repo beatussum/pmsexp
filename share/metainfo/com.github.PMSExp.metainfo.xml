@@ -79,18 +79,18 @@
             <artifacts>
                 <artifact type="binary" platform="x86_64-windows-msvc">
                     <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64.msi</location>
-                    <checksum type="blake2b">238f8697725b0de8211c2155b39ba884fb150af1939787463251eaf08d41dfa3a1c18e38b6a86faa9d6dba790c5db3a483a498a2e4bd18d33bf6453cdf03e565</checksum>
-                    <checksum type="sha256">3fa20ecdfe459361f438de9ddfc20e75adf505b9262a406a99879fbfb5dc533c</checksum>
-                    <size type="downloaded">47894528</size>
-                    <size type="installed">81679360</size>
+                    <checksum type="blake2b">8cb38e0884ad4f997380cd49f6bbfc324124128c5cd4040d665620ccadcbd6c23759610cdfa8ec720c4df7b674b8a1fc802d5426e2efc240ed76c8ab3226272d</checksum>
+                    <checksum type="sha256">119b506fde6c977fb63adbaee7cbaeb45cd3d584cbb2b0571b40baafcb763627</checksum>
+                    <size type="downloaded">81772544</size>
+                    <size type="installed">171525120</size>
                 </artifact>
 
                 <artifact type="binary" platform="x86_64-windows-msvc">
                     <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64-fr-FR.msi</location>
-                    <checksum type="blake2b">83bea51412fa8a6d38591b909b315d592312f3139f104b27440de43a662df79aa87784c22a3f58c1ae624f9b8df3bbbb7c569e748708595d3c7526bd81bfe806</checksum>
-                    <checksum type="sha256">3a1b741b86ad5af3bbb9ef1ced37d5f39c8f0366e40a1b8f91badc0c2133ff83</checksum>
-                    <size type="downloaded">47898624</size>
-                    <size type="installed">81679360</size>
+                    <checksum type="blake2b">cf33ec9c95405d770fdb6ca83138616d5f9d5958cedc01e6fe8b75570b7e0345b81fd7d27d1ad8cbd008d5fc86bbecc38bfb7ee9d0ec6852073c706f37772e6d</checksum>
+                    <checksum type="sha256">8a181ba39e81cca8a917729fce8698ba654466378c59a54cf1ee6bf72d086c1e</checksum>
+                    <size type="downloaded">81776640</size>
+                    <size type="installed">171525120</size>
                 </artifact>
 
                 <artifact type="source">
