@@ -78,11 +78,19 @@
 
             <artifacts>
                 <artifact type="binary" platform="x86_64-windows-msvc">
-                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/pmsexp_0.9.0_win64.msi</location>
-                    <checksum type="sha256"></checksum>
-                    <checksum type="blake2b"></checksum>
-                    <size type="downloaded"></size>
-                    <size type="installed"></size>
+                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64.msi</location>
+                    <checksum type="blake2b">238f8697725b0de8211c2155b39ba884fb150af1939787463251eaf08d41dfa3a1c18e38b6a86faa9d6dba790c5db3a483a498a2e4bd18d33bf6453cdf03e565</checksum>
+                    <checksum type="sha256">3fa20ecdfe459361f438de9ddfc20e75adf505b9262a406a99879fbfb5dc533c</checksum>
+                    <size type="downloaded">47894528</size>
+                    <size type="installed">81679360</size>
+                </artifact>
+
+                <artifact type="binary" platform="x86_64-windows-msvc">
+                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64-fr-FR.msi</location>
+                    <checksum type="blake2b">83bea51412fa8a6d38591b909b315d592312f3139f104b27440de43a662df79aa87784c22a3f58c1ae624f9b8df3bbbb7c569e748708595d3c7526bd81bfe806</checksum>
+                    <checksum type="sha256">3a1b741b86ad5af3bbb9ef1ced37d5f39c8f0366e40a1b8f91badc0c2133ff83</checksum>
+                    <size type="downloaded">47898624</size>
+                    <size type="installed">81679360</size>
                 </artifact>
 
                 <artifact type="source">
