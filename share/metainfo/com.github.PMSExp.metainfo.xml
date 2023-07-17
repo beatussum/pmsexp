@@ -68,7 +68,7 @@
     <launchable type="desktop-id">com.github.PMSExp.desktop</launchable>
 
     <releases>
-        <release version="0.9.0" date="" urgency="low" type="development">
+        <release version="0.9.0" date="2023-07-17" urgency="low" type="development">
             <description>
                 <p>First release.</p>
                 <p xml:lang="fr_FR">Première version.</p>
@@ -77,16 +77,8 @@
             <url>https://github.com/beatussum/pmsexp/releases/tag/0.9.0</url>
 
             <artifacts>
-                <artifact type="binary" platform="x86_64-linux-gnu">
-                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/pmsexp_0.9.0_amd64.deb</location>
-                    <checksum type="sha256"></checksum>
-                    <checksum type="blake2b"></checksum>
-                    <size type="downloaded"></size>
-                    <size type="installed"></size>
-                </artifact>
-
                 <artifact type="binary" platform="x86_64-windows-msvc">
-                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/pmsexp_0.9.0_amd64.msi</location>
+                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/pmsexp_0.9.0_win64.msi</location>
                     <checksum type="sha256"></checksum>
                     <checksum type="blake2b"></checksum>
                     <size type="downloaded"></size>
@@ -123,6 +115,34 @@
     <developer_name>Mattéo Rossillol‑‑Laruelle</developer_name>
 
     <screenshots>
+        <screenshot type="default">
+            <caption>Video uploading</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page00.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Object selection</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page01.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Contour selection</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page02.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Calibration setting</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page03.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Data loading</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page04.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Statistics</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page05.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Toolbar</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/toolbar.png</image>
+        </screenshot>
     </screenshots>
 
     <translation type="qt">pmsexp/translations/pmsexp</translation>
