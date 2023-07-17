@@ -6,6 +6,7 @@
 
 - [Qu'est-ce que PMSExp ?](#quest-ce-que-pmsexp)
 - [Pourquoi PMSExp (Parking Monitoring System Experiment) ?](#pourquoi-pmsexp-parking-monitoring-system-experiment)
+- [Comment utiliser PMSExp ?](#comment-utiliser-pmsexp)
 - [Licences](#licences)
 - [Installation et construction](#installation-et-construction)
 
@@ -35,6 +36,10 @@ Cependant, l'idée d'avoir un véhicule de la taille d'une voiture miniature, ci
 En fin de compte, trouvant le projet intéressant, j'ai décidé de continuer son développement en _standalone_.
 
 Je suis en train de me rendre compte que cela m'a pris beaucoup de lignes pour expliquer la simple et triste réalité : le nom de ce projet n'a vraiment aucun de sens…
+
+## Comment utiliser PMSExp ?
+
+Prière de lire [le fichier correspondant](share/doc/UserGuide.md).
 
 ## Licences
 

@@ -6,6 +6,7 @@
 
 - [What is PMSExp?](#what-is-pmsexp)
 - [Why PMSExp (Parking Monitoring System Experiment)?](#why-pmsexp-parking-monitoring-system-experiment)
+- [How to use PMSExp?](#how-to-use-pmsexp)
 - [Licenses](#licenses)
 - [Installing and building](#installing-and-building)
 
@@ -35,6 +36,10 @@ At the end of my project, I had to test the validity of my system (did it follow
 Eventually, finding the project interesting, I decided to continue its development on a standalone basis.
 
 I'm now realizing that it took me a lot of lines to explain the simple and sad truth: the name of this project really doesn't make any sense…
+
+## How to use PMSExp?
+
+Please read [the corresponding file](share/doc/UserGuide.md).
 
 ## Licenses
 

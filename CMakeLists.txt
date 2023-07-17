@@ -134,8 +134,31 @@ set(
 
 list(TRANSFORM PMSEXP_CPP PREPEND "src/")
 
-set(PMSEXP_DOC ChangeLog copyright README_fr.md README.md)
+set(
+    PMSEXP_DOC
+    ChangeLog
+    copyright
+    README_fr.md
+    README.md
+    share/doc/UserGuide.md
+)
+
 list(TRANSFORM PMSEXP_DOC PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/")
+
+set(
+    PMSEXP_SCREENSHOTS
+    page00.png
+    page01.png
+    page02.png
+    page03.png
+    page04.png
+    page05.png
+)
+
+list(
+    TRANSFORM PMSEXP_SCREENSHOTS
+    PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/share/doc/screenshots/"
+)
 
 set(PMSEXP_LANGUAGES en fr_FR)
 set(PMSEXP_TS i18n/pmsexp.ts)
@@ -278,6 +301,12 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     install(
         FILES ${PMSEXP_DOC}
         DESTINATION "${PMSEXP_DOC_DIR}"
+        COMPONENT Documentation
+    )
+
+    install(
+        FILES ${PMSEXP_SCREENSHOTS}
+        DESTINATION "${PMSEXP_DOC_DIR}/screenshots"
         COMPONENT Documentation
     )
 
