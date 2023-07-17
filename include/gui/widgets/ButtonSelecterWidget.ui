@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ButtonSelecterWidget</class>
+ <widget class="QWidget" name="ButtonSelecterWidget">
+  <layout class="QVBoxLayout" name="m_main_layout">
+   <item>
+    <layout class="QHBoxLayout" name="m_button_layout">
+     <item>
+      <widget class="QPushButton" name="m_previous_button">
+       <property name="text">
+        <string>Previous</string>
+       </property>
+       <property name="icon">
+        <iconset theme="go-previous"/>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+Left</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_next_button">
+       <property name="shortcut">
+        <string>Ctrl+Right</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

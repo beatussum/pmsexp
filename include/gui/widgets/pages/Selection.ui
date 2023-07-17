@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Selection</class>
+ <widget class="QWidget" name="Selection">
+  <layout class="QVBoxLayout" name="m_main_layout">
+   <item>
+    <widget class="QLabel" name="m_help_label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="gui::widgets::ScrollArea" name="m_scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="gui::widgets::SelectionWidget" name="m_selection_widget"/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>gui::widgets::SelectionWidget</class>
+   <extends>QLabel</extends>
+   <header>gui/widgets/SelectionWidget.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>gui::widgets::ScrollArea</class>
+   <extends>QScrollArea</extends>
+   <header>gui/widgets/ScrollArea.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

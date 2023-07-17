@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.github.PMSExp</id>
+    <metadata_license>CC-BY-SA-4.0</metadata_license>
+    <name>PMSExp</name>
+    <summary>A software for recovering the position of an object in a video</summary>
+    <icon type="stock">com.github.PMSExp</icon>
+
+    <description>
+        <p>
+            PMSExp is free software (licensed under GPL-3 or any later version)
+            allowing to automate video pointing of an object.
+        </p>
+        <p>
+            In particular, it allows to recover the follwing informations:
+
+            <ul>
+                <li>the heading of the object over time;</li>
+                <li>its coordinates over time.</li>
+            </ul>
+        </p>
+        <p>
+            To work, it depends on the following libraries:
+
+            <ul>
+                <li>Qt for the user interface;</li>
+                <li>OpenCV for the video processing;</li>
+                <li>QCustomPlot for displaying data in graphs.</li>
+            </lu>
+        </p>
+
+        <p xml:lang="fr_FR">
+            PMSExp est un outil libre (sous licence GPL-3 ou ultérieure) permettant
+            d'automatiser le pointage vidéo d'un objet.
+        </p>
+        <p xml:lang="fr_FR">
+            En particulier, il permet de récupérer les informations suivantes :
+
+            <ul>
+                <li>le cap de l'objet (l'avant de l'objet étant déterminé à partir de sa forme) au cours du temps ;</li>
+                <li>ses coordonnées au cours du temps.</li>
+            </ul>
+        </p>
+        <p xml:lang="fr_FR">
+            Pour fonctionner, il s'appuie sur différentes bibliothèques :
+
+            <ul>
+                <li>Qt pour l'interface graphique ;</li>
+                <li>OpenCV pour le traitement de fichiers vidéos ;</li>
+                <li>QCustomPlot pour l'affichage des données dans des graphes.</li>
+            </ul>
+        </p>
+    </description>
+
+    <categories>
+        <category>DataVisualization</category>
+        <category>Physics</category>
+        <category>Qt</category>
+        <category>Science</category>
+        <category>Utility</category>
+        <category>Video</category>
+    </categories>
+
+    <url type="homepage">https://github.com/beatussum/pmsexp</url>
+    <url type="bugtracker">https://github.com/beatussum/pmsexp/issues</url>
+    <url type="vcs-browser">https://github.com/beatussum/pmsexp</url>
+
+    <launchable type="desktop-id">com.github.PMSExp.desktop</launchable>
+
+    <releases>
+        <release version="0.9.0" date="2023-07-17" urgency="low" type="development">
+            <description>
+                <p>First release.</p>
+                <p xml:lang="fr_FR">Première version.</p>
+            </description>
+
+            <url>https://github.com/beatussum/pmsexp/releases/tag/0.9.0</url>
+
+            <artifacts>
+                <artifact type="binary" platform="x86_64-windows-msvc">
+                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64.msi</location>
+                    <checksum type="blake2b">8cb38e0884ad4f997380cd49f6bbfc324124128c5cd4040d665620ccadcbd6c23759610cdfa8ec720c4df7b674b8a1fc802d5426e2efc240ed76c8ab3226272d</checksum>
+                    <checksum type="sha256">119b506fde6c977fb63adbaee7cbaeb45cd3d584cbb2b0571b40baafcb763627</checksum>
+                    <size type="downloaded">81772544</size>
+                    <size type="installed">171525120</size>
+                </artifact>
+
+                <artifact type="binary" platform="x86_64-windows-msvc">
+                    <location>https://github.com/beatussum/pmsexp/releases/download/0.9.0/PMSExp-0.9.0-win64-fr-FR.msi</location>
+                    <checksum type="blake2b">cf33ec9c95405d770fdb6ca83138616d5f9d5958cedc01e6fe8b75570b7e0345b81fd7d27d1ad8cbd008d5fc86bbecc38bfb7ee9d0ec6852073c706f37772e6d</checksum>
+                    <checksum type="sha256">8a181ba39e81cca8a917729fce8698ba654466378c59a54cf1ee6bf72d086c1e</checksum>
+                    <size type="downloaded">81776640</size>
+                    <size type="installed">171525120</size>
+                </artifact>
+
+                <artifact type="source">
+                    <location>https://github.com/beatussum/pmsexp/archive/refs/tags/0.9.0.tar.gz</location>
+                </artifact>
+
+                <artifact type="source">
+                    <location>https://github.com/beatussum/pmsexp/archive/refs/tags/0.9.0.zip</location>
+                </artifact>
+            </artifacts>
+        </release>
+    </releases>
+
+    <provides>
+        <mediatype>video/mp4</mediatype>
+        <mediatype>video/x-matroska</mediatype>
+        <binary>pmsexp</binary>
+    </provides>
+
+    <requires>
+        <control>pointing</control>
+        <control>keyboard</control>
+    </requires>
+
+    <requires>
+        <internet>offline-only</internet>
+    </requires>
+
+    <project_license>GPL-3.0+</project_license>
+    <developer_name>Mattéo Rossillol‑‑Laruelle</developer_name>
+
+    <screenshots>
+        <screenshot type="default">
+            <caption>Video uploading</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page00.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Object selection</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page01.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Contour selection</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page02.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Calibration setting</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page03.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Data loading</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page04.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Statistics</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/page05.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Toolbar</caption>
+            <image type="source">https://raw.githubusercontent.com/beatussum/pmsexp/develop/share/doc/screenshots/toolbar.png</image>
+        </screenshot>
+    </screenshots>
+
+    <translation type="qt">pmsexp/translations/pmsexp</translation>
+    <content_rating type="oars-1.0"/>
+    <update_contact>beatussum@protonmail.com</update_contact>
+</component>

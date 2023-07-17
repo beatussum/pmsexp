@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Upload</class>
+ <widget class="QWidget" name="Upload">
+  <layout class="QVBoxLayout" name="m_main_layout">
+   <item>
+    <widget class="QGroupBox" name="m_uploader_box">
+     <property name="title">
+      <string>Data loading</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QVBoxLayout" name="m_uploader_layout">
+      <item>
+       <widget class="gui::widgets::UploadWidget" name="m_uploader" native="true">
+        <property name="info" stdset="0">
+         <string>Load data</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="m_line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="m_status_box">
+     <property name="title">
+      <string>Current status</string>
+     </property>
+     <layout class="QVBoxLayout" name="m_status_layout">
+      <item>
+       <widget class="gui::widgets::CheckWidget" name="m_item" native="true">
+        <property name="info" stdset="0">
+         <string>Loading status of data</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>gui::widgets::UploadWidget</class>
+   <extends>QWidget</extends>
+   <header>gui/widgets/UploadWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>gui::widgets::CheckWidget</class>
+   <extends>QWidget</extends>
+   <header>gui/widgets/CheckWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

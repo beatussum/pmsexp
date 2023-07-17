@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=PMSExp
+GenericName=Automatic video pointing tool
+GenericName[fr_FR]=Outil de pointage vidéo automatique
+Comment=A software for recovering the position of an object in a video
+Comment[fr_FR]=Un logiciel permettant de récupérer la position d'un objet dans une vidéo
+Icon=com.github.PMSExp
+TryExec=pmsexp
+Exec=pmsexp
+Terminal=false
+MimeType=video/mp4;video/x-matroska
+Categories=DataVisualization;Physics;Qt;Science;Utility;Video
+StartupNotify=true
+StartupWMClass=pmsexp
