@@ -140,13 +140,7 @@ namespace gui
     {
         full_positions_data ret;
 
-        double current_area = m_contour_selection_page->get_current_area();
-
-        full_position first_position =
-            full_position_from_contour(
-                m_contour_selection_page->get_current()
-            );
-
+        double current_area    = m_contour_selection_page->get_current_area();
         double first_timestamp = m_capture.get(cv::CAP_PROP_POS_MSEC);
 
         cv::Mat frame;
@@ -156,7 +150,16 @@ namespace gui
         double ratio = m_calibration_page->get_ratio();
         cv::Rect roi = rect_from_qrect(m_selection_page->get_selection());
 
-        ret[0.] = {0., cv::Point(0., height * ratio)};
+        full_position first_position =
+            full_position_from_contour(
+                m_contour_selection_page->get_current()
+            );
+
+        first_position.position.y  = (height - first_position.position.y);
+        first_position.position   *= ratio;
+
+        ret[0.] = {first_position.angle, cv::Point()};
+
         emit m_future_watcher.progressValueChanged(progress);
 
         m_capture.set(cv::CAP_PROP_POS_FRAMES, 1.);
@@ -168,11 +171,10 @@ namespace gui
                 *contours_from_mat(frame, roi, current_area).begin()
             );
 
-            fp.angle    -= first_position.angle;
-            fp.position -= first_position.position;
+            fp.position.y = (height - fp.position.y);
 
-            fp.position.y  = (height - fp.position.y);
-            fp.position   *= ratio;
+            fp.position *= ratio;
+            fp.position -= first_position.position;
 
             ret[
                 m_capture.get(cv::CAP_PROP_POS_MSEC) - first_timestamp

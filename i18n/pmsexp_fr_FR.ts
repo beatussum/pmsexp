@@ -99,17 +99,17 @@
 <context>
     <name>gui::MainWindow</name>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="345"/>
+        <location filename="../src/gui/MainWindow.cpp" line="347"/>
         <source>Data loading is complete.</source>
         <translation>Le chargement des données est terminé.</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="241"/>
+        <location filename="../src/gui/MainWindow.cpp" line="243"/>
         <source>No contours found.</source>
         <translation>Aucun contour trouvé.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/MainWindow.cpp" line="254"/>
+        <location filename="../src/gui/MainWindow.cpp" line="256"/>
         <source>%n contour(s) found.</source>
         <translation>
             <numerusform>%n contour trouvé.</numerusform>
@@ -117,17 +117,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="275"/>
+        <location filename="../src/gui/MainWindow.cpp" line="277"/>
         <source>No frame can be retrieved.</source>
         <translation>Aucun «&#xa0;frame&#xa0;» n&apos;a pu être récupéré.</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="280"/>
+        <location filename="../src/gui/MainWindow.cpp" line="282"/>
         <source>Error opening the file &quot;%1&quot;.</source>
         <translation>Erreur lors de l&apos;ouverture du fichier «&#xa0;%1&#xa0;».</translation>
     </message>
     <message>
-        <location filename="../src/gui/MainWindow.cpp" line="330"/>
+        <location filename="../src/gui/MainWindow.cpp" line="332"/>
         <source>Results already loaded!</source>
         <translation>Les résultats sont déjà chargés&#xa0;!</translation>
     </message>
