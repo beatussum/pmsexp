@@ -235,33 +235,7 @@ target_link_libraries(
         Qt5::Widgets
 )
 
-foreach (comp IN LISTS PMSEXP_OPENCV_COMPONENTS)
-    target_link_libraries(pmsexp)
-endforeach()
-
 if (WIN32)
-    find_program(
-        WINDEPLOYQT_EXE
-        windeployqt
-        HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
-        DOC "A tool to automate deployment of the Qt-related dependencies"
-        REQUIRED
-    )
-
-    if (Qt5Core_VERSION VERSION_LESS 5.14.1)
-        if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-            set(WINDEPLOYQT_MODE "--debug")
-        elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(WINDEPLOYQT_MODE "--release")
-        endif()
-    endif()
-
-    add_custom_target(
-        windeployqt ALL
-        COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} "$<TARGET_FILE:pmsexp>"
-        DEPENDS pmsexp
-    )
-
     enable_language(RC)
 
     target_sources(
@@ -301,6 +275,18 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc")
+
+        find_program(
+            WINDEPLOYQT_EXE
+            windeployqt
+            HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
+            DOC "A tool to automate deployment of the Qt-related dependencies"
+            REQUIRED
+        )
+
+        if (Qt5Core_VERSION VERSION_LESS 5.14.1)
+            set(WINDEPLOYQT_MODE "--release")
+        endif()
     endif()
 
     install(
@@ -351,7 +337,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     )
 
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
-    set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/share/icons/com.github.pmsexp.png")
+    set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png")
     set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
     set(CPACK_GENERATOR "WIX")
     set(CPACK_PACKAGE_EXECUTABLES "${PMSEXP_EXECUTABLE_NAME};${CMAKE_PROJECT_NAME}")
@@ -368,9 +354,6 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
             DESTINATION "${PMSEXP_DATA_INSTALL_DIR}/metainfo"
             COMPONENT Share
         )
-
-        set(CPACK_PACKAGE_VENDOR "Mattéo Rossillol‑‑Laruelle")
-        set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
     elseif (WIN32)
         add_image_conversion(
             FILE share/icons/com.github.PMSExp.svg

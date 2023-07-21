@@ -23,7 +23,7 @@ build/
 # Qt Creator
 CMakeLists.txt.user
 
-# Visual Studio Code
+# Visual Studio
 .vs/
 out/
 CMakeSettings.json
