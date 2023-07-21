@@ -41,7 +41,6 @@ macro(add_image_conversion)
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
-
     list(
         APPEND ${ADD_IMAGE_CONVERSION_OUTPUT_VAR}
         "${ADD_IMAGE_CONVERSION_OUTPUT_FILE}"
