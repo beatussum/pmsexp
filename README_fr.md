@@ -27,13 +27,13 @@ Pour fonctionner, il s'appuie sur différentes bibliothèques :
 
 ## Pourquoi PMSExp (Parking Monitoring System Experiment) ?
 
-Initialement, le développement de ce logiciel a commencé pour la mise au point d'un autre logiciel. En effet, en tant qu'élève de [C.P.G.E.](https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496), j'ai dû comme l'ensemble des _taupins_ de France réaliser un [T.I.P.E.](https://www.scei-concours.fr/tipe.php). Étant donné la filière P.T. dans laquelle je me trouvais, mon T.I.P.E. devait consister en système technique.
+Initialement, le développement de ce logiciel a commencé pour la mise au point d'un autre projet. En effet, en tant qu'élève de [C.P.G.E.](https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496), j'ai dû comme l'ensemble des _taupins_ de France réaliser un [T.I.P.E.](https://www.scei-concours.fr/tipe.php). Étant donné la filière P.T. dans laquelle je me trouvais, mon T.I.P.E. devait consister en un système technique.
 
-J'ai d'abord opté pour un robot permettant de contrôler le temps de stationnement des véhicules se trouvant dans un parking privé. J'ai donc commencé à écrire le programme [Arduino](https://www.arduino.cc/) qui doit être chargé sur la carte et je l'ai nommé **P.M.S.** ou **P**arking **M**onitoring **S**ystem (~~très~~ légérement pompeux mais dont le sens transparaît un peu).
+J'ai d'abord opté pour un robot permettant de contrôler le temps de stationnement des véhicules se trouvant dans un parking privé. J'ai donc commencé à écrire le programme [Arduino](https://www.arduino.cc/) qui devait être chargé sur la carte et je l'ai nommé **P.M.S.** ou **P**arking **M**onitoring **S**ystem (~~très~~ légérement pompeux mais dont le sens transparaît un peu).
 
 Cependant, l'idée d'avoir un véhicule de la taille d'une voiture miniature, circulant dans un parking (et donc très susceptible de se faire écraser ou vandaliser), n'a pas fait l'unanimité parmi mes professeurs. Sachant, de plus, qu'un banal automate armé d'une lice ferait tout aussi bien l'affaire (si ce n'est mieux). J'ai donc transformé mon robot en robot aspirateur, tout en conservant le nom du programme pour des raisons, pour ainsi dire, historiques…
 
-À la fin de mon projet, j'ai dû tester la validité de mon système (suivait-il le parcours que je lui demandais de suivre ?). Pour cela, il fallait un moyen de récupérer la position de mon robot au cours du temps à partir d'un fichier vidéo. C'est donc ainsi que j'ai commencé à développer **PMSExp** (il m'a suffit de suffixer _« Experiment »_ au nom du projet parent).
+À la fin de mon projet, j'ai dû tester la validité de mon système (suivait-il le parcours que je lui demandais de suivre ?). Pour cela, il fallait un moyen de récupérer la position de mon robot au cours du temps à partir d'un fichier vidéo. C'est donc ainsi qu'est né **PMSExp** (il m'a suffit de suffixer _« Experiment »_ au nom du projet parent).
 
 En fin de compte, trouvant le projet intéressant, j'ai décidé de continuer son développement en _standalone_.
 
