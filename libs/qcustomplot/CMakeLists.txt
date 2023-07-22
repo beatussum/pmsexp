@@ -15,7 +15,6 @@
 
 
 cmake_minimum_required(VERSION 3.25)
-cmake_policy(SET CMP0048 NEW)
 
 project(
     QCusotmPlot
@@ -39,10 +38,12 @@ target_include_directories(qcustomplot PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 
 target_link_libraries(
     qcustomplot
-    Qt5::Core
-    Qt5::Gui
-    Qt5::PrintSupport
-    Qt5::Widgets
+
+    PUBLIC
+        Qt5::Core
+        Qt5::Gui
+        Qt5::PrintSupport
+        Qt5::Widgets
 )
 
 if (USE_OPENGL)

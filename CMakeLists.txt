@@ -191,7 +191,7 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS include/gui)
 
 include_directories(include)
 
-find_package(OpenCV COMPONENTS core video videoio REQUIRED)
+find_package(OpenCV REQUIRED COMPONENTS core video videoio)
 
 if (WITH_QCUSTOMPLOT)
     add_subdirectory(libs/qcustomplot)
@@ -199,7 +199,7 @@ else()
     find_package(QCustomPlot REQUIRED)
 endif()
 
-find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Concurrent Gui LinguistTools Widgets)
 get_filename_component(Qt5_PREFIX "${Qt5_DIR}/../../.." REALPATH)
 
 if (ENABLE_I18N)
