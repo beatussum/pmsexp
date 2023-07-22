@@ -19,7 +19,9 @@
 #include "config.hpp"
 #include "gui/MainWindow.hpp"
 
+#ifdef PMSEXP_I18N_DIR
 #include <QtCore/QTranslator>
+#endif
 
 int main(int argc, char* argv[])
 {
@@ -42,6 +44,7 @@ int main(int argc, char* argv[])
     }
 #endif
 
+#ifdef PMSEXP_I18N_DIR
     QTranslator translator;
 
     translator.load(
@@ -52,6 +55,7 @@ int main(int argc, char* argv[])
     );
 
     QApplication::installTranslator(&translator);
+#endif
 
     gui::MainWindow main_window;
     main_window.show();

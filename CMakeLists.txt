@@ -27,6 +27,7 @@ project(
 )
 
 option(WITH_QCUSTOMPLOT "Use Built-in QCustomPlot" OFF)
+option(ENABLE_I18N "Enable the internationalization support using Qt Linguist" ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
@@ -201,11 +202,13 @@ endif()
 find_package(Qt5 COMPONENTS Core Concurrent Gui LinguistTools Widgets REQUIRED)
 get_filename_component(Qt5_PREFIX "${Qt5_DIR}/../../.." REALPATH)
 
-qt5_create_translation(
-    PMSEXP_QM
-    include src "${PMSEXP_TS}"
-    OPTIONS -no-obsolete
-)
+if (ENABLE_I18N)
+    qt5_create_translation(
+        PMSEXP_QM
+        include src "${PMSEXP_TS}"
+        OPTIONS -no-obsolete
+    )
+endif()
 
 add_executable(pmsexp "${PMSEXP_HPP}" "${PMSEXP_CPP}" "${PMSEXP_QM}")
 
@@ -247,9 +250,12 @@ add_image_conversion(
 )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_ICON_DIR "${CMAKE_CURRENT_BINARY_DIR}")
     set(PMSEXP_THEME_DIR "${CMAKE_CURRENT_SOURCE_DIR}/share/icons")
+
+    if (ENABLE_I18N)
+        set(PMSEXP_I18N_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+    endif()
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (LINUX)
         include(GNUInstallDirs)
@@ -257,17 +263,23 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(PMSEXP_BIN_DIR "${CMAKE_INSTALL_FULL_BINDIR}")
         set(PMSEXP_DATA_INSTALL_DIR "${CMAKE_INSTALL_FULL_DATADIR}")
         string(TOLOWER "${CMAKE_PROJECT_NAME}" PMSEXP_EXECUTABLE_NAME)
-        set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
         set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons/hicolor/256x256/apps")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc/${PMSEXP_EXECUTABLE_NAME}-${CMAKE_PROJECT_VERSION}")
+
+        if (ENABLE_I18N)
+            set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/${PMSEXP_EXECUTABLE_NAME}/translations")
+        endif()
     elseif (WIN32)
         set(PMSEXP_BIN_DIR ".")
         set(PMSEXP_DATA_INSTALL_DIR ".")
         set(PMSEXP_EXECUTABLE_NAME "${CMAKE_PROJECT_NAME}")
-        set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/translations")
         set(PMSEXP_ICON_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_THEME_DIR "${PMSEXP_DATA_INSTALL_DIR}/icons")
         set(PMSEXP_DOC_DIR "${PMSEXP_DATA_INSTALL_DIR}/doc")
+
+        if (ENABLE_I18N)
+            set(PMSEXP_I18N_DIR "${PMSEXP_DATA_INSTALL_DIR}/translations")
+        endif()
 
         find_program(
             WINDEPLOYQT_EXE
@@ -323,11 +335,13 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         )
     endif()
 
-    install(
-        FILES ${PMSEXP_QM}
-        DESTINATION "${PMSEXP_I18N_DIR}"
-        COMPONENT Translations
-    )
+    if (ENABLE_I18N)
+        install(
+            FILES ${PMSEXP_QM}
+            DESTINATION "${PMSEXP_I18N_DIR}"
+            COMPONENT Translations
+        )
+    endif()
 
     set(CPACK_PACKAGE_NAME "${PMSEXP_EXECUTABLE_NAME}")
     set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_BINARY_DIR}/com.github.PMSExp.png")
