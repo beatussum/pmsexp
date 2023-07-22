@@ -15,7 +15,6 @@
 
 
 cmake_minimum_required(VERSION 3.25)
-cmake_policy(SET CMP0048 NEW)
 
 set(LINUX (UNIX AND NOT APPLE))
 
@@ -41,10 +40,10 @@ endmacro()
 
 # Use ccache if installed
 
-find_program(CCACHE_FOUND ccache)
+find_program(CCACHE_EXE ccache)
 
-if (CCACHE_FOUND)
-    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+if (CCACHE_EXE)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_EXE}")
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
@@ -208,13 +207,7 @@ qt5_create_translation(
     OPTIONS -no-obsolete
 )
 
-add_executable(
-    pmsexp
-    "${PMSEXP_HPP}"
-    "${PMSEXP_IPP}"
-    "${PMSEXP_CPP}"
-    "${PMSEXP_QM}"
-)
+add_executable(pmsexp "${PMSEXP_HPP}" "${PMSEXP_CPP}" "${PMSEXP_QM}")
 
 if (WIN32)
     set_target_properties(pmsexp PROPERTIES WIN32_EXECUTABLE TRUE)

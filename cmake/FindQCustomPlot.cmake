@@ -1,10 +1,3 @@
-# Attempt to locate QCustomPlot
-# Once done this will define:
-#
-#  QCUSTOMPLOT_FOUND - system has QCustomPlot
-#  QCustomPlot_INCLUDE_DIR - the include directory for QCustomPlot
-#  QCustomPlot_LIBRARY - Link this to use QCustomPlot
-#
 # Copyright (C) 2019, Scott Furry, <scott.wl.furry@gmail.com>
 # Copyright (C) 2023, Mattéo Rossillol‑‑Laruelle, <beatussum@protonmail.com>
 #
@@ -31,6 +24,36 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#[========================================================================[.md:
+
+# QCustomPlot
+
+Finds the QCustomPlot library.
+
+## Imported targets
+
+This module provides the following imported targets, if found:
+
+- `QCustomPlot::QCustomPlot`: The QCustomPlot library.
+
+## Result variables
+
+This will define the following variables:
+
+- `QCustomPlot_FOUND`: True if the system has the QCustomPlot library.
+- `QCustomPlot_INCLUDE_DIR`: Include directory needed to use QCustomPlot.
+- `QCustomPlot_LIBRARY`: Library needed to link to QCustomPlot.
+
+## Cache variables
+
+The following cache variables may also be set:
+
+- `QCustomPlot_INCLUDE_DIR`: The directory containing `qcustomplot.h`.
+- `QCustomPlot_LIBRARY`: The path to the QCustomPlot library.
+
+#]========================================================================]
+
+cmake_minimum_required(VERSION 3.25)
 
 find_library(QCustomPlot_LIBRARY NAMES qcustomplot qcustomplot-qt5)
 find_path(QCustomPlot_INCLUDE_DIR qcustomplot.h)
@@ -48,8 +71,10 @@ if (QCustomPlot_FOUND AND NOT TARGET QCustomPlot::QCustomPlot)
     add_library(QCustomPlot::QCustomPlot UNKNOWN IMPORTED)
 
     set_target_properties(
-        QCustomPlot::QCustomPlot PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIR}"
-        IMPORTED_LOCATION "${QCustomPlot_LIBRARY}"
+        QCustomPlot::QCustomPlot
+
+        PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIR}"
+            IMPORTED_LOCATION "${QCustomPlot_LIBRARY}"
     )
 endif()

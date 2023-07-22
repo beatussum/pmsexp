@@ -14,6 +14,8 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
+cmake_minimum_required(VERSION 3.25)
+
 find_program(
     MAGICK_EXE magick
     DOC "A free, open-source software suite, used for editing and manipulating digital images"
@@ -41,8 +43,10 @@ macro(add_image_conversion)
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     )
 
-    list(
-        APPEND ${ADD_IMAGE_CONVERSION_OUTPUT_VAR}
-        "${ADD_IMAGE_CONVERSION_OUTPUT_FILE}"
-    )
+    if (DEFINED ADD_IMAGE_CONVERSION_OUTPUT_VAR)
+        list(
+            APPEND ${ADD_IMAGE_CONVERSION_OUTPUT_VAR}
+            "${ADD_IMAGE_CONVERSION_OUTPUT_FILE}"
+        )
+    endif()
 endmacro()
