@@ -31,21 +31,10 @@ option(ENABLE_I18N "Enable the internationalization support using Qt Linguist" O
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-macro(add_gcc_cxx_flags __flags)
-    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        foreach (flag IN LISTS __flags)
-            string(APPEND CMAKE_CXX_FLAGS " ${__flags}")
-        endforeach()
-    endif()
-endmacro()
+include(CompilerFlags)
 
-# Use ccache if installed
-
-find_program(CCACHE_EXE ccache)
-
-if (CCACHE_EXE)
-    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_EXE}")
-endif()
+find_package(Ccache MODULE)
+enable_ccache()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -240,7 +229,7 @@ if (WIN32)
     )
 endif()
 
-include(ImageConverter)
+find_package(ImageMagick MODULE REQUIRED)
 
 add_image_conversion(
     FILE share/icons/com.github.PMSExp.svg
@@ -282,8 +271,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         endif()
 
         find_program(
-            WINDEPLOYQT_EXE
-            windeployqt
+            WINDEPLOYQT_EXECUTABLE windeployqt
             HINTS "${Qt5_PREFIX}/bin" "${Qt5_PREFIX}/tools/qt5/bin"
             DOC "A tool to automate deployment of the Qt-related dependencies"
             REQUIRED
@@ -415,7 +403,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
         install(
             CODE "
                 execute_process(
-                    COMMAND ${WINDEPLOYQT_EXE} ${WINDEPLOYQT_MODE} ${PMSEXP_EXECUTABLE_NAME}.exe
+                    COMMAND ${WINDEPLOYQT_EXECUTABLE} ${WINDEPLOYQT_MODE} ${PMSEXP_EXECUTABLE_NAME}.exe
                     WORKING_DIRECTORY \"\${CMAKE_INSTALL_PREFIX}\"
                 )
             "

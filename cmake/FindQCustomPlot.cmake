@@ -24,6 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
 #[========================================================================[.md:
 
 # QCustomPlot
@@ -41,12 +42,12 @@ This module provides the following imported targets, if found:
 This will define the following variables:
 
 - `QCustomPlot_FOUND`: True if the system has the QCustomPlot library.
-- `QCustomPlot_INCLUDE_DIR`: Include directory needed to use QCustomPlot.
-- `QCustomPlot_LIBRARY`: Library needed to link to QCustomPlot.
+- `QCustomPlot_INCLUDE_DIRS`: Include directories needed to use QCustomPlot.
+- `QCustomPlot_LIBRARIES`: Libraries needed to link to QCustomPlot.
 
 ## Cache variables
 
-The following cache variables may also be set:
+The following cache variables are defined:
 
 - `QCustomPlot_INCLUDE_DIR`: The directory containing `qcustomplot.h`.
 - `QCustomPlot_LIBRARY`: The path to the QCustomPlot library.
@@ -55,16 +56,29 @@ The following cache variables may also be set:
 
 cmake_minimum_required(VERSION 3.25)
 
-find_library(QCustomPlot_LIBRARY NAMES qcustomplot qcustomplot-qt5)
 find_path(QCustomPlot_INCLUDE_DIR qcustomplot.h)
+find_library(QCustomPlot_LIBRARY NAMES qcustomplot)
+
+set(QCustomPlot_INCLUDE_DIRS "${QCustomPlot_INCLUDE_DIR}")
+set(QCustomPlot_LIBRARIES "${QCustomPlot_LIBRARY}")
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(
     QCustomPlot
     DEFAULT_MSG
-    QCustomPlot_LIBRARY
     QCustomPlot_INCLUDE_DIR
+    QCustomPlot_LIBRARY
+)
+
+include(FeatureSummary)
+
+set_package_properties(
+    QCustomPlot
+
+    PROPERTIES
+        URL "https://www.qcustomplot.com/"
+        DESCRIPTION "Qt C++ widget for plotting and data visualization"
 )
 
 if (QCustomPlot_FOUND AND NOT TARGET QCustomPlot::QCustomPlot)
@@ -74,7 +88,7 @@ if (QCustomPlot_FOUND AND NOT TARGET QCustomPlot::QCustomPlot)
         QCustomPlot::QCustomPlot
 
         PROPERTIES
-            INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIR}"
-            IMPORTED_LOCATION "${QCustomPlot_LIBRARY}"
+            INTERFACE_INCLUDE_DIRECTORIES "${QCustomPlot_INCLUDE_DIRS}"
+            IMPORTED_LOCATION "${QCustomPlot_LIBRARIES}"
     )
 endif()
