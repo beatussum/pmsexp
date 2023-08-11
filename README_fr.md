@@ -1,6 +1,6 @@
 # <img src="share/icons/com.github.PMSExp.svg" width="64" height="64"/> PMSExp
 
-[![Licence](https://img.shields.io/github/license/beatussum/pmsexp?label=licence)](LICENSE) [![Version](https://img.shields.io/github/v/release/beatussum/pmsexp?filter=*&label=version)](https://github.com/beatussum/pmsexp/releases/)
+[![Licence](https://img.shields.io/github/license/beatussum/pmsexp?label=licence)](LICENSE) [![Version](https://img.shields.io/github/v/release/beatussum/pmsexp?filter=*&label=version)](https://github.com/beatussum/pmsexp/releases/) [![État de la traduction](https://hosted.weblate.org/widget/pmsexp/-/fr/svg-badge.svg)](https://hosted.weblate.org/engage/pmsexp/-/fr/)
 
 [English](README.md)
 
