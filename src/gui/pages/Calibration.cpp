@@ -16,11 +16,11 @@
  */
 
 
-#include "gui/widgets/pages/Calibration.hpp"
+#include "gui/pages/Calibration.hpp"
 
 #include <QtGui/QDoubleValidator>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     Calibration::Calibration(QWidget* __parent, Qt::WindowFlags __f)
         : QWidget(__parent, __f)
@@ -42,7 +42,7 @@ namespace gui::widgets::pages
 
         QObject::connect(
             m_ui->m_calibration_widget,
-            &gui::widgets::CalibrationWidget::measure_changed,
+            &widgets::CalibrationWidget::measure_changed,
             this,
             &Calibration::measure_changed
         );

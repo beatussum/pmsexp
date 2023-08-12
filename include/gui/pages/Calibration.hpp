@@ -16,12 +16,12 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_CALIBRATION_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_CALIBRATION_HPP
+#ifndef PMSEXP_GUI_PAGES_CALIBRATION_HPP
+#define PMSEXP_GUI_PAGES_CALIBRATION_HPP
 
 #include "ui_Calibration.h"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Calibration : public QWidget
     {
@@ -75,4 +75,4 @@ namespace gui::widgets::pages
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_CALIBRATION_HPP
+#endif // PMSEXP_GUI_PAGES_CALIBRATION_HPP

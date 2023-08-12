@@ -22,12 +22,12 @@
 <context>
     <name>Calibration</name>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="33"/>
+        <location filename="../include/gui/pages/Calibration.ui" line="33"/>
         <source>Real measure</source>
         <translation>Mesure réelle</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Calibration.ui" line="39"/>
+        <location filename="../include/gui/pages/Calibration.ui" line="39"/>
         <source>Enter the corresponding actual measurement (in cm).</source>
         <translation>Entrer la mesure réelle correspondante (en cm).</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ContourSelection</name>
     <message>
-        <location filename="../include/gui/widgets/pages/ContourSelection.ui" line="22"/>
+        <location filename="../include/gui/pages/ContourSelection.ui" line="22"/>
         <source>Previous</source>
         <translation>Précedent</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/ContourSelection.ui" line="32"/>
+        <location filename="../include/gui/pages/ContourSelection.ui" line="32"/>
         <source>Next</source>
         <translation>Suivant</translation>
     </message>
@@ -76,22 +76,22 @@
 <context>
     <name>Upload</name>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="9"/>
+        <location filename="../include/gui/pages/Upload.ui" line="9"/>
         <source>Data loading</source>
         <translation>Chargement des données</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="18"/>
+        <location filename="../include/gui/pages/Upload.ui" line="18"/>
         <source>Load data</source>
         <translation>Charger les données</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="35"/>
+        <location filename="../include/gui/pages/Upload.ui" line="35"/>
         <source>Current status</source>
         <translation>État actuel</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/pages/Upload.ui" line="41"/>
+        <location filename="../include/gui/pages/Upload.ui" line="41"/>
         <source>Loading status of data</source>
         <translation>État de chargement des données</translation>
     </message>
@@ -133,6 +133,92 @@
     </message>
 </context>
 <context>
+    <name>gui::pages::Calibration</name>
+    <message>
+        <location filename="../src/gui/pages/Calibration.cpp" line="32"/>
+        <source>Use the mouse to select the area to be scaled. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
+        <translation type="unfinished">Utiliser la souris pour sélectionner la zone à étalonner. Appuyer sur « %1 » pour valider la sélection et « %2 » pour supprimer la sélection précédente.</translation>
+    </message>
+</context>
+<context>
+    <name>gui::pages::ContourSelection</name>
+    <message>
+        <location filename="../src/gui/pages/ContourSelection.cpp" line="89"/>
+        <source>Contour area: %1 px.</source>
+        <translation type="unfinished">Aire du contour&#xa0;: %1 px.</translation>
+    </message>
+</context>
+<context>
+    <name>gui::pages::Selection</name>
+    <message>
+        <location filename="../src/gui/pages/Selection.cpp" line="30"/>
+        <source>Use the mouse to select the area to be monitored. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
+        <translation type="unfinished">Utiliser la souris pour sélectionner la zone à monitorer. Appuyer sur «&#xa0;%1&#xa0;» pour valider la sélection et «&#xa0;%2&#xa0;» pour supprimer la sélection précédente.</translation>
+    </message>
+</context>
+<context>
+    <name>gui::pages::Statistics</name>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="38"/>
+        <source>Heading</source>
+        <translation type="unfinished">Cap</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="44"/>
+        <source>Position</source>
+        <translation type="unfinished">Position</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="50"/>
+        <source>Trajectory</source>
+        <translation type="unfinished">Trajectoire</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="57"/>
+        <location filename="../src/gui/pages/Statistics.cpp" line="70"/>
+        <location filename="../src/gui/pages/Statistics.cpp" line="81"/>
+        <source>Time (in ms)</source>
+        <translation type="unfinished">Temps (en ms)</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="58"/>
+        <source>Heading (in rad)</source>
+        <translation type="unfinished">Cap (en rad)</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="59"/>
+        <source>Time evolution of the heading</source>
+        <translation type="unfinished">Évolution temporelle du cap</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="71"/>
+        <location filename="../src/gui/pages/Statistics.cpp" line="114"/>
+        <source>Abscissa (in cm)</source>
+        <translation type="unfinished">Abscisse (en cm)</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="82"/>
+        <location filename="../src/gui/pages/Statistics.cpp" line="115"/>
+        <source>Ordinate (in cm)</source>
+        <translation type="unfinished">Ordonnée (en cm)</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="97"/>
+        <source>Time evolution of the abscissa</source>
+        <translation type="unfinished">Évolution temporelle des abscisses</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="107"/>
+        <source>Time evolution of the ordinate</source>
+        <translation type="unfinished">Évolution temporelle des ordonnées</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/pages/Statistics.cpp" line="117"/>
+        <source>Evolution of the position</source>
+        <translation type="unfinished">Évolution de la position</translation>
+    </message>
+</context>
+<context>
     <name>gui::widgets::ButtonSelecterWidget</name>
     <message>
         <location filename="../src/gui/widgets/ButtonSelecterWidget.cpp" line="94"/>
@@ -143,92 +229,6 @@
         <location filename="../src/gui/widgets/ButtonSelecterWidget.cpp" line="94"/>
         <source>Next</source>
         <translation>Suivant</translation>
-    </message>
-</context>
-<context>
-    <name>gui::widgets::pages::Calibration</name>
-    <message>
-        <location filename="../src/gui/widgets/pages/Calibration.cpp" line="32"/>
-        <source>Use the mouse to select the area to be scaled. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation>Utiliser la souris pour sélectionner la zone à étalonner. Appuyer sur « %1 » pour valider la sélection et « %2 » pour supprimer la sélection précédente.</translation>
-    </message>
-</context>
-<context>
-    <name>gui::widgets::pages::ContourSelection</name>
-    <message>
-        <location filename="../src/gui/widgets/pages/ContourSelection.cpp" line="89"/>
-        <source>Contour area: %1 px.</source>
-        <translation>Aire du contour&#xa0;: %1 px.</translation>
-    </message>
-</context>
-<context>
-    <name>gui::widgets::pages::Selection</name>
-    <message>
-        <location filename="../src/gui/widgets/pages/Selection.cpp" line="30"/>
-        <source>Use the mouse to select the area to be monitored. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation>Utiliser la souris pour sélectionner la zone à monitorer. Appuyer sur «&#xa0;%1&#xa0;» pour valider la sélection et «&#xa0;%2&#xa0;» pour supprimer la sélection précédente.</translation>
-    </message>
-</context>
-<context>
-    <name>gui::widgets::pages::Statistics</name>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="38"/>
-        <source>Heading</source>
-        <translation>Cap</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="44"/>
-        <source>Position</source>
-        <translation>Position</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="50"/>
-        <source>Trajectory</source>
-        <translation>Trajectoire</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="57"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="70"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="81"/>
-        <source>Time (in ms)</source>
-        <translation>Temps (en ms)</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="58"/>
-        <source>Heading (in rad)</source>
-        <translation>Cap (en rad)</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="59"/>
-        <source>Time evolution of the heading</source>
-        <translation>Évolution temporelle du cap</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="71"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="114"/>
-        <source>Abscissa (in cm)</source>
-        <translation>Abscisse (en cm)</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="82"/>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="115"/>
-        <source>Ordinate (in cm)</source>
-        <translation>Ordonnée (en cm)</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="97"/>
-        <source>Time evolution of the abscissa</source>
-        <translation>Évolution temporelle des abscisses</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="107"/>
-        <source>Time evolution of the ordinate</source>
-        <translation>Évolution temporelle des ordonnées</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/widgets/pages/Statistics.cpp" line="117"/>
-        <source>Evolution of the position</source>
-        <translation>Évolution de la position</translation>
     </message>
 </context>
 </TS>

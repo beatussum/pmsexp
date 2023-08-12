@@ -33,7 +33,7 @@ namespace cv
 
 class QProgressBar;
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Calibration;
     class ContourSelection;
@@ -72,11 +72,11 @@ namespace gui
         Ui::MainWindow*      m_ui;
         bool                 m_update_needed;
 
-        gui::widgets::pages::Calibration*      m_calibration_page;
-        gui::widgets::pages::ContourSelection* m_contour_selection_page;
-        gui::widgets::pages::Selection*        m_selection_page;
-        gui::widgets::pages::Statistics*       m_statistics_page;
-        gui::widgets::pages::Upload*           m_upload_page;
+        pages::Calibration*      m_calibration_page;
+        pages::ContourSelection* m_contour_selection_page;
+        pages::Selection*        m_selection_page;
+        pages::Statistics*       m_statistics_page;
+        pages::Upload*           m_upload_page;
     };
 }
 

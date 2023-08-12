@@ -36,14 +36,14 @@ namespace gui::widgets
             m_ui->m_next_button,
             &QPushButton::clicked,
             this,
-            &gui::widgets::SelecterWidget::next
+            &widgets::SelecterWidget::next
         );
 
         QObject::connect(
             m_ui->m_previous_button,
             &QPushButton::clicked,
             this,
-            &gui::widgets::SelecterWidget::previous
+            &widgets::SelecterWidget::previous
         );
 
         QObject::connect(

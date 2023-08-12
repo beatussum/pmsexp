@@ -16,12 +16,12 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
+#ifndef PMSEXP_GUI_PAGES_SELECTION_HPP
+#define PMSEXP_GUI_PAGES_SELECTION_HPP
 
 #include "ui_Selection.h"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Selection : public QWidget
     {
@@ -65,4 +65,4 @@ namespace gui::widgets::pages
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
+#endif // PMSEXP_GUI_PAGES_SELECTION_HPP

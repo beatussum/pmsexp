@@ -16,14 +16,14 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_CONTOUR_SELECTION_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_CONTOUR_SELECTION_HPP
+#ifndef PMSEXP_GUI_PAGES_CONTOUR_SELECTION_HPP
+#define PMSEXP_GUI_PAGES_CONTOUR_SELECTION_HPP
 
 #include "ui_ContourSelection.h"
 
 #include "core/core.hpp"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class ContourSelection : public QWidget
     {
@@ -107,4 +107,4 @@ namespace gui::widgets::pages
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_CONTOUR_SELECTION_HPP
+#endif // PMSEXP_GUI_PAGES_CONTOUR_SELECTION_HPP

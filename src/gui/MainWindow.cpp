@@ -18,13 +18,13 @@
 
 #include "gui/MainWindow.hpp"
 
-#include "gui/widgets/SelectionWidget.hpp"
+#include "gui/pages/Calibration.hpp"
+#include "gui/pages/ContourSelection.hpp"
+#include "gui/pages/Selection.hpp"
+#include "gui/pages/Statistics.hpp"
+#include "gui/pages/Upload.hpp"
 
-#include "gui/widgets/pages/Calibration.hpp"
-#include "gui/widgets/pages/ContourSelection.hpp"
-#include "gui/widgets/pages/Selection.hpp"
-#include "gui/widgets/pages/Statistics.hpp"
-#include "gui/widgets/pages/Upload.hpp"
+#include "gui/widgets/SelectionWidget.hpp"
 
 #include <opencv2/video/tracking.hpp>
 
@@ -44,11 +44,11 @@ namespace gui
         , m_ui(new Ui::MainWindow())
         , m_update_needed(true)
 
-        , m_calibration_page(new widgets::pages::Calibration())
-        , m_contour_selection_page(new widgets::pages::ContourSelection())
-        , m_selection_page(new widgets::pages::Selection())
-        , m_statistics_page(new widgets::pages::Statistics())
-        , m_upload_page(new widgets::pages::Upload())
+        , m_calibration_page(new pages::Calibration())
+        , m_contour_selection_page(new pages::ContourSelection())
+        , m_selection_page(new pages::Selection())
+        , m_statistics_page(new pages::Statistics())
+        , m_upload_page(new pages::Upload())
     {
         m_ui->setupUi(this);
 
@@ -84,7 +84,7 @@ namespace gui
 
         QObject::connect(
             m_ui->m_central_widget,
-            &gui::widgets::ButtonSelecterWidget::page_index_changed,
+            &widgets::ButtonSelecterWidget::page_index_changed,
             this,
             &MainWindow::update_size
         );
@@ -98,14 +98,14 @@ namespace gui
 
         QObject::connect(
             m_contour_selection_page,
-            &widgets::pages::ContourSelection::current_changed,
+            &pages::ContourSelection::current_changed,
             this,
             [&] { m_update_needed = true; }
         );
 
         QObject::connect(
             m_calibration_page,
-            &widgets::pages::Calibration::status_changed,
+            &pages::Calibration::status_changed,
             this,
 
             [&] (bool __new_status) {
@@ -121,14 +121,14 @@ namespace gui
 
         QObject::connect(
             m_selection_page,
-            &widgets::pages::Selection::selection_changed,
+            &pages::Selection::selection_changed,
             this,
             &MainWindow::find_contours
         );
 
         QObject::connect(
             m_upload_page,
-            &widgets::pages::Upload::upload_status_changed,
+            &pages::Upload::upload_status_changed,
             this,
             &MainWindow::load_selection
         );

@@ -16,17 +16,17 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_STATISTICS_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_STATISTICS_HPP
+#ifndef PMSEXP_GUI_PAGES_STATISTICS_HPP
+#define PMSEXP_GUI_PAGES_STATISTICS_HPP
 
 #include "core/types.hpp"
 #include "gui/widgets/ListSelecterWidget.hpp"
 
 class QCustomPlot;
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
-    class Statistics : public ListSelecterWidget
+    class Statistics : public widgets::ListSelecterWidget
     {
         Q_OBJECT
 
@@ -46,4 +46,4 @@ namespace gui::widgets::pages
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_STATISTICS_HPP
+#endif // PMSEXP_GUI_PAGES_STATISTICS_HPP

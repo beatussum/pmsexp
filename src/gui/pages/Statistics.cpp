@@ -16,11 +16,11 @@
  */
 
 
-#include "gui/widgets/pages/Statistics.hpp"
+#include "gui/pages/Statistics.hpp"
 
 #include <qcustomplot.h>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     Statistics::Statistics(
         const full_positions_data& __data,

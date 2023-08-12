@@ -16,12 +16,12 @@
  */
 
 
-#include "gui/widgets/pages/ContourSelection.hpp"
+#include "gui/pages/ContourSelection.hpp"
 
 #include <opencv2/imgproc.hpp>
 #include <QtGui/QPainter>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     ContourSelection::ContourSelection(
         sorted_contours_type __c,

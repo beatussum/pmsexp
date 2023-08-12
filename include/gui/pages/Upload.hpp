@@ -16,12 +16,12 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_UPLOAD_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_UPLOAD_HPP
+#ifndef PMSEXP_GUI_PAGES_UPLOAD_HPP
+#define PMSEXP_GUI_PAGES_UPLOAD_HPP
 
 #include "ui_Upload.h"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Upload : public QWidget
     {
@@ -52,4 +52,4 @@ namespace gui::widgets::pages
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_UPLOAD_HPP
+#endif // PMSEXP_GUI_PAGES_UPLOAD_HPP
