@@ -28,10 +28,10 @@ namespace gui::widgets
         Q_OBJECT
 
         Q_PROPERTY(
-            int page_index
-            READ get_page_index
-            WRITE set_page_index
-            NOTIFY page_index_changed
+            int pageIndex
+            READ pageIndex
+            WRITE setPageIndex
+            NOTIFY pageIndexChanged
             STORED false
         )
 
@@ -41,43 +41,43 @@ namespace gui::widgets
             Qt::WindowFlags   = {}
         );
     public:
-        const QWidget* get_current_page() const
+        const QWidget* currentPage() const
             { return m_stacked_layout->currentWidget(); }
 
-        QWidget* get_current_page()
+        QWidget* currentPage()
             { return m_stacked_layout->currentWidget(); }
 
-        int get_index_of(QWidget* __w) const
+        int indexOf(QWidget* __w) const
             { return m_stacked_layout->indexOf(__w); }
 
-        const QWidget* get_page(int __index) const
+        const QWidget* page(int __index) const
             { return m_stacked_layout->widget(__index); }
 
-        QWidget* get_page(int __index)
+        QWidget* page(int __index)
             { return m_stacked_layout->widget(__index); }
 
-        int get_page_index() const { return m_stacked_layout->currentIndex(); }
+        int pageIndex() const { return m_stacked_layout->currentIndex(); }
 
-        virtual void set_page_index(int __i)
+        virtual void setPageIndex(int __i)
             { m_stacked_layout->setCurrentIndex(__i); }
     public:
-        virtual void add_page(QWidget* __w)
-            { emit page_added(m_stacked_layout->addWidget(__w)); }
+        virtual void addPage(QWidget* __w)
+            { emit pageAdded(m_stacked_layout->addWidget(__w)); }
 
-        virtual void insert_page(int __index, QWidget* __w)
-            { emit page_added(m_stacked_layout->insertWidget(__index, __w)); }
+        virtual void insertPage(int __index, QWidget* __w)
+            { emit pageAdded(m_stacked_layout->insertWidget(__index, __w)); }
 
-        virtual void remove_page(QWidget* __w)
+        virtual void removePage(QWidget* __w)
             { m_stacked_layout->removeWidget(__w); }
     signals:
-        void page_added(int __index);
-        void page_index_changed(int __current_index);
-        void page_removed(int __index);
+        void pageAdded(int __index);
+        void pageIndexChanged(int __current_index);
+        void pageRemoved(int __index);
     public slots:
         void next();
         void previous();
     protected slots:
-        virtual void update_buttons(int __current_index) const = 0;
+        virtual void updateButtons(int __current_index) const = 0;
     protected:
         StackedWidget* m_stacked_layout;
     };

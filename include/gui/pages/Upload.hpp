@@ -28,25 +28,24 @@ namespace gui::pages
         Q_OBJECT
 
         Q_PROPERTY(
-            bool upload_status
-            READ is_upload_valid
-            RESET reset_upload_status
-            NOTIFY upload_status_changed
+            bool uploadStatus
+            READ isUploadValid
+            RESET resetUploadStatus
+            NOTIFY uploadStatusChanged
         )
 
     public:
         explicit Upload(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Upload() { delete m_ui; }
     public:
-        QString get_file_path() const
-            { return m_ui->m_uploader->get_file_path(); }
+        QString filePath() const
+            { return m_ui->m_uploader->filePath(); }
 
-        bool is_upload_valid() const { return !m_ui->m_uploader->is_empty(); }
+        bool isUploadValid() const { return !m_ui->m_uploader->isEmpty(); }
     signals:
-        void upload_status_changed(bool __new_status);
+        void uploadStatusChanged(bool __new_status);
     public slots:
-        void reset_upload_status() const
-            { m_ui->m_uploader->reset_file_path(); }
+        void resetUploadStatus() const { m_ui->m_uploader->resetFilePath(); }
     private:
         Ui::Upload* m_ui;
     };

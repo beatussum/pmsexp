@@ -71,15 +71,15 @@ namespace gui::widgets
     {
         m_file_path = __e->mimeData()->urls().first().toLocalFile();
 
-        emit file_path_updated(m_file_path);
+        emit filePathUpdated(m_file_path);
 
         ItemizeWidget::dropEvent(__e);
     }
 
-    void UploadWidget::set_file_path(QString __f)
+    void UploadWidget::setFilePath(QString __f)
     {
         m_file_path = std::move(__f);
 
-        emit file_path_updated(m_file_path);
+        emit filePathUpdated(m_file_path);
     }
 }

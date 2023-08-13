@@ -29,8 +29,8 @@ namespace gui::widgets
     {
         Q_OBJECT
 
-        Q_PROPERTY(QString info READ get_info WRITE set_info)
-        Q_PROPERTY(QPixmap pixmap READ get_pixmap WRITE set_pixmap)
+        Q_PROPERTY(QString info READ info WRITE setInfo)
+        Q_PROPERTY(QPixmap pixmap READ pixmap WRITE setPixmap)
 
     public:
         explicit ItemizeWidget(
@@ -55,17 +55,17 @@ namespace gui::widgets
 
         virtual ~ItemizeWidget() { delete m_ui; }
     public:
-        QString get_info() const { return m_ui->m_info_label->text(); }
-        QPixmap get_pixmap() const;
+        QString info() const { return m_ui->m_info_label->text(); }
+        QPixmap pixmap() const;
     public slots:
-        void set_info(const QString& __i) const
+        void setInfo(const QString& __i) const
             { m_ui->m_info_label->setText(__i); }
     protected slots:
-        void set_pixmap(const QPixmap& __p) const
+        void setPixmap(const QPixmap& __p) const
             { m_ui->m_pixmap_label->setPixmap(__p); }
 
-        void set_pixmap(const QIcon& __i) const
-            { set_pixmap(__i.pixmap({32, 32})); }
+        void setPixmap(const QIcon& __i) const
+            { setPixmap(__i.pixmap({32, 32})); }
     private:
         Ui::ItemizeWidget* m_ui;
     };

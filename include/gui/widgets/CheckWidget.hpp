@@ -29,10 +29,10 @@ namespace gui::widgets
 
         Q_PROPERTY(
             bool status
-            READ get_status
-            WRITE set_status
-            RESET reset_status
-            NOTIFY status_changed
+            READ status
+            WRITE setStatus
+            RESET resetStatus
+            NOTIFY statusChanged
         )
 
     public:
@@ -56,12 +56,12 @@ namespace gui::widgets
             : CheckWidget(QString(), false, __parent, __f)
         {}
     public:
-        bool get_status() const noexcept { return m_status; }
+        bool status() const noexcept { return m_status; }
     signals:
-        void status_changed(bool __new_status);
+        void statusChanged(bool __new_status);
     public slots:
-        void set_status(bool);
-        void reset_status() { set_status(false); }
+        void setStatus(bool);
+        void resetStatus() { setStatus(false); }
     private:
         bool m_status;
     };

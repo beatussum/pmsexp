@@ -52,11 +52,11 @@ namespace gui
     {
         m_ui->setupUi(this);
 
-        m_ui->m_central_widget->add_page(m_upload_page);
-        m_ui->m_central_widget->add_page(m_selection_page);
-        m_ui->m_central_widget->add_page(m_contour_selection_page);
-        m_ui->m_central_widget->add_page(m_calibration_page);
-        m_ui->m_central_widget->add_page(m_statistics_page);
+        m_ui->m_central_widget->addPage(m_upload_page);
+        m_ui->m_central_widget->addPage(m_selection_page);
+        m_ui->m_central_widget->addPage(m_contour_selection_page);
+        m_ui->m_central_widget->addPage(m_calibration_page);
+        m_ui->m_central_widget->addPage(m_statistics_page);
 
         m_progress_bar->hide();
         m_ui->m_status_bar->addWidget(m_progress_bar);
@@ -65,7 +65,7 @@ namespace gui
             &m_future_watcher,
             &future_watcher_type::finished,
             this,
-            &MainWindow::show_results
+            &MainWindow::showResults
         );
 
         QObject::connect(
@@ -84,9 +84,9 @@ namespace gui
 
         QObject::connect(
             m_ui->m_central_widget,
-            &widgets::ButtonSelecterWidget::page_index_changed,
+            &widgets::ButtonSelecterWidget::pageIndexChanged,
             this,
-            &MainWindow::update_size
+            &MainWindow::updateSize
         );
 
         QObject::connect(
@@ -98,21 +98,21 @@ namespace gui
 
         QObject::connect(
             m_contour_selection_page,
-            &pages::ContourSelection::current_changed,
+            &pages::ContourSelection::currentChanged,
             this,
             [&] { m_update_needed = true; }
         );
 
         QObject::connect(
             m_calibration_page,
-            &pages::Calibration::status_changed,
+            &pages::Calibration::statusChanged,
             this,
 
             [&] (bool __new_status) {
                 if (__new_status) {
-                    m_ui->m_central_widget->set_progress(4);
+                    m_ui->m_central_widget->setProgress(4);
                 } else {
-                    m_ui->m_central_widget->set_progress(3);
+                    m_ui->m_central_widget->setProgress(3);
                 }
 
                 m_update_needed = true;
@@ -121,38 +121,38 @@ namespace gui
 
         QObject::connect(
             m_selection_page,
-            &pages::Selection::selection_changed,
+            &pages::Selection::selectionChanged,
             this,
-            &MainWindow::find_contours
+            &MainWindow::findContours
         );
 
         QObject::connect(
             m_upload_page,
-            &pages::Upload::upload_status_changed,
+            &pages::Upload::uploadStatusChanged,
             this,
-            &MainWindow::load_selection
+            &MainWindow::loadSelection
         );
 
-        update_size(0);
+        updateSize(0);
     }
 
     full_positions_data MainWindow::process()
     {
         full_positions_data ret;
 
-        double current_area    = m_contour_selection_page->get_current_area();
+        double current_area    = m_contour_selection_page->currentArea();
         double first_timestamp = m_capture.get(cv::CAP_PROP_POS_MSEC);
 
         cv::Mat frame;
 
-        int height   = m_selection_page->get_pixmap_rect().height();
+        int height   = m_selection_page->pixmapRect().height();
         int progress = 1;
-        double ratio = m_calibration_page->get_ratio();
-        cv::Rect roi = rect_from_qrect(m_selection_page->get_selection());
+        double ratio = m_calibration_page->ratio();
+        cv::Rect roi = rect_from_qrect(m_selection_page->selection());
 
         full_position first_position =
             full_position_from_contour(
-                m_contour_selection_page->get_current()
+                m_contour_selection_page->current()
             );
 
         first_position.position.y  = (height - first_position.position.y);
@@ -186,7 +186,7 @@ namespace gui
         return ret;
     }
 
-    void MainWindow::update_size(int __current_index)
+    void MainWindow::updateSize(int __current_index)
     {
         QSize s  = size();
         QSize sh = sizeHint();
@@ -226,10 +226,10 @@ namespace gui
         }
     }
 
-    void MainWindow::find_contours(const QRect& __new_selection)
+    void MainWindow::findContours(const QRect& __new_selection)
     {
         if (__new_selection.isEmpty()) {
-            m_ui->m_central_widget->set_progress(1);
+            m_ui->m_central_widget->setProgress(1);
         } else {
             sorted_contours_type contours = contours_from_mat(
                 m_first_frame,
@@ -237,20 +237,20 @@ namespace gui
             );
 
             if (std::size_t size = contours.size(); size == 0) {
-                m_ui->m_central_widget->set_progress(1);
+                m_ui->m_central_widget->setProgress(1);
 
                 m_ui->m_status_bar->showMessage(
                     tr("No contours found."), 2'000
                 );
             } else {
-                m_calibration_page->set_pixmap(m_first_frame);
+                m_calibration_page->setPixmap(m_first_frame);
 
-                m_contour_selection_page->set_values(
+                m_contour_selection_page->setValues(
                     std::move(contours),
                     m_first_frame
                 );
 
-                m_ui->m_central_widget->set_progress(3);
+                m_ui->m_central_widget->setProgress(3);
 
                 m_ui->m_status_bar->showMessage(
                     tr("%n contour(s) found.", nullptr, size), 2'000
@@ -261,17 +261,17 @@ namespace gui
         m_update_needed = true;
     }
 
-    void MainWindow::load_selection(bool __new_status)
+    void MainWindow::loadSelection(bool __new_status)
     {
         if (__new_status) {
-            QString file_path = m_upload_page->get_file_path();
+            QString file_path = m_upload_page->filePath();
 
             if (m_capture.open(file_path.toStdString())) {
                 m_capture.set(cv::CAP_PROP_POS_FRAMES, 0.);
 
                 if (m_capture.read(m_first_frame)) {
                     m_selection_page->setPixmap(m_first_frame);
-                    m_ui->m_central_widget->set_progress(1);
+                    m_ui->m_central_widget->setProgress(1);
                 } else {
                     m_ui->m_status_bar->showMessage(
                         tr("No frame can be retrieved."), 2'000
@@ -283,7 +283,7 @@ namespace gui
                 );
             }
         } else {
-            m_ui->m_central_widget->set_progress(0);
+            m_ui->m_central_widget->setProgress(0);
         }
 
         m_update_needed = true;
@@ -291,13 +291,13 @@ namespace gui
 
     void MainWindow::reset()
     {
-        m_ui->m_central_widget->set_page_index(0);
+        m_ui->m_central_widget->setPageIndex(0);
 
-        m_statistics_page->reset_data();
+        m_statistics_page->resetData();
         m_calibration_page->reset();
-        m_contour_selection_page->reset_values();
-        m_selection_page->reset_selection();
-        m_upload_page->reset_upload_status();
+        m_contour_selection_page->resetValues();
+        m_selection_page->resetSelection();
+        m_upload_page->resetUploadStatus();
 
         m_update_needed = true;
     }
@@ -309,7 +309,7 @@ namespace gui
 
             m_tracker->init(
                 m_first_frame,
-                rect_from_qrect(m_selection_page->get_selection())
+                rect_from_qrect(m_selection_page->selection())
             );
 
             m_ui->m_action_reset->setEnabled(false);
@@ -334,7 +334,7 @@ namespace gui
         }
     }
 
-    void MainWindow::show_results()
+    void MainWindow::showResults()
     {
         full_positions_data result = m_future_watcher.result();
 
@@ -350,7 +350,7 @@ namespace gui
         if (result.empty()) {
             m_ui->m_central_widget->previous();
         } else {
-            m_statistics_page->set_data(result);
+            m_statistics_page->setData(result);
 
             m_update_needed = false;
         }

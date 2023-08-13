@@ -28,17 +28,17 @@ namespace gui::widgets
         Q_OBJECT
 
         Q_PROPERTY(
-            QString file_path
-            READ get_file_path
-            WRITE set_file_path
-            RESET reset_file_path
-            NOTIFY file_path_updated
+            QString filePath
+            READ filePath
+            WRITE setFilePath
+            RESET resetFilePath
+            NOTIFY filePathUpdated
         )
 
         Q_PROPERTY(
-            mime_checker_type mime_checker
-            READ get_mime_checker
-            WRITE set_mime_checker
+            mime_checker_type mimeChecker
+            READ mimeChecker
+            WRITE setMimeChecker
         )
 
     public:
@@ -58,18 +58,18 @@ namespace gui::widgets
         void dragEnterEvent(QDragEnterEvent*) override;
         void dropEvent(QDropEvent*) override;
     public:
-        QString get_file_path() const { return m_file_path; }
-        bool is_empty() const { return m_file_path.isEmpty(); }
+        QString filePath() const { return m_file_path; }
+        bool isEmpty() const { return m_file_path.isEmpty(); }
 
-        mime_checker_type get_mime_checker() const { return m_mime_checker; }
+        mime_checker_type mimeChecker() const { return m_mime_checker; }
 
-        void set_mime_checker(mime_checker_type __c)
+        void setMimeChecker(mime_checker_type __c)
             { m_mime_checker = std::move(__c); }
     signals:
-        void file_path_updated(const QString& __new_file_path);
+        void filePathUpdated(const QString& __new_file_path);
     public slots:
-        void set_file_path(QString);
-        void reset_file_path() { set_file_path(QString()); }
+        void setFilePath(QString);
+        void resetFilePath() { setFilePath(QString()); }
     private:
         QString           m_file_path;
         mime_checker_type m_mime_checker;

@@ -39,11 +39,11 @@ namespace gui::widgets
         LabelWidget::setPixmap(__p);
     }
 
-    void SelectionWidget::update_rubber_band_geometry()
+    void SelectionWidget::updateRubberBandGeometry()
     {
         if (m_rubber_band.isVisible()) {
             m_rubber_band.move(
-                get_pixmap_rect().topLeft() + m_selection.topLeft()
+                pixmapRect().topLeft() + m_selection.topLeft()
             );
         }
     }
@@ -58,12 +58,12 @@ namespace gui::widgets
                     (m_selection.size() != QSize())
                 )
                 {
-                    emit selection_changed(m_selection);
+                    emit selectionChanged(m_selection);
                 }
 
                 break;
             case Qt::Key_Escape:
-                reset_selection();
+                resetSelection();
 
                 break;
             default:
@@ -79,9 +79,9 @@ namespace gui::widgets
 
         setFocus();
 
-        if (get_pixmap_rect().contains(origin)) {
+        if (pixmapRect().contains(origin)) {
             if (!m_selection.isEmpty()) {
-                reset_selection();
+                resetSelection();
             }
 
             m_rubber_band.setGeometry(
@@ -97,7 +97,7 @@ namespace gui::widgets
     void SelectionWidget::mouseMoveEvent(QMouseEvent* __e)
     {
         QPoint bottom_right = __e->pos();
-        QRect pixmap_rect   = get_pixmap_rect();
+        QRect pixmap_rect   = pixmapRect();
 
         if (pixmap_rect.contains(bottom_right)) {
             QRect rubber_band_rect = QRect(
@@ -120,38 +120,38 @@ namespace gui::widgets
 
     void SelectionWidget::resizeEvent(QResizeEvent* __e)
     {
-        update_rubber_band_geometry();
+        updateRubberBandGeometry();
 
         LabelWidget::resizeEvent(__e);
     }
 
     void SelectionWidget::showEvent(QShowEvent* __e)
     {
-        update_rubber_band_geometry();
+        updateRubberBandGeometry();
 
         LabelWidget::showEvent(__e);
     }
 
     void SelectionWidget::setPixmap(const QPixmap& __p)
     {
-        reset_selection();
+        resetSelection();
 
         LabelWidget::setPixmap(__p);
     }
 
-    void SelectionWidget::set_selection(QRect __s) noexcept
+    void SelectionWidget::setSelection(QRect __s) noexcept
     {
         m_selection = std::move(__s);
 
-        emit selection_changed(m_selection);
+        emit selectionChanged(m_selection);
     }
 
-    void SelectionWidget::reset_selection() noexcept
+    void SelectionWidget::resetSelection() noexcept
     {
         m_selection = QRect();
 
         m_rubber_band.hide();
 
-        emit selection_changed(m_selection);
+        emit selectionChanged(m_selection);
     }
 }

@@ -27,22 +27,16 @@ namespace gui::pages
     {
         Q_OBJECT
 
-        Q_PROPERTY(
-            QPixmap pixmap
-            READ get_pixmap
-            WRITE set_pixmap
-            STORED false
-        )
-
-        Q_PROPERTY(double pixmap_measure READ get_pixmap_measure STORED false)
-        Q_PROPERTY(double ratio READ get_ratio STORED false)
-        Q_PROPERTY(double real_measure READ get_real_measure STORED false)
+        Q_PROPERTY(QPixmap pixmap READ pixmap WRITE setPixmap STORED false)
+        Q_PROPERTY(double pixmapMeasure READ pixmapMeasure STORED false)
+        Q_PROPERTY(double ratio READ ratio STORED false)
+        Q_PROPERTY(double realMeasure READ realMeasure STORED false)
 
         Q_PROPERTY(
             bool status
-            READ get_status
+            READ status
             RESET reset
-            NOTIFY status_changed
+            NOTIFY statusChanged
             STORED false
         )
 
@@ -50,24 +44,24 @@ namespace gui::pages
         explicit Calibration(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Calibration() { delete m_ui; }
     public:
-        QPixmap get_pixmap() const
+        QPixmap pixmap() const
             { return m_ui->m_calibration_widget->pixmap(Qt::ReturnByValue); }
 
-        void set_pixmap(const QPixmap&);
-        void set_pixmap(const cv::Mat&);
+        void setPixmap(const QPixmap&);
+        void setPixmap(const cv::Mat&);
 
-        double get_pixmap_measure() const
-            { return m_ui->m_calibration_widget->get_measure(); }
+        double pixmapMeasure() const
+            { return m_ui->m_calibration_widget->measure(); }
 
-        double get_ratio() const;
+        double ratio() const;
 
-        double get_real_measure() const
+        double realMeasure() const
             { return m_ui->m_line_edit->text().toDouble(); }
 
-        bool get_status() const;
+        bool status() const;
     signals:
-        void measure_changed(bool __status);
-        void status_changed(bool __new_status);
+        void measureChanged(bool __status);
+        void statusChanged(bool __new_status);
     public slots:
         void reset() const;
     private:

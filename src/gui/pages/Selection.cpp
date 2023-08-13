@@ -38,9 +38,9 @@ namespace gui::pages
 
         QObject::connect(
             m_ui->m_selection_widget,
-            &widgets::SelectionWidget::selection_changed,
+            &widgets::SelectionWidget::selectionChanged,
             this,
-            &Selection::selection_changed
+            &Selection::selectionChanged
         );
     }
 }

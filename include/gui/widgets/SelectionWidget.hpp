@@ -31,10 +31,10 @@ namespace gui::widgets
 
         Q_PROPERTY(
             QRect selection
-            READ get_selection
-            WRITE set_selection
-            RESET reset_selection
-            NOTIFY selection_changed
+            READ selection
+            WRITE setSelection
+            RESET resetSelection
+            NOTIFY selectionChanged
         )
 
     public:
@@ -66,7 +66,7 @@ namespace gui::widgets
             : SelectionWidget(QPixmap(), QRect(), __parent, __f)
         {}
     private:
-        void update_rubber_band_geometry();
+        void updateRubberBandGeometry();
     protected:
         void keyPressEvent(QKeyEvent*) override;
         void mousePressEvent(QMouseEvent*) override;
@@ -74,18 +74,18 @@ namespace gui::widgets
         void resizeEvent(QResizeEvent*) override;
         void showEvent(QShowEvent*) override;
     public:
-        QRect get_selection() const noexcept { return m_selection; }
-        bool has_selection() const noexcept { return m_selection.isValid(); }
+        QRect selection() const noexcept { return m_selection; }
+        bool hasSelection() const noexcept { return m_selection.isValid(); }
     signals:
-        void selection_changed(const QRect& __new_selection);
+        void selectionChanged(const QRect& __new_selection);
     public slots:
         void setPixmap(const QPixmap&);
 
         void setPixmap(const cv::Mat& __m)
             { setPixmap(qpixmap_from_mat(__m)); }
 
-        void set_selection(QRect) noexcept;
-        void reset_selection() noexcept;
+        void setSelection(QRect) noexcept;
+        void resetSelection() noexcept;
     private:
         QRect m_selection;
 

@@ -29,16 +29,10 @@ namespace gui::pages
     {
         Q_OBJECT
 
-        Q_PROPERTY(sorted_contours_type contours READ get_contours)
-        Q_PROPERTY(QPixmap pixmap READ get_pixmap)
-
-        Q_PROPERTY(
-            contour_type current
-            READ get_current
-            NOTIFY current_changed
-        )
-
-        Q_PROPERTY(double current_area READ get_current_area STORED false)
+        Q_PROPERTY(sorted_contours_type contours READ contours)
+        Q_PROPERTY(QPixmap pixmap READ pixmap)
+        Q_PROPERTY(contour_type current READ current NOTIFY currentChanged)
+        Q_PROPERTY(double currentArea READ currentArea STORED false)
 
     public:
         using current_type = sorted_contours_type::const_iterator;
@@ -78,23 +72,23 @@ namespace gui::pages
 
         virtual ~ContourSelection() { delete m_ui; }
     public:
-        sorted_contours_type get_contours() const { return m_contours; }
-        QPixmap get_pixmap() const { return m_pixmap; }
+        sorted_contours_type contours() const { return m_contours; }
+        QPixmap pixmap() const { return m_pixmap; }
     public:
-        contour_type get_current() const
+        contour_type current() const
             { return (m_contours.empty() ? contour_type() : *m_current); }
 
-        double get_current_area() const;
+        double currentArea() const;
     signals:
-        void current_changed(current_type __new_current);
+        void currentChanged(current_type __new_current);
     private slots:
-        void update_shown_contour();
+        void updateShownContour();
     public slots:
-        void reset_values() { set_values(sorted_contours_type(), QPixmap()); }
-        void set_values(sorted_contours_type, QPixmap);
+        void resetValues() { setValues(sorted_contours_type(), QPixmap()); }
+        void setValues(sorted_contours_type, QPixmap);
 
-        void set_values(sorted_contours_type __c, const cv::Mat& __m)
-            { set_values(std::move(__c), qpixmap_from_mat(__m)); }
+        void setValues(sorted_contours_type __c, const cv::Mat& __m)
+            { setValues(std::move(__c), qpixmap_from_mat(__m)); }
     public slots:
         void next();
         void previous();

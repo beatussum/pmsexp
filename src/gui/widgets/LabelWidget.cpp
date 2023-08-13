@@ -31,7 +31,7 @@ namespace gui::widgets
         setPixmap(__p);
     }
 
-    QRect LabelWidget::get_pixmap_rect() const
+    QRect LabelWidget::pixmapRect() const
     {
         QRect ret = pixmap(Qt::ReturnByValue).rect();
 

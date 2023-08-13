@@ -26,7 +26,7 @@ namespace gui::pages
     {
         m_ui->setupUi(this);
 
-        m_ui->m_uploader->set_mime_checker(
+        m_ui->m_uploader->setMimeChecker(
             [] (const QString& __m) {
                 return (__m.section('/', 0, 0) == "video");
             }
@@ -34,15 +34,15 @@ namespace gui::pages
 
         QObject::connect(
             m_ui->m_uploader,
-            &widgets::UploadWidget::file_path_updated,
+            &widgets::UploadWidget::filePathUpdated,
             this,
 
             [&] (const QString& __new_file_path) {
                 bool status = !__new_file_path.isEmpty();
 
-                m_ui->m_item->set_status(status);
+                m_ui->m_item->setStatus(status);
 
-                emit upload_status_changed(status);
+                emit uploadStatusChanged(status);
             }
         );
     }

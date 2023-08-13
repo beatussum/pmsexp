@@ -31,10 +31,10 @@ namespace gui::widgets
 
         Q_PROPERTY(
             int progress
-            READ get_progress
-            WRITE set_progress
-            RESET reset_progress
-            NOTIFY progress_changed
+            READ progress
+            WRITE setProgress
+            RESET resetProgress
+            NOTIFY progressChanged
         )
 
     public:
@@ -45,18 +45,18 @@ namespace gui::widgets
 
         virtual ~ButtonSelecterWidget() { delete m_ui; }
     protected:
-        void update_buttons(int __current_index) const override;
+        void updateButtons(int __current_index) const override;
     public:
-        int get_progress() const noexcept { return m_progress; }
-        void set_page_index(int) override;
+        int progress() const noexcept { return m_progress; }
+        void setPageIndex(int) override;
     signals:
-        void progress_changed(int);
+        void progressChanged(int);
         void run();
     protected slots:
-        virtual void update_page_index(int);
+        virtual void updatePageIndex(int);
     public slots:
-        void reset_progress() { emit progress_changed(m_progress = 0); }
-        void set_progress(int __p) { emit progress_changed(m_progress = __p); }
+        void resetProgress() { emit progressChanged(m_progress = 0); }
+        void setProgress(int __p) { emit progressChanged(m_progress = __p); }
     private:
         Ui::ButtonSelecterWidget* m_ui;
 

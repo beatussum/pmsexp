@@ -37,8 +37,8 @@ namespace gui::pages
             Qt::WindowFlags                   = {}
         );
     public slots:
-        void set_data(const full_positions_data& _data) const;
-        void reset_data() const;
+        void setData(const full_positions_data& _data) const;
+        void resetData() const;
     private:
         QCustomPlot* m_heading;
         QCustomPlot* m_position;

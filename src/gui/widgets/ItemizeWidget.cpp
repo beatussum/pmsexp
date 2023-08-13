@@ -31,11 +31,11 @@ namespace gui::widgets
     {
         m_ui->setupUi(this);
 
-        set_info(__info);
-        set_pixmap(__p);
+        setInfo(__info);
+        setPixmap(__p);
     }
 
-    QPixmap ItemizeWidget::get_pixmap() const
+    QPixmap ItemizeWidget::pixmap() const
     {
         return m_ui->m_pixmap_label->pixmap(Qt::ReturnByValueConstant());
     }

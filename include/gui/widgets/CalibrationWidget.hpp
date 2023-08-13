@@ -29,9 +29,9 @@ namespace gui::widgets
 
         Q_PROPERTY(
             double measure
-            READ get_measure
-            RESET reset_measure
-            NOTIFY measure_changed
+            READ measure
+            RESET resetMeasure
+            NOTIFY measureChanged
             STORED false
         )
 
@@ -61,13 +61,13 @@ namespace gui::widgets
         void mousePressEvent(QMouseEvent*) override;
         void mouseMoveEvent(QMouseEvent*) override;
     public:
-        double get_measure() const;
-        bool get_status() const { return (m_end != QPoint(-1., -1.)); }
+        double measure() const;
+        bool status() const { return (m_end != QPoint(-1., -1.)); }
     signals:
-        void measure_changed(bool __status);
+        void measureChanged(bool __status);
     public slots:
         void reset();
-        void reset_measure();
+        void resetMeasure();
 
         void setPixmap(const QPixmap&);
 

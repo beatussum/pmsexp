@@ -48,27 +48,27 @@ namespace gui::widgets
 
         QObject::connect(
             this,
-            &ButtonSelecterWidget::page_added,
+            &ButtonSelecterWidget::pageAdded,
             this,
-            &ButtonSelecterWidget::update_page_index
+            &ButtonSelecterWidget::updatePageIndex
         );
 
         QObject::connect(
             this,
-            &ButtonSelecterWidget::page_removed,
+            &ButtonSelecterWidget::pageRemoved,
             this,
-            &ButtonSelecterWidget::update_page_index
+            &ButtonSelecterWidget::updatePageIndex
         );
 
         QObject::connect(
             this,
-            &ButtonSelecterWidget::progress_changed,
+            &ButtonSelecterWidget::progressChanged,
             this,
-            &ButtonSelecterWidget::update_page_index
+            &ButtonSelecterWidget::updatePageIndex
         );
     }
 
-    void ButtonSelecterWidget::update_buttons(int __current_index) const
+    void ButtonSelecterWidget::updateButtons(int __current_index) const
     {
         QPushButton* next_button = m_ui->m_next_button;
 
@@ -95,10 +95,10 @@ namespace gui::widgets
         next_button->setShortcut(next_shortcut);
     }
 
-    void ButtonSelecterWidget::set_page_index(int __i)
+    void ButtonSelecterWidget::setPageIndex(int __i)
     {
         if (m_progress >= __i) {
-            SelecterWidget::set_page_index(__i);
+            SelecterWidget::setPageIndex(__i);
 
             if (__i == (m_stacked_layout->count() - 1)) {
                 emit run();
@@ -106,14 +106,14 @@ namespace gui::widgets
         }
     }
 
-    void ButtonSelecterWidget::update_page_index(int __p)
+    void ButtonSelecterWidget::updatePageIndex(int __p)
     {
-        int index = get_page_index();
+        int index = pageIndex();
 
         if (__p < index) {
-            set_page_index(__p);
+            setPageIndex(__p);
         } else {
-            update_buttons(index);
+            updateButtons(index);
         }
     }
 }

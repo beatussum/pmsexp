@@ -48,18 +48,18 @@ namespace gui::widgets
             m_ui->m_selecter,
             &QListWidget::currentRowChanged,
             this,
-            &ListSelecterWidget::set_page_index
+            &ListSelecterWidget::setPageIndex
         );
 
         QObject::connect(
             this,
-            &ListSelecterWidget::page_index_changed,
+            &ListSelecterWidget::pageIndexChanged,
             m_ui->m_selecter,
             [&] (int __i) { m_ui->m_selecter->setCurrentRow(__i); }
         );
     }
 
-    void ListSelecterWidget::add_selecter(
+    void ListSelecterWidget::addSelecter(
         const QIcon& __i,
         const QString& __s,
         QWidget* __w
@@ -72,7 +72,7 @@ namespace gui::widgets
         m_map[__w] = item;
     }
 
-    void ListSelecterWidget::update_buttons(int __current_index) const
+    void ListSelecterWidget::updateButtons(int __current_index) const
     {
         m_ui->m_scroll_down_button->setDisabled(
             __current_index == (m_ui->m_selecter->count() - 1)
@@ -81,36 +81,36 @@ namespace gui::widgets
         m_ui->m_scroll_up_button->setDisabled(__current_index == 0);
     }
 
-    void ListSelecterWidget::add_page(
+    void ListSelecterWidget::addPage(
         const QIcon& __i,
         const QString& __s,
         QWidget* __w
     )
     {
-        add_selecter(__i, __s, __w);
+        addSelecter(__i, __s, __w);
 
-        SelecterWidget::add_page(__w);
+        SelecterWidget::addPage(__w);
     }
 
-    void ListSelecterWidget::insert_page(
+    void ListSelecterWidget::insertPage(
         int __index,
         const QIcon& __i,
         const QString& __s,
         QWidget* __w
     )
     {
-        add_selecter(__i, __s, __w);
+        addSelecter(__i, __s, __w);
 
-        SelecterWidget::insert_page(__index, __w);
+        SelecterWidget::insertPage(__index, __w);
     }
 
-    void ListSelecterWidget::remove_page(QWidget* __w)
+    void ListSelecterWidget::removePage(QWidget* __w)
     {
         QListWidgetItem* item = m_map.extract(__w).mapped();
 
         m_ui->m_selecter->removeItemWidget(item);
         delete item;
 
-        SelecterWidget::remove_page(__w);
+        SelecterWidget::removePage(__w);
     }
 }
