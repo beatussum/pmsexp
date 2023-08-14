@@ -8,7 +8,7 @@
   <property name="windowIcon">
    <iconset theme="com.github.PMSExp"/>
   </property>
-  <widget class="gui::widgets::ButtonSelecterWidget" name="m_central_widget"/>
+  <widget class="gui::widgets::ProgressButtonSelecterWidget" name="m_central_widget"/>
   <widget class="QStatusBar" name="m_status_bar"/>
   <widget class="QToolBar" name="m_tool_bar">
    <property name="movable">
@@ -58,9 +58,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>gui::widgets::ButtonSelecterWidget</class>
+   <class>gui::widgets::ProgressButtonSelecterWidget</class>
    <extends>QWidget</extends>
-   <header>gui/widgets/ButtonSelecterWidget.hpp</header>
+   <header>gui/widgets/ProgressButtonSelecterWidget.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

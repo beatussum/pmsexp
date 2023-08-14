@@ -23,6 +23,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_next_button">
+       <property name="text">
+        <string>Next</string>
+       </property>
+       <property name="icon">
+        <iconset theme="go-next"/>
+       </property>
        <property name="shortcut">
         <string>Ctrl+Right</string>
        </property>

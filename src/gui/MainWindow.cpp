@@ -84,14 +84,14 @@ namespace gui
 
         QObject::connect(
             m_ui->m_central_widget,
-            &widgets::ButtonSelecterWidget::pageIndexChanged,
+            &widgets::ProgressButtonSelecterWidget::pageIndexChanged,
             this,
             &MainWindow::updateSize
         );
 
         QObject::connect(
             m_ui->m_central_widget,
-            &widgets::ButtonSelecterWidget::run,
+            &widgets::ProgressButtonSelecterWidget::run,
             this,
             &MainWindow::run
         );

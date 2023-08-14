@@ -89,6 +89,7 @@ set(
     gui/widgets/ItemizeWidget.hpp
     gui/widgets/LabelWidget.hpp
     gui/widgets/ListSelecterWidget.hpp
+    gui/widgets/ProgressButtonSelecterWidget.hpp
     gui/widgets/ScrollArea.hpp
     gui/widgets/SelecterWidget.hpp
     gui/widgets/SelectionWidget.hpp
@@ -115,6 +116,7 @@ set(
     gui/widgets/ItemizeWidget.cpp
     gui/widgets/LabelWidget.cpp
     gui/widgets/ListSelecterWidget.cpp
+    gui/widgets/ProgressButtonSelecterWidget.cpp
     gui/widgets/ScrollArea.cpp
     gui/widgets/SelecterWidget.cpp
     gui/widgets/SelectionWidget.cpp

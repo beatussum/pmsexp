@@ -49,8 +49,8 @@ namespace gui::widgets
             Qt::WindowFlags __f = {}
         )
             : QWidget(__parent, __f)
-            , m_connections()
             , m_stacked_widget(nullptr)
+            , m_connections()
         {}
 
         explicit SelecterWidget(
@@ -110,10 +110,10 @@ namespace gui::widgets
         void previous();
     protected slots:
         virtual void updateButtons(int __current_index) const = 0;
-    private:
-        connections_type m_connections;
     protected:
         StackedWidget* m_stacked_widget;
+    private:
+        connections_type m_connections;
     };
 }
 

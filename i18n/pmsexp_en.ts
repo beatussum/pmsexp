@@ -15,6 +15,11 @@
     </message>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="27"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="33"/>
         <source>Ctrl+Right</source>
         <translation></translation>
     </message>
@@ -219,16 +224,16 @@
     </message>
 </context>
 <context>
-    <name>gui::widgets::ButtonSelecterWidget</name>
+    <name>gui::widgets::ProgressButtonSelecterWidget</name>
     <message>
-        <location filename="../src/gui/widgets/ButtonSelecterWidget.cpp" line="94"/>
+        <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Run</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/widgets/ButtonSelecterWidget.cpp" line="94"/>
+        <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Next</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
