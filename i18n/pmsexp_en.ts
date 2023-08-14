@@ -16,7 +16,7 @@
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="27"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="33"/>
@@ -142,7 +142,7 @@
     <message>
         <location filename="../src/gui/pages/Calibration.cpp" line="32"/>
         <source>Use the mouse to select the area to be scaled. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../src/gui/pages/ContourSelection.cpp" line="89"/>
         <source>Contour area: %1 px.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../src/gui/pages/Selection.cpp" line="30"/>
         <source>Use the mouse to select the area to be monitored. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -166,61 +166,61 @@
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="38"/>
         <source>Heading</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="44"/>
         <source>Position</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="50"/>
         <source>Trajectory</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="57"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="70"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="81"/>
         <source>Time (in ms)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="58"/>
         <source>Heading (in rad)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="59"/>
         <source>Time evolution of the heading</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="71"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="114"/>
         <source>Abscissa (in cm)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="82"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="115"/>
         <source>Ordinate (in cm)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="97"/>
         <source>Time evolution of the abscissa</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="107"/>
         <source>Time evolution of the ordinate</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="117"/>
         <source>Evolution of the position</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -228,12 +228,12 @@
     <message>
         <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>
