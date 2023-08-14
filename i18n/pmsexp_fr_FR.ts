@@ -16,7 +16,7 @@
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="27"/>
         <source>Next</source>
-        <translation type="unfinished">Suivant</translation>
+        <translation>Suivant</translation>
     </message>
     <message>
         <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="33"/>
@@ -142,7 +142,7 @@
     <message>
         <location filename="../src/gui/pages/Calibration.cpp" line="32"/>
         <source>Use the mouse to select the area to be scaled. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation type="unfinished">Utiliser la souris pour sélectionner la zone à étalonner. Appuyer sur « %1 » pour valider la sélection et « %2 » pour supprimer la sélection précédente.</translation>
+        <translation>Utiliser la souris pour sélectionner la zone à étalonner. Appuyer sur « %1 » pour valider la sélection et « %2 » pour supprimer la sélection précédente.</translation>
     </message>
 </context>
 <context>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../src/gui/pages/ContourSelection.cpp" line="89"/>
         <source>Contour area: %1 px.</source>
-        <translation type="unfinished">Aire du contour&#xa0;: %1 px.</translation>
+        <translation>Aire du contour&#xa0;: %1 px.</translation>
     </message>
 </context>
 <context>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../src/gui/pages/Selection.cpp" line="30"/>
         <source>Use the mouse to select the area to be monitored. Press &quot;%1&quot; to validate the selection and &quot;%2&quot; to delete the previous one.</source>
-        <translation type="unfinished">Utiliser la souris pour sélectionner la zone à monitorer. Appuyer sur «&#xa0;%1&#xa0;» pour valider la sélection et «&#xa0;%2&#xa0;» pour supprimer la sélection précédente.</translation>
+        <translation>Utiliser la souris pour sélectionner la zone à monitorer. Appuyer sur «&#xa0;%1&#xa0;» pour valider la sélection et «&#xa0;%2&#xa0;» pour supprimer la sélection précédente.</translation>
     </message>
 </context>
 <context>
@@ -166,61 +166,61 @@
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="38"/>
         <source>Heading</source>
-        <translation type="unfinished">Cap</translation>
+        <translation>Cap</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="44"/>
         <source>Position</source>
-        <translation type="unfinished">Position</translation>
+        <translation>Position</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="50"/>
         <source>Trajectory</source>
-        <translation type="unfinished">Trajectoire</translation>
+        <translation>Trajectoire</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="57"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="70"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="81"/>
         <source>Time (in ms)</source>
-        <translation type="unfinished">Temps (en ms)</translation>
+        <translation>Temps (en ms)</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="58"/>
         <source>Heading (in rad)</source>
-        <translation type="unfinished">Cap (en rad)</translation>
+        <translation>Cap (en rad)</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="59"/>
         <source>Time evolution of the heading</source>
-        <translation type="unfinished">Évolution temporelle du cap</translation>
+        <translation>Évolution temporelle du cap</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="71"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="114"/>
         <source>Abscissa (in cm)</source>
-        <translation type="unfinished">Abscisse (en cm)</translation>
+        <translation>Abscisse (en cm)</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="82"/>
         <location filename="../src/gui/pages/Statistics.cpp" line="115"/>
         <source>Ordinate (in cm)</source>
-        <translation type="unfinished">Ordonnée (en cm)</translation>
+        <translation>Ordonnée (en cm)</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="97"/>
         <source>Time evolution of the abscissa</source>
-        <translation type="unfinished">Évolution temporelle des abscisses</translation>
+        <translation>Évolution temporelle des abscisses</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="107"/>
         <source>Time evolution of the ordinate</source>
-        <translation type="unfinished">Évolution temporelle des ordonnées</translation>
+        <translation>Évolution temporelle des ordonnées</translation>
     </message>
     <message>
         <location filename="../src/gui/pages/Statistics.cpp" line="117"/>
         <source>Evolution of the position</source>
-        <translation type="unfinished">Évolution de la position</translation>
+        <translation>Évolution de la position</translation>
     </message>
 </context>
 <context>
@@ -228,12 +228,12 @@
     <message>
         <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Run</source>
-        <translation type="unfinished">Lancer</translation>
+        <translation>Lancer</translation>
     </message>
     <message>
         <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Next</source>
-        <translation type="unfinished">Suivant</translation>
+        <translation>Suivant</translation>
     </message>
 </context>
 </TS>
