@@ -4,17 +4,17 @@
 <context>
     <name>ButtonSelecterWidget</name>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="11"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="14"/>
         <source>Previous</source>
         <translation>Précédent</translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="17"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="20"/>
         <source>Ctrl+Left</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="24"/>
+        <location filename="../include/gui/widgets/ButtonSelecterWidget.ui" line="27"/>
         <source>Ctrl+Right</source>
         <translation></translation>
     </message>

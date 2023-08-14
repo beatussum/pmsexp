@@ -35,40 +35,72 @@ namespace gui::widgets
             STORED false
         )
 
+        Q_PROPERTY(
+            StackedWidget* stackedWidget
+            READ stackedWidget
+            WRITE setStackedWidget
+        )
+
+    private:
+        using connections_type = std::array<QMetaObject::Connection, 5>;
     public:
         explicit SelecterWidget(
-            QWidget* __parent = nullptr,
-            Qt::WindowFlags   = {}
-        );
+            QWidget* __parent   = nullptr,
+            Qt::WindowFlags __f = {}
+        )
+            : QWidget(__parent, __f)
+            , m_connections()
+            , m_stacked_widget(nullptr)
+        {}
+
+        explicit SelecterWidget(
+            std::nullptr_t,
+            QWidget* __parent   = nullptr,
+            Qt::WindowFlags __f = {}
+        )
+            : SelecterWidget(__parent, __f)
+        {}
+
+        explicit SelecterWidget(
+            StackedWidget* __s,
+            QWidget* __parent   = nullptr,
+            Qt::WindowFlags __f = {}
+        )
+            : SelecterWidget(__parent, __f)
+        { setStackedWidget(__s); }
     public:
         const QWidget* currentPage() const
-            { return m_stacked_layout->currentWidget(); }
+            { return m_stacked_widget->currentWidget(); }
 
         QWidget* currentPage()
-            { return m_stacked_layout->currentWidget(); }
+            { return m_stacked_widget->currentWidget(); }
 
         int indexOf(QWidget* __w) const
-            { return m_stacked_layout->indexOf(__w); }
+            { return m_stacked_widget->indexOf(__w); }
 
         const QWidget* page(int __index) const
-            { return m_stacked_layout->widget(__index); }
+            { return m_stacked_widget->widget(__index); }
 
         QWidget* page(int __index)
-            { return m_stacked_layout->widget(__index); }
+            { return m_stacked_widget->widget(__index); }
 
-        int pageIndex() const { return m_stacked_layout->currentIndex(); }
+        int pageIndex() const { return m_stacked_widget->currentIndex(); }
 
         virtual void setPageIndex(int __i)
-            { m_stacked_layout->setCurrentIndex(__i); }
+            { m_stacked_widget->setCurrentIndex(__i); }
+
+        const StackedWidget* stackedWidget() const { return m_stacked_widget; }
+        StackedWidget* stackedWidget() { return m_stacked_widget; }
+        void setStackedWidget(StackedWidget*);
     public:
         virtual void addPage(QWidget* __w)
-            { emit pageAdded(m_stacked_layout->addWidget(__w)); }
+            { emit pageAdded(m_stacked_widget->addWidget(__w)); }
 
         virtual void insertPage(int __index, QWidget* __w)
-            { emit pageAdded(m_stacked_layout->insertWidget(__index, __w)); }
+            { emit pageAdded(m_stacked_widget->insertWidget(__index, __w)); }
 
         virtual void removePage(QWidget* __w)
-            { m_stacked_layout->removeWidget(__w); }
+            { m_stacked_widget->removeWidget(__w); }
     signals:
         void pageAdded(int __index);
         void pageIndexChanged(int __current_index);
@@ -78,8 +110,10 @@ namespace gui::widgets
         void previous();
     protected slots:
         virtual void updateButtons(int __current_index) const = 0;
+    private:
+        connections_type m_connections;
     protected:
-        StackedWidget* m_stacked_layout;
+        StackedWidget* m_stacked_widget;
     };
 }
 

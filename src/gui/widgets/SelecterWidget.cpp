@@ -20,59 +20,64 @@
 
 namespace gui::widgets
 {
-    SelecterWidget::SelecterWidget(QWidget* __parent, Qt::WindowFlags __f)
-        : QWidget(__parent, __f)
-        , m_stacked_layout(new StackedWidget())
+    void SelecterWidget::setStackedWidget(StackedWidget* __s)
     {
-        QObject::connect(
-            m_stacked_layout,
+        if (m_stacked_widget != nullptr) {
+            for (const QMetaObject::Connection& conn : m_connections) {
+                QObject::disconnect(conn);
+            }
+        }
+
+        m_stacked_widget = __s;
+
+        m_connections[0] = QObject::connect(
+            m_stacked_widget,
             &StackedWidget::currentChanged,
             this,
             &SelecterWidget::pageIndexChanged
         );
 
-        QObject::connect(
-            m_stacked_layout,
+        m_connections[1] = QObject::connect(
+            m_stacked_widget,
             &StackedWidget::widgetRemoved,
             this,
             &SelecterWidget::pageRemoved
         );
 
-        QObject::connect(
+        m_connections[2] = QObject::connect(
             this,
             &SelecterWidget::pageAdded,
             this,
-            [&] (int __i) { updateButtons(pageIndex()); }
+            [&] { updateButtons(pageIndex()); }
         );
 
-        QObject::connect(
+        m_connections[3] = QObject::connect(
             this,
             &SelecterWidget::pageIndexChanged,
             this,
             &SelecterWidget::updateButtons
         );
 
-        QObject::connect(
+        m_connections[4] = QObject::connect(
             this,
             &SelecterWidget::pageRemoved,
             this,
-            [&] (int __i) { updateButtons(pageIndex()); }
+            [&] { updateButtons(pageIndex()); }
         );
     }
 
     void SelecterWidget::next()
     {
-        setPageIndex(
-            std::min(
-                m_stacked_layout->count() - 1,
-                m_stacked_layout->currentIndex() + 1
-            )
-        );
+        if (m_stacked_widget != nullptr) {
+            setPageIndex(m_stacked_widget->currentIndex() + 1);
+        }
     }
 
     void SelecterWidget::previous()
     {
-        setPageIndex(std::max(0, m_stacked_layout->currentIndex() - 1));
+        if (m_stacked_widget != nullptr) {
+            setPageIndex(m_stacked_widget->currentIndex() - 1);
+        }
     }
 }
 
