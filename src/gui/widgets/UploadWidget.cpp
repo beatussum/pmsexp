@@ -25,25 +25,6 @@
 
 namespace gui::widgets
 {
-    UploadWidget::UploadWidget(
-        const QString& __info,
-        mime_checker_type __c,
-        QWidget* __parent,
-        Qt::WindowFlags __f
-    )
-        : ItemizeWidget(
-                __info,
-                QIcon::fromTheme("document-new"),
-                __parent,
-                __f
-            )
-
-        , m_file_path()
-        , m_mime_checker(std::move(__c))
-    {
-        setAcceptDrops(true);
-    }
-
     void UploadWidget::dragEnterEvent(QDragEnterEvent* __e)
     {
         const QMimeData* data = __e->mimeData();

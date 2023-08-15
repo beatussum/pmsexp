@@ -46,10 +46,20 @@ namespace gui::widgets
     public:
         explicit UploadWidget(
             const QString& __info,
-            mime_checker_type,
-            QWidget* __parent = nullptr,
-            Qt::WindowFlags   = {}
-        );
+            mime_checker_type __c,
+            QWidget* __parent,
+            Qt::WindowFlags __f
+        )
+            : ItemizeWidget(
+                    __info,
+                    QIcon::fromTheme("document-new"),
+                    __parent,
+                    __f
+                )
+
+            , m_file_path()
+            , m_mime_checker(std::move(__c))
+        { setAcceptDrops(true); }
 
         UploadWidget(QWidget* __parent = nullptr, Qt::WindowFlags __f = {})
             : UploadWidget(QString(), mime_checker_type(), __parent, __f)

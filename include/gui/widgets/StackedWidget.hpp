@@ -30,7 +30,9 @@ namespace gui::widgets
     public:
         using QStackedWidget::QStackedWidget;
     public:
-        QSize minimumSizeHint() const override { return currentWidget()->minimumSizeHint(); }
+        QSize minimumSizeHint() const override
+            { return currentWidget()->minimumSizeHint(); }
+
         QSize sizeHint() const override { return currentWidget()->sizeHint(); }
     };
 }

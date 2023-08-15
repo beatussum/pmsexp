@@ -34,7 +34,8 @@ int main(int argc, char* argv[])
     QApplication app(argc, argv);
 
 #ifdef PMSEXP_THEME_DIR
-    /* If the `QIcon::themeName()` is not set (for example, in a Windows
+    /*
+     * If the `QIcon::themeName()` is not set (for example, in a Windows
      * system, it is always true), one set a dummy theme name in order to force
      * `QIcon::fromTheme()` to use the fallback icons.
      */
