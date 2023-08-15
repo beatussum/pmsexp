@@ -39,21 +39,21 @@ namespace gui::widgets
 
         virtual ~ListSelecterWidget() { delete m_ui; }
     private:
-        void add_selecter(const QIcon&, const QString&, QWidget*);
+        void addSelecter(const QIcon&, const QString&, QWidget*);
     protected:
-        void update_buttons(int __current_index) const override;
+        void updateButtons(int __current_index) const override;
     public:
-        void add_page(const QIcon&, const QString&, QWidget*);
+        void addPage(const QIcon&, const QString&, QWidget*);
 
-        void add_page(QWidget* __w) override
-            { add_page(QIcon(), QString(), __w); }
+        void addPage(QWidget* __w) override
+            { addPage(QIcon(), QString(), __w); }
 
-        void insert_page(int __index, const QIcon&, const QString&, QWidget*);
+        void insertPage(int __index, const QIcon&, const QString&, QWidget*);
 
-        void insert_page(int __index, QWidget* __w) override
-            { insert_page(__index, QIcon(), QString(), __w); }
+        void insertPage(int __index, QWidget* __w) override
+            { insertPage(__index, QIcon(), QString(), __w); }
 
-        void remove_page(QWidget*) override;
+        void removePage(QWidget*) override;
     private:
         map_type                m_map;
         Ui::ListSelecterWidget* m_ui;

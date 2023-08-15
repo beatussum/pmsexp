@@ -16,11 +16,11 @@
  */
 
 
-#include "gui/widgets/pages/Statistics.hpp"
+#include "gui/pages/Statistics.hpp"
 
 #include <qcustomplot.h>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     Statistics::Statistics(
         const full_positions_data& __data,
@@ -33,19 +33,19 @@ namespace gui::widgets::pages
         , m_position(new QCustomPlot(this))
         , m_trajectory(new QCustomPlot(this))
     {
-        add_page(
+        addPage(
             QIcon::fromTheme("applications-science"),
             tr("Heading"),
             m_heading
         );
 
-        add_page(
+        addPage(
             QIcon::fromTheme("applications-science"),
             tr("Position"),
             m_position
         );
 
-        add_page(
+        addPage(
             QIcon::fromTheme("applications-science"),
             tr("Trajectory"),
             m_trajectory
@@ -118,10 +118,10 @@ namespace gui::widgets::pages
         m_trajectory->graph(0)->setPen(QPen(Qt::red));
         m_trajectory->graph(0)->setScatterStyle(QCPScatterStyle::ssCross);
 
-        set_data(__data);
+        setData(__data);
     }
 
-    void Statistics::set_data(const full_positions_data& __data) const
+    void Statistics::setData(const full_positions_data& __data) const
     {
         std::size_t size = __data.size();
 
@@ -173,7 +173,7 @@ namespace gui::widgets::pages
         m_trajectory->replot();
     }
 
-    void Statistics::reset_data() const
+    void Statistics::resetData() const
     {
         m_heading->graph(0)->data()->clear();
         m_heading->replot();

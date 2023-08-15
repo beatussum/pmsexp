@@ -4,6 +4,9 @@
  <widget class="QWidget" name="ButtonSelecterWidget">
   <layout class="QVBoxLayout" name="m_main_layout">
    <item>
+    <widget class="gui::widgets::StackedWidget" name="m_stacked_widget"/>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="m_button_layout">
      <item>
       <widget class="QPushButton" name="m_previous_button">
@@ -20,6 +23,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_next_button">
+       <property name="text">
+        <string>Next</string>
+       </property>
+       <property name="icon">
+        <iconset theme="go-next"/>
+       </property>
        <property name="shortcut">
         <string>Ctrl+Right</string>
        </property>
@@ -29,6 +38,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>gui::widgets::StackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>gui/widgets/StackedWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

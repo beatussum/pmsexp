@@ -28,7 +28,7 @@ namespace gui::widgets
     class LabelWidget : public QLabel
     {
         Q_OBJECT
-        Q_PROPERTY(QRect pixmap_rect READ get_pixmap_rect STORED false)
+        Q_PROPERTY(QRect pixmapRect READ pixmapRect STORED false)
 
     public:
         explicit LabelWidget(
@@ -52,7 +52,7 @@ namespace gui::widgets
             : LabelWidget(QPixmap(), __parent, __f)
         {}
     public:
-        QRect get_pixmap_rect() const;
+        QRect pixmapRect() const;
     public slots:
         void setPixmap(const QPixmap& __p) { QLabel::setPixmap(__p); }
 

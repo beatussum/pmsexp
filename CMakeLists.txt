@@ -78,22 +78,23 @@ set(
     core/core.hpp
     core/types.hpp
     gui/MainWindow.hpp
+    gui/pages/Calibration.hpp
+    gui/pages/ContourSelection.hpp
+    gui/pages/Selection.hpp
+    gui/pages/Statistics.hpp
+    gui/pages/Upload.hpp
     gui/widgets/ButtonSelecterWidget.hpp
     gui/widgets/CalibrationWidget.hpp
     gui/widgets/CheckWidget.hpp
     gui/widgets/ItemizeWidget.hpp
     gui/widgets/LabelWidget.hpp
     gui/widgets/ListSelecterWidget.hpp
+    gui/widgets/ProgressButtonSelecterWidget.hpp
     gui/widgets/ScrollArea.hpp
     gui/widgets/SelecterWidget.hpp
     gui/widgets/SelectionWidget.hpp
     gui/widgets/StackedWidget.hpp
     gui/widgets/UploadWidget.hpp
-    gui/widgets/pages/Calibration.hpp
-    gui/widgets/pages/ContourSelection.hpp
-    gui/widgets/pages/Selection.hpp
-    gui/widgets/pages/Statistics.hpp
-    gui/widgets/pages/Upload.hpp
 )
 
 list(TRANSFORM PMSEXP_HPP PREPEND "include/")
@@ -104,21 +105,22 @@ set(
     core/core.cpp
     core/types.cpp
     gui/MainWindow.cpp
+    gui/pages/Calibration.cpp
+    gui/pages/ContourSelection.cpp
+    gui/pages/Selection.cpp
+    gui/pages/Statistics.cpp
+    gui/pages/Upload.cpp
     gui/widgets/ButtonSelecterWidget.cpp
     gui/widgets/CalibrationWidget.cpp
     gui/widgets/CheckWidget.cpp
     gui/widgets/ItemizeWidget.cpp
     gui/widgets/LabelWidget.cpp
     gui/widgets/ListSelecterWidget.cpp
+    gui/widgets/ProgressButtonSelecterWidget.cpp
     gui/widgets/ScrollArea.cpp
     gui/widgets/SelecterWidget.cpp
     gui/widgets/SelectionWidget.cpp
     gui/widgets/UploadWidget.cpp
-    gui/widgets/pages/Calibration.cpp
-    gui/widgets/pages/ContourSelection.cpp
-    gui/widgets/pages/Selection.cpp
-    gui/widgets/pages/Statistics.cpp
-    gui/widgets/pages/Upload.cpp
 )
 
 list(TRANSFORM PMSEXP_CPP PREPEND "src/")

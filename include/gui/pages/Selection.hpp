@@ -16,12 +16,12 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
-#define PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
+#ifndef PMSEXP_GUI_PAGES_SELECTION_HPP
+#define PMSEXP_GUI_PAGES_SELECTION_HPP
 
 #include "ui_Selection.h"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Selection : public QWidget
     {
@@ -29,25 +29,26 @@ namespace gui::widgets::pages
 
         Q_PROPERTY(
             QRect selection
-            READ get_selection
-            WRITE set_selection
-            RESET reset_selection
-            NOTIFY selection_changed
+            READ selection
+            WRITE setSelection
+            RESET resetSelection
+            NOTIFY selectionChanged
         )
 
     public:
         explicit Selection(QWidget* __parent = nullptr, Qt::WindowFlags = {});
         virtual ~Selection() { delete m_ui; }
     public:
-        QRect get_selection() const noexcept
-            { return m_ui->m_selection_widget->get_selection(); }
+        QRect pixmapRect() const
+            { return m_ui->m_selection_widget->pixmapRect(); }
 
-        bool has_selection() const noexcept { return has_selection(); }
+        QRect selection() const noexcept
+            { return m_ui->m_selection_widget->selection(); }
 
-        QRect get_pixmap_rect() const
-            { return m_ui->m_selection_widget->get_pixmap_rect(); }
+        bool hasSelection() const noexcept
+            { return m_ui->m_selection_widget->hasSelection(); }
     signals:
-        void selection_changed(const QRect& __new_selection);
+        void selectionChanged(const QRect& __new_selection);
     public slots:
         void setPixmap(const QPixmap& __p)
             { m_ui->m_selection_widget->setPixmap(__p); }
@@ -55,14 +56,14 @@ namespace gui::widgets::pages
         void setPixmap(const cv::Mat& __m)
             { m_ui->m_selection_widget->setPixmap(__m); }
 
-        void set_selection(QRect __r) noexcept
-            { m_ui->m_selection_widget->set_selection(std::move(__r)); }
+        void setSelection(QRect __r) noexcept
+            { m_ui->m_selection_widget->setSelection(std::move(__r)); }
 
-        void reset_selection() noexcept
-            { m_ui->m_selection_widget->reset_selection(); }
+        void resetSelection() noexcept
+            { m_ui->m_selection_widget->resetSelection(); }
     private:
         Ui::Selection* m_ui;
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_PAGES_SELECTION_HPP
+#endif // PMSEXP_GUI_PAGES_SELECTION_HPP

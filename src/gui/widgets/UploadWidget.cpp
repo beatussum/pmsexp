@@ -25,43 +25,17 @@
 
 namespace gui::widgets
 {
-    UploadWidget::UploadWidget(
-        const QString& __info,
-        mime_checker_type __c,
-        QWidget* __parent,
-        Qt::WindowFlags __f
-    )
-        : ItemizeWidget(
-                __info,
-                QIcon::fromTheme("document-new"),
-                __parent,
-                __f
-            )
-
-        , m_file_path()
-        , m_mime_checker(std::move(__c))
-    {
-        setAcceptDrops(true);
-    }
-
     void UploadWidget::dragEnterEvent(QDragEnterEvent* __e)
     {
         const QMimeData* data = __e->mimeData();
 
-        if (data->hasUrls() && (data->urls().size() == 1))
+        if (
+            data->hasUrls() &&
+            (data->urls().size() == 1) &&
+            checkFilePath(__e->mimeData()->urls().first())
+        )
         {
-            QMimeDatabase db;
-
-            if (
-                !m_mime_checker ||
-
-                m_mime_checker(
-                    db.mimeTypeForUrl(__e->mimeData()->urls().first()).name()
-                )
-            )
-            {
-                __e->acceptProposedAction();
-            }
+            __e->acceptProposedAction();
         }
 
         ItemizeWidget::dragEnterEvent(__e);
@@ -71,15 +45,27 @@ namespace gui::widgets
     {
         m_file_path = __e->mimeData()->urls().first().toLocalFile();
 
-        emit file_path_updated(m_file_path);
+        emit filePathUpdated(m_file_path);
 
         ItemizeWidget::dropEvent(__e);
     }
 
-    void UploadWidget::set_file_path(QString __f)
+    bool UploadWidget::checkFilePath(const QUrl& __f) const
     {
-        m_file_path = std::move(__f);
+        QMimeDatabase db;
 
-        emit file_path_updated(m_file_path);
+        return (
+            !m_mime_checker ||
+            m_mime_checker(db.mimeTypeForUrl(__f).name())
+        );
+    }
+
+    void UploadWidget::setFilePath(QString __f)
+    {
+        if (checkFilePath(__f)) {
+            m_file_path = std::move(__f);
+
+            emit filePathUpdated(m_file_path);
+        }
     }
 }

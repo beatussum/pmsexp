@@ -16,34 +16,31 @@
  */
 
 
-#include "gui/widgets/pages/Upload.hpp"
+#include "gui/pages/Selection.hpp"
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
-    Upload::Upload(QWidget* __parent, Qt::WindowFlags __f)
+    Selection::Selection(QWidget* __parent, Qt::WindowFlags __f)
         : QWidget(__parent, __f)
-        , m_ui(new Ui::Upload())
+        , m_ui(new Ui::Selection())
     {
         m_ui->setupUi(this);
 
-        m_ui->m_uploader->set_mime_checker(
-            [] (const QString& __m) {
-                return (__m.section('/', 0, 0) == "video");
-            }
+        m_ui->m_help_label->setText(
+            tr(
+                "Use the mouse to select the area to be monitored. "
+                "Press \"%1\" to validate the selection and \"%2\" to delete "
+                "the previous one."
+            )
+                .arg(QKeySequence(Qt::Key_Enter).toString())
+                .arg(QKeySequence(Qt::Key_Escape).toString())
         );
 
         QObject::connect(
-            m_ui->m_uploader,
-            &gui::widgets::UploadWidget::file_path_updated,
+            m_ui->m_selection_widget,
+            &widgets::SelectionWidget::selectionChanged,
             this,
-
-            [&] (const QString& __new_file_path) {
-                bool status = !__new_file_path.isEmpty();
-
-                m_ui->m_item->set_status(status);
-
-                emit upload_status_changed(status);
-            }
+            &Selection::selectionChanged
         );
     }
 }

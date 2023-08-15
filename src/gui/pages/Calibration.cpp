@@ -16,11 +16,11 @@
  */
 
 
-#include "gui/widgets/pages/Calibration.hpp"
+#include "gui/pages/Calibration.hpp"
 
 #include <QtGui/QDoubleValidator>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     Calibration::Calibration(QWidget* __parent, Qt::WindowFlags __f)
         : QWidget(__parent, __f)
@@ -42,9 +42,9 @@ namespace gui::widgets::pages
 
         QObject::connect(
             m_ui->m_calibration_widget,
-            &gui::widgets::CalibrationWidget::measure_changed,
+            &widgets::CalibrationWidget::measureChanged,
             this,
-            &Calibration::measure_changed
+            &Calibration::measureChanged
         );
 
         QObject::connect(
@@ -53,55 +53,55 @@ namespace gui::widgets::pages
             this,
 
             [&] (const QString& __text) {
-                emit status_changed(!__text.isEmpty());
+                emit statusChanged(!__text.isEmpty());
             }
         );
 
         QObject::connect(
             this,
-            &Calibration::measure_changed,
+            &Calibration::measureChanged,
             m_ui->m_group_box,
             &QGroupBox::setEnabled
         );
 
         QObject::connect(
             this,
-            &Calibration::measure_changed,
+            &Calibration::measureChanged,
             this,
 
             [&] (bool __status) {
-                emit status_changed(
+                emit statusChanged(
                     __status && !m_ui->m_line_edit->text().isEmpty()
                 );
             }
         );
     }
 
-    void Calibration::set_pixmap(const QPixmap& __p)
+    void Calibration::setPixmap(const QPixmap& __p)
     {
         m_ui->m_calibration_widget->setPixmap(__p);
         m_ui->m_scroll_area->updateGeometry();
     }
 
-    void Calibration::set_pixmap(const cv::Mat& __m)
+    void Calibration::setPixmap(const cv::Mat& __m)
     {
         m_ui->m_calibration_widget->setPixmap(__m);
         m_ui->m_scroll_area->updateGeometry();
     }
 
-    double Calibration::get_ratio() const
+    double Calibration::ratio() const
     {
-        if (get_status()) {
-            return (get_real_measure() / get_pixmap_measure());
+        if (status()) {
+            return (realMeasure() / pixmapMeasure());
         } else {
             return 1.;
         }
     }
 
-    bool Calibration::get_status() const
+    bool Calibration::status() const
     {
         return (
-            m_ui->m_calibration_widget->get_status() &&
+            m_ui->m_calibration_widget->status() &&
             !m_ui->m_line_edit->text().isEmpty()
         );
     }

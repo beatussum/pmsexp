@@ -25,95 +25,32 @@ namespace gui::widgets
         Qt::WindowFlags __f
     )
         : SelecterWidget(__parent, __f)
-
         , m_ui(new Ui::ButtonSelecterWidget())
-        , m_progress(0)
     {
         m_ui->setupUi(this);
-        m_ui->m_main_layout->insertWidget(0, m_stacked_layout);
+        setStackedWidget(m_ui->m_stacked_widget);
 
         QObject::connect(
             m_ui->m_next_button,
             &QPushButton::clicked,
             this,
-            &gui::widgets::SelecterWidget::next
+            &widgets::SelecterWidget::next
         );
 
         QObject::connect(
             m_ui->m_previous_button,
             &QPushButton::clicked,
             this,
-            &gui::widgets::SelecterWidget::previous
-        );
-
-        QObject::connect(
-            this,
-            &ButtonSelecterWidget::page_added,
-            this,
-            &ButtonSelecterWidget::update_page_index
-        );
-
-        QObject::connect(
-            this,
-            &ButtonSelecterWidget::page_removed,
-            this,
-            &ButtonSelecterWidget::update_page_index
-        );
-
-        QObject::connect(
-            this,
-            &ButtonSelecterWidget::progress_changed,
-            this,
-            &ButtonSelecterWidget::update_page_index
+            &widgets::SelecterWidget::previous
         );
     }
 
-    void ButtonSelecterWidget::update_buttons(int __current_index) const
+    void ButtonSelecterWidget::updateButtons(int __current_index) const
     {
-        QPushButton* next_button = m_ui->m_next_button;
-
-        bool is_ended =
-            (__current_index == (m_stacked_layout->count() - 2));
-
         m_ui->m_previous_button->setVisible(__current_index != 0);
 
-        next_button->setIcon(
-            is_ended ?
-            QIcon::fromTheme("system-run") :
-            QIcon::fromTheme("go-next")
+        m_ui->m_next_button->setVisible(
+            __current_index != (m_stacked_widget->count() - 1)
         );
-
-        QKeySequence next_shortcut = m_ui->m_next_button->shortcut();
-
-        next_button->setEnabled(m_progress > __current_index);
-
-        next_button->setVisible(
-            __current_index != (m_stacked_layout->count() - 1)
-        );
-
-        next_button->setText(is_ended ? tr("Run") : tr("Next"));
-        next_button->setShortcut(next_shortcut);
-    }
-
-    void ButtonSelecterWidget::set_page_index(int __i)
-    {
-        if (m_progress >= __i) {
-            SelecterWidget::set_page_index(__i);
-
-            if (__i == (m_stacked_layout->count() - 1)) {
-                emit run();
-            }
-        }
-    }
-
-    void ButtonSelecterWidget::update_page_index(int __p)
-    {
-        int index = get_page_index();
-
-        if (__p < index) {
-            set_page_index(__p);
-        } else {
-            update_buttons(index);
-        }
     }
 }

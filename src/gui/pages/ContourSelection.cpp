@@ -16,12 +16,12 @@
  */
 
 
-#include "gui/widgets/pages/ContourSelection.hpp"
+#include "gui/pages/ContourSelection.hpp"
 
 #include <opencv2/imgproc.hpp>
 #include <QtGui/QPainter>
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     ContourSelection::ContourSelection(
         sorted_contours_type __c,
@@ -60,20 +60,20 @@ namespace gui::widgets::pages
 
         QObject::connect(
             this,
-            &ContourSelection::current_changed,
+            &ContourSelection::currentChanged,
             this,
-            &ContourSelection::update_shown_contour
+            &ContourSelection::updateShownContour
         );
 
-        update_shown_contour();
+        updateShownContour();
     }
 
-    double ContourSelection::get_current_area() const
+    double ContourSelection::currentArea() const
     {
         return (m_contours.empty() ? -1. : cv::contourArea(*m_current));
     }
 
-    void ContourSelection::update_shown_contour()
+    void ContourSelection::updateShownContour()
     {
         if (!m_pixmap.isNull()) {
             QPixmap pixmap = m_pixmap.copy();
@@ -86,7 +86,7 @@ namespace gui::widgets::pages
             painter.end();
 
             m_ui->m_contour_area_label->setText(
-                tr("Contour area: %1 px.").arg(get_current_area())
+                tr("Contour area: %1 px.").arg(currentArea())
             );
 
             m_ui->m_contour_selection_widget->setPixmap(pixmap);
@@ -96,7 +96,7 @@ namespace gui::widgets::pages
         }
     }
 
-    void ContourSelection::set_values(sorted_contours_type __c, QPixmap __p)
+    void ContourSelection::setValues(sorted_contours_type __c, QPixmap __p)
     {
         m_contours = std::move(__c);
         m_pixmap   = std::move(__p);
@@ -105,7 +105,7 @@ namespace gui::widgets::pages
         m_ui->m_next_button->setEnabled(m_contours.size() > 1);
         m_ui->m_previous_button->setEnabled(m_contours.size() > 1);
 
-        emit current_changed(m_current);
+        emit currentChanged(m_current);
     }
 
     void ContourSelection::next()
@@ -114,7 +114,7 @@ namespace gui::widgets::pages
             m_current = m_contours.cbegin();
         }
 
-        emit current_changed(m_current);
+        emit currentChanged(m_current);
     }
 
     void ContourSelection::previous()
@@ -123,6 +123,6 @@ namespace gui::widgets::pages
             m_current = --m_contours.cend();
         }
 
-        emit current_changed(m_current);
+        emit currentChanged(m_current);
     }
 }

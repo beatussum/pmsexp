@@ -45,12 +45,12 @@ namespace gui::widgets
             case Qt::Key_Enter:
             case Qt::Key_Return:
                 if (m_end != QPoint(-1., -1.)) {
-                    emit measure_changed(true);
+                    emit measureChanged(true);
                 }
 
                 break;
             case Qt::Key_Escape:
-                reset_measure();
+                resetMeasure();
 
                 break;
             default:
@@ -63,12 +63,12 @@ namespace gui::widgets
     void CalibrationWidget::mousePressEvent(QMouseEvent* __e)
     {
         m_end    = QPoint(-1., -1.);
-        m_origin = (__e->pos() - get_pixmap_rect().topLeft());
+        m_origin = (__e->pos() - pixmapRect().topLeft());
 
         LabelWidget::setPixmap(m_pixmap);
         setFocus();
 
-        emit measure_changed(false);
+        emit measureChanged(false);
 
         LabelWidget::mousePressEvent(__e);
     }
@@ -79,7 +79,7 @@ namespace gui::widgets
             QPixmap pixmap = m_pixmap.copy();
             QPainter painter(&pixmap);
 
-            m_end = (__e->pos() - get_pixmap_rect().topLeft());
+            m_end = (__e->pos() - pixmapRect().topLeft());
 
             painter.setPen(Qt::red);
             painter.drawLine(m_origin, m_end);
@@ -91,7 +91,7 @@ namespace gui::widgets
         LabelWidget::mousePressEvent(__e);
     }
 
-    double CalibrationWidget::get_measure() const
+    double CalibrationWidget::measure() const
     {
         if (m_end != QPoint(-1., -1.)) {
             QPoint diff = (m_end - m_origin);
@@ -106,22 +106,22 @@ namespace gui::widgets
     {
         m_pixmap = QPixmap();
 
-        reset_measure();
+        resetMeasure();
     }
 
-    void CalibrationWidget::reset_measure()
+    void CalibrationWidget::resetMeasure()
     {
         m_end    = QPoint(-1., -1.);
         m_origin = QPoint(-1., -1.);
 
         LabelWidget::setPixmap(m_pixmap);
 
-        emit measure_changed(false);
+        emit measureChanged(false);
     }
 
     void CalibrationWidget::setPixmap(const QPixmap& __p)
     {
-        reset_measure();
+        resetMeasure();
 
         LabelWidget::setPixmap(m_pixmap = __p);
     }

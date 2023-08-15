@@ -20,9 +20,9 @@
 
 namespace gui::widgets
 {
-    void CheckWidget::set_status(bool __s)
+    void CheckWidget::setStatus(bool __s)
     {
-        set_pixmap(QIcon::fromTheme(__s ? "list-add" : "list-remove"));
-        emit status_changed(__s);
+        setPixmap(QIcon::fromTheme(__s ? "list-add" : "list-remove"));
+        emit statusChanged(__s);
     }
 }

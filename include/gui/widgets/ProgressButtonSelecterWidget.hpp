@@ -16,31 +16,46 @@
  */
 
 
-#ifndef PMSEXP_GUI_WIDGETS_BUTTON_SELECTER_HPP
-#define PMSEXP_GUI_WIDGETS_BUTTON_SELECTER_HPP
+#ifndef PMSEXP_GUI_WIDGETS_PROGRESS_BUTTON_SELECTER_HPP
+#define PMSEXP_GUI_WIDGETS_PROGRESS_BUTTON_SELECTER_HPP
 
-#include "ui_ButtonSelecterWidget.h"
-
-#include "gui/widgets/SelecterWidget.hpp"
+#include "gui/widgets/ButtonSelecterWidget.hpp"
 
 namespace gui::widgets
 {
-    class ButtonSelecterWidget : public SelecterWidget
+    class ProgressButtonSelecterWidget : public ButtonSelecterWidget
     {
         Q_OBJECT
 
+        Q_PROPERTY(
+            int progress
+            READ progress
+            WRITE setProgress
+            RESET resetProgress
+            NOTIFY progressChanged
+        )
+
     public:
-        explicit ButtonSelecterWidget(
+        explicit ProgressButtonSelecterWidget(
             QWidget* __parent = nullptr,
             Qt::WindowFlags   = {}
         );
-
-        virtual ~ButtonSelecterWidget() { delete m_ui; }
     protected:
         void updateButtons(int __current_index) const override;
-    protected:
-        Ui::ButtonSelecterWidget* m_ui;
+    public:
+        int progress() const noexcept { return m_progress; }
+        void setPageIndex(int) override;
+    signals:
+        void progressChanged(int);
+        void run();
+    private slots:
+        virtual void updatePageIndex();
+    public slots:
+        void resetProgress() { emit progressChanged(m_progress = 0); }
+        void setProgress(int __p) { emit progressChanged(m_progress = __p); }
+    private:
+        int m_progress;
     };
 }
 
-#endif // PMSEXP_GUI_WIDGETS_BUTTON_SELECTER_HPP
+#endif // PMSEXP_GUI_WIDGETS_PROGRESS_BUTTON_SELECTER_HPP

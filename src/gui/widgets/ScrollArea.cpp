@@ -22,6 +22,14 @@
 
 namespace gui::widgets
 {
+    /*
+     * Created from https://github.com/qt/qtbase/blob/5.15/src/widgets/widgets/qscrollarea.cpp#L403-L421.
+     *
+     * `ScrollArea::sizeHint()` has the same behavior of
+     * `QScrollArea::sizeHint()` except that it does not need to have the
+     * `widgetSize` valid to update.
+     */
+
     QSize ScrollArea::sizeHint() const
     {
         int frame_width = (2 * frameWidth());

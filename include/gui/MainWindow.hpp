@@ -33,7 +33,7 @@ namespace cv
 
 class QProgressBar;
 
-namespace gui::widgets::pages
+namespace gui::pages
 {
     class Calibration;
     class ContourSelection;
@@ -56,13 +56,13 @@ namespace gui
     private:
         full_positions_data process();
     private slots:
-        void update_size(int __current_index);
+        void updateSize(int __current_index);
     private slots:
-        void find_contours(const QRect& __new_selection);
-        void load_selection(bool __new_status);
+        void findContours(const QRect& __new_selection);
+        void loadSelection(bool __new_status);
         void reset();
         void run();
-        void show_results();
+        void showResults();
     private:
         cv::VideoCapture     m_capture;
         cv::Mat              m_first_frame;
@@ -72,11 +72,11 @@ namespace gui
         Ui::MainWindow*      m_ui;
         bool                 m_update_needed;
 
-        gui::widgets::pages::Calibration*      m_calibration_page;
-        gui::widgets::pages::ContourSelection* m_contour_selection_page;
-        gui::widgets::pages::Selection*        m_selection_page;
-        gui::widgets::pages::Statistics*       m_statistics_page;
-        gui::widgets::pages::Upload*           m_upload_page;
+        pages::Calibration*      m_calibration_page;
+        pages::ContourSelection* m_contour_selection_page;
+        pages::Selection*        m_selection_page;
+        pages::Statistics*       m_statistics_page;
+        pages::Upload*           m_upload_page;
     };
 }
 
