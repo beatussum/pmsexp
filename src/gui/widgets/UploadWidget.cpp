@@ -48,20 +48,13 @@ namespace gui::widgets
     {
         const QMimeData* data = __e->mimeData();
 
-        if (data->hasUrls() && (data->urls().size() == 1))
+        if (
+            data->hasUrls() &&
+            (data->urls().size() == 1) &&
+            checkFilePath(__e->mimeData()->urls().first())
+        )
         {
-            QMimeDatabase db;
-
-            if (
-                !m_mime_checker ||
-
-                m_mime_checker(
-                    db.mimeTypeForUrl(__e->mimeData()->urls().first()).name()
-                )
-            )
-            {
-                __e->acceptProposedAction();
-            }
+            __e->acceptProposedAction();
         }
 
         ItemizeWidget::dragEnterEvent(__e);
@@ -76,10 +69,22 @@ namespace gui::widgets
         ItemizeWidget::dropEvent(__e);
     }
 
+    bool UploadWidget::checkFilePath(const QUrl& __f) const
+    {
+        QMimeDatabase db;
+
+        return (
+            !m_mime_checker ||
+            m_mime_checker(db.mimeTypeForUrl(__f).name())
+        );
+    }
+
     void UploadWidget::setFilePath(QString __f)
     {
-        m_file_path = std::move(__f);
+        if (checkFilePath(__f)) {
+            m_file_path = std::move(__f);
 
-        emit filePathUpdated(m_file_path);
+            emit filePathUpdated(m_file_path);
+        }
     }
 }

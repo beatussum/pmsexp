@@ -57,6 +57,8 @@ namespace gui::widgets
     protected:
         void dragEnterEvent(QDragEnterEvent*) override;
         void dropEvent(QDropEvent*) override;
+    private:
+        bool checkFilePath(const QUrl&) const;
     public:
         QString filePath() const { return m_file_path; }
         bool isEmpty() const { return m_file_path.isEmpty(); }
