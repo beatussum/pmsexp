@@ -42,16 +42,12 @@ namespace gui::widgets
         )
 
     private:
-        using connections_type = std::array<QMetaObject::Connection, 5>;
+        using connections_type = std::array<QMetaObject::Connection, 2>;
     public:
         explicit SelecterWidget(
-            QWidget* __parent   = nullptr,
-            Qt::WindowFlags __f = {}
-        )
-            : QWidget(__parent, __f)
-            , m_stacked_widget(nullptr)
-            , m_connections()
-        {}
+            QWidget* __parent = nullptr,
+            Qt::WindowFlags   = {}
+        );
 
         explicit SelecterWidget(
             std::nullptr_t,
@@ -68,6 +64,8 @@ namespace gui::widgets
         )
             : SelecterWidget(__parent, __f)
         { setStackedWidget(__s); }
+
+        virtual ~SelecterWidget() { setStackedWidget(nullptr); }
     public:
         const QWidget* currentPage() const
             { return m_stacked_widget->currentWidget(); }

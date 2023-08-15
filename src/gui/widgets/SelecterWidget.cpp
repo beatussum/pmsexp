@@ -20,6 +20,33 @@
 
 namespace gui::widgets
 {
+    SelecterWidget::SelecterWidget(QWidget* __parent, Qt::WindowFlags __f)
+        : QWidget(__parent, __f)
+        , m_stacked_widget(nullptr)
+        , m_connections()
+    {
+        QObject::connect(
+            this,
+            &SelecterWidget::pageAdded,
+            this,
+            [&] { updateButtons(pageIndex()); }
+        );
+
+        QObject::connect(
+            this,
+            &SelecterWidget::pageIndexChanged,
+            this,
+            &SelecterWidget::updateButtons
+        );
+
+        QObject::connect(
+            this,
+            &SelecterWidget::pageRemoved,
+            this,
+            [&] { updateButtons(pageIndex()); }
+        );
+    }
+
     void SelecterWidget::setStackedWidget(StackedWidget* __s)
     {
         if (m_stacked_widget != nullptr) {
@@ -30,40 +57,21 @@ namespace gui::widgets
 
         m_stacked_widget = __s;
 
-        m_connections[0] = QObject::connect(
-            m_stacked_widget,
-            &StackedWidget::currentChanged,
-            this,
-            &SelecterWidget::pageIndexChanged
-        );
+        if (m_stacked_widget != nullptr) {
+            m_connections[0] = QObject::connect(
+                m_stacked_widget,
+                &StackedWidget::currentChanged,
+                this,
+                &SelecterWidget::pageIndexChanged
+            );
 
-        m_connections[1] = QObject::connect(
-            m_stacked_widget,
-            &StackedWidget::widgetRemoved,
-            this,
-            &SelecterWidget::pageRemoved
-        );
-
-        m_connections[2] = QObject::connect(
-            this,
-            &SelecterWidget::pageAdded,
-            this,
-            [&] { updateButtons(pageIndex()); }
-        );
-
-        m_connections[3] = QObject::connect(
-            this,
-            &SelecterWidget::pageIndexChanged,
-            this,
-            &SelecterWidget::updateButtons
-        );
-
-        m_connections[4] = QObject::connect(
-            this,
-            &SelecterWidget::pageRemoved,
-            this,
-            [&] { updateButtons(pageIndex()); }
-        );
+            m_connections[1] = QObject::connect(
+                m_stacked_widget,
+                &StackedWidget::widgetRemoved,
+                this,
+                &SelecterWidget::pageRemoved
+            );
+        }
     }
 
     void SelecterWidget::next()
