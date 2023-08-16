@@ -62,7 +62,7 @@ namespace gui::widgets
 
     void UploadWidget::setFilePath(QString __f)
     {
-        if (checkFilePath(__f)) {
+        if (__f.isEmpty() || checkFilePath(__f)) {
             m_file_path = std::move(__f);
 
             emit filePathUpdated(m_file_path);
