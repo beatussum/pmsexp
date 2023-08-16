@@ -21,7 +21,7 @@
 #include <QtCore/QMimeData>
 #include <QtCore/QMimeDatabase>
 
-#include <QtGui/QDragEnterEvent>
+#include <QtGui/qevent.h>
 #include <QtWidgets/QFileDialog>
 
 namespace gui::widgets
