@@ -88,7 +88,7 @@
     <message>
         <location filename="../include/gui/pages/Upload.ui" line="18"/>
         <source>Click or use drag and drop to select a video file.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../include/gui/pages/Upload.ui" line="21"/>
@@ -246,12 +246,12 @@
     <message>
         <location filename="../src/gui/widgets/UploadWidget.cpp" line="60"/>
         <source>Open the video file</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/gui/widgets/UploadWidget.cpp" line="62"/>
         <source>Video files (*.mkv *.mp4);;Any files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>
