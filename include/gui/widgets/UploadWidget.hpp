@@ -67,6 +67,7 @@ namespace gui::widgets
     protected:
         void dragEnterEvent(QDragEnterEvent*) override;
         void dropEvent(QDropEvent*) override;
+        void mousePressEvent(QMouseEvent*) override;
     private:
         bool checkFilePath(const QUrl&) const;
     public:

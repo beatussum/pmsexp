@@ -14,6 +14,9 @@
      <layout class="QVBoxLayout" name="m_uploader_layout">
       <item>
        <widget class="gui::widgets::UploadWidget" name="m_uploader" native="true">
+        <property name="toolTip">
+         <string>Click or use drag and drop to select a video file.</string>
+        </property>
         <property name="info" stdset="0">
          <string>Load data</string>
         </property>

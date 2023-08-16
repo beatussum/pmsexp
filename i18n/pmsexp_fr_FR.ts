@@ -87,16 +87,21 @@
     </message>
     <message>
         <location filename="../include/gui/pages/Upload.ui" line="18"/>
+        <source>Click or use drag and drop to select a video file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../include/gui/pages/Upload.ui" line="21"/>
         <source>Load data</source>
         <translation>Charger les données</translation>
     </message>
     <message>
-        <location filename="../include/gui/pages/Upload.ui" line="35"/>
+        <location filename="../include/gui/pages/Upload.ui" line="38"/>
         <source>Current status</source>
         <translation>État actuel</translation>
     </message>
     <message>
-        <location filename="../include/gui/pages/Upload.ui" line="41"/>
+        <location filename="../include/gui/pages/Upload.ui" line="44"/>
         <source>Loading status of data</source>
         <translation>État de chargement des données</translation>
     </message>
@@ -234,6 +239,19 @@
         <location filename="../src/gui/widgets/ProgressButtonSelecterWidget.cpp" line="69"/>
         <source>Next</source>
         <translation>Suivant</translation>
+    </message>
+</context>
+<context>
+    <name>gui::widgets::UploadWidget</name>
+    <message>
+        <location filename="../src/gui/widgets/UploadWidget.cpp" line="60"/>
+        <source>Open the video file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/widgets/UploadWidget.cpp" line="62"/>
+        <source>Video files (*.mkv *.mp4);;Any files (*)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

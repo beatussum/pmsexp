@@ -22,6 +22,7 @@
 #include <QtCore/QMimeDatabase>
 
 #include <QtGui/QDragEnterEvent>
+#include <QtWidgets/QFileDialog>
 
 namespace gui::widgets
 {
@@ -48,6 +49,22 @@ namespace gui::widgets
         emit filePathUpdated(m_file_path);
 
         ItemizeWidget::dropEvent(__e);
+    }
+
+    void UploadWidget::mousePressEvent(QMouseEvent* __e)
+    {
+        if (__e->button() == Qt::LeftButton) {
+            setFilePath(
+                QFileDialog::getOpenFileName(
+                    this,
+                    tr("Open the video file"),
+                    QDir::homePath(),
+                    tr("Video files (*.mkv *.mp4);;Any files (*)")
+                )
+            );
+        }
+
+        ItemizeWidget::mousePressEvent(__e);
     }
 
     bool UploadWidget::checkFilePath(const QUrl& __f) const
