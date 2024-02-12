@@ -3,12 +3,12 @@ Upstream-Name: PMSExp
 Upstream-Contact: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 Source: https://github.com/beatussum/pmsexp/
 License: GPL-3+
-Copyright: 2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Copyright: 2023-2024, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 
 Files: cmake/FindQCustomPlot.cmake
 Copyright:
     2019, Scott Furry <scott.wl.furry@gmail.com>
-    2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+    2023-2024, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 License: BSD-3-clause
 Comment: Taken from https://github.com/sqlitebrowser/sqlitebrowser/.
 
@@ -39,8 +39,8 @@ Files:
     distrib/windows/dialog.svg
     share/icons/com.github.PMSExp.svg
 Copyright:
-    2023, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
-    2023, Yona Rossillol‑‑Laruelle <y_rossillollaruelle@stu-lisaa.com>
+    2023-2024, Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+    2023-2024, Yona Rossillol‑‑Laruelle <y_rossillollaruelle@stu-lisaa.com>
 License: CC-BY-SA
 
 License: GPL-3+
